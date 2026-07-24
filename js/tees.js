@@ -4,6 +4,9 @@ document.querySelectorAll(".teeCard input");
 const startButton =
 document.getElementById("startButton");
 
+const randomMode = document.getElementById("randomMode").checked;
+sessionStorage.setItem("randomMode", randomMode);
+
 checkboxes.forEach(function(checkbox){
 
     checkbox.addEventListener("change", updateSelection);

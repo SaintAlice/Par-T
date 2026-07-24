@@ -35,6 +35,9 @@ document.getElementById("playersBar");
 const statusText =
 document.getElementById("statusText");
 
+const randomMode =
+sessionStorage.getItem("randomMode") === "true";
+
 init();
 
 function init(){
@@ -60,53 +63,75 @@ function init(){
 
 function createResults(){
 
-    const teePool = [];
+    results.length = 0;
 
-    const base =
-    Math.floor(players.length / tees.length);
+    if(randomMode){
 
-    const extra =
-    players.length % tees.length;
+        players.forEach(function(player){
 
-    tees.forEach(function(tee){
+            const randomTee =
+                tees[Math.floor(Math.random() * tees.length)];
 
-        for(let i = 0; i < base; i++){
+            results.push({
 
-            teePool.push(tee);
+                player: player,
+                tee: randomTee
 
-        }
-
-    });
-
-    const randomTees =
-    [...tees].sort(function(){
-
-        return Math.random() - 0.5;
-
-    });
-
-    for(let i = 0; i < extra; i++){
-
-        teePool.push(randomTees[i]);
-
-    }
-
-    teePool.sort(function(){
-
-        return Math.random() - 0.5;
-
-    });
-
-    players.forEach(function(player,index){
-
-        results.push({
-
-            player:player,
-            tee:teePool[index]
+            });
 
         });
 
-    });
+    }else{
+
+        const teePool = [];
+
+        const base =
+            Math.floor(players.length / tees.length);
+
+        const extra =
+            players.length % tees.length;
+
+        tees.forEach(function(tee){
+
+            for(let i = 0; i < base; i++){
+
+                teePool.push(tee);
+
+            }
+
+        });
+
+        const randomTees =
+            [...tees].sort(function(){
+
+                return Math.random() - 0.5;
+
+            });
+
+        for(let i = 0; i < extra; i++){
+
+            teePool.push(randomTees[i]);
+
+        }
+
+        teePool.sort(function(){
+
+            return Math.random() - 0.5;
+
+        });
+
+        players.forEach(function(player,index){
+
+            results.push({
+
+                player: player,
+                tee: teePool[index]
+
+            });
+
+        });
+
+    }
 
     localStorage.setItem(
         "results",
@@ -216,47 +241,49 @@ function showCurrentPlayer(){
 
 function spinWheel(){
 
-    wheel.style.pointerEvents = "none";
+wheel.style.pointerEvents = "none";
 
-    const teeNaam =
-    results[currentPlayerIndex].tee;
+const teeNaam =
+results[currentPlayerIndex].tee;
 
-    const mogelijkeSegmenten =
-    wheelSegments.filter(function(segment){
+const mogelijkeSegmenten =
+wheelSegments.filter(function(segment){
 
-        return segment.naam === teeNaam;
+    return segment.naam === teeNaam;
 
-    });
+});
 
-    const gekozenSegment =
-    mogelijkeSegmenten[
-        Math.floor(
-            Math.random() *
-            mogelijkeSegmenten.length
-        )
-    ];
+const gekozenSegment =
+mogelijkeSegmenten[
+    Math.floor(
+        Math.random() *
+        mogelijkeSegmenten.length
+    )
+];
 
-    const target =
-    360 - gekozenSegment.angle;
+const target =
+360 - gekozenSegment.angle;
 
-    const currentAngle =
-    ((currentRotation % 360) + 360) % 360;
+const currentAngle =
+((currentRotation % 360) + 360) % 360;
 
-    const extraRotation =
-    (target - currentAngle + 360) % 360;
+const extraRotation =
+(target - currentAngle + 360) % 360;
 
-    currentRotation +=
-    (3 * 360) + extraRotation;
+currentRotation +=
+(3 * 360) + extraRotation;
 
-    wheel.style.transform =
-    `rotate(${currentRotation}deg)`;
+wheel.style.transform =
+`rotate(${currentRotation}deg)`;
 
-    setTimeout(function(){
+setTimeout(function(){
 
-        showResult();
+    showResult();
 
-    },2400);
+},2400);
 }
+
+
 
 function showResult(){
 
