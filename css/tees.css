@@ -1,16 +1,40 @@
 /* PAGINA */
 
-.container{
+.teesPage{
 
-    width:min(90%,480px);
+    flex:1;
 
-    margin:0 auto;
+    display:flex;
 
-    padding:60px 20px 24px;
+    flex-direction:column;
 
-    padding-bottom:calc(env(safe-area-inset-bottom) + 30px);
+}
+
+.pageHeader{
+
+    flex-shrink:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
 
     text-align:center;
+
+}
+
+.pageContent{
+
+    flex:1;
+
+    min-height:0;
+
+    overflow-y:auto;
+
+    display:flex;
+
+    flex-direction:column;
 
 }
 
@@ -39,6 +63,118 @@ h1{
 
 }
 
+
+/* INSTELLINGEN */
+
+.settingsCard{
+
+    width:86%;
+    max-width:300px;
+
+    margin:6px auto 18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    color:white;
+
+}
+
+.settingsTitle{
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.settingsSubtitle{
+
+    display:none;
+
+}
+
+
+/* SWITCH */
+
+.switch{
+
+    position:relative;
+
+    display:inline-block;
+
+    width:52px;
+
+    height:30px;
+
+    flex-shrink:0;
+
+}
+
+.switch input{
+
+    opacity:0;
+
+    width:0;
+
+    height:0;
+
+}
+
+.slider{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#777;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.slider::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:3px;
+
+    top:3px;
+
+    width:24px;
+
+    height:24px;
+
+    border-radius:50%;
+
+    background:white;
+
+    transition:.25s;
+
+}
+
+.switch input:checked + .slider{
+
+    background:#215B35;
+
+}
+
+.switch input:checked + .slider::before{
+
+    transform:translateX(22px);
+
+}
+
+
 /* GRID */
 
 #teeGrid{
@@ -48,6 +184,8 @@ h1{
     grid-template-columns:repeat(2,1fr);
 
     gap:8px;
+
+    width:100%;
 
 }
 
@@ -94,8 +232,7 @@ h1{
 
     transition:.25s;
 
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.15);
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
 
 }
 
@@ -103,8 +240,7 @@ h1{
 
     transform:translateY(-4px);
 
-    box-shadow:
-        0 18px 40px rgba(0,0,0,.22);
+    box-shadow:0 18px 40px rgba(0,0,0,.22);
 
 }
 
@@ -121,14 +257,8 @@ h1{
 
 }
 
-.teeSvg path{
 
-    fill:currentColor;
-
-}
-
-
-/* TITEL */
+/* TEKST */
 
 .teeCard span{
 
@@ -141,7 +271,7 @@ h1{
 }
 
 
-/* LIJN */
+/* KLEURLIJN */
 
 .teeLine{
 
@@ -152,56 +282,6 @@ h1{
     margin-top:18px;
 
     border-radius:999px;
-
-}
-
-
-/* KLEUREN */
-
-.wit{
-
-    background:white;
-
-    border:3px solid #d8d8d8;
-
-}
-
-.geel{
-
-    background:#FFD229;
-
-}
-
-.blauw{
-
-    background:#2D8CEB;
-
-}
-
-.rood{
-
-    background:#F44336;
-
-}
-
-.oranje{
-
-    background:#FF9800;
-
-}
-
-.teeSvg.wit{
-
-    color:#d8d8d8;
-
-}
-
-.teeSvg.geel,
-.teeSvg.blauw,
-.teeSvg.rood,
-.teeSvg.oranje{
-
-    color:white;
 
 }
 
@@ -242,8 +322,7 @@ h1{
 
     transform:translateY(-6px);
 
-    box-shadow:
-        0 20px 40px rgba(0,0,0,.22);
+    box-shadow:0 20px 40px rgba(0,0,0,.22);
 
 }
 
@@ -309,8 +388,8 @@ h1{
 
 }
 
-/*   VIJFDE TEE CENTREREN
-   (verwijderen zodra er een 6e tee komt) */
+
+/* VIJFDE TEE */
 
 #teeGrid .teeCard:last-child{
 
@@ -320,6 +399,8 @@ h1{
 
     justify-content:center;
 
+    margin-top:4px;
+
 }
 
 #teeGrid .teeCard:last-child label{
@@ -328,162 +409,17 @@ h1{
 
 }
 
-#teeGrid .teeCard:last-child{
 
-    margin-top:4px;
+/* FOOTER */
 
-}
-
-.randomModeOption{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-    margin:12px 0 18px;
-    font-size:16px;
-    font-weight:600;
-    color:white;
-    cursor:pointer;
-}
-
-.randomModeOption input{
-    width:18px;
-    height:18px;
-    cursor:pointer;
-}
-
-.settingsCard{
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    width:90%;
-    max-width:300px;
-
-    margin:6px auto 12px;
-    padding:0;
-
-    background:none;
-    backdrop-filter:none;
-
-    color:white;
-
-}
-
-.settingsTitle{
-
-    font-size:14px;
-    font-weight:600;
-
-}
-
-.settingsSubtitle{
-
-    display:none;
-}
-
-.switch{
-
-    position:relative;
-    display:inline-block;
-
-    width:52px;
-    height:30px;
+.pageFooter{
 
     flex-shrink:0;
 
-}
+    display:flex;
 
-.switch input{
+    justify-content:center;
 
-    opacity:0;
-    width:0;
-    height:0;
+    padding-top:16px;
 
 }
-
-.slider{
-
-    position:absolute;
-    inset:0;
-
-    cursor:pointer;
-
-    background:#777;
-    border-radius:30px;
-
-    transition:.25s;
-
-}
-
-.slider::before{
-
-    content:"";
-
-    position:absolute;
-
-    width:24px;
-    height:24px;
-
-    left:3px;
-    top:3px;
-
-    background:white;
-
-    border-radius:50%;
-
-    transition:.25s;
-
-}
-
-.switch input:checked + .slider{
-
-    background:#2E7D32;
-
-}
-
-.switch input:checked + .slider::before{
-
-    transform:translateX(22px);
-
-}
-
-/* START BUTTON */
-
-#startButton{
-
-    width:88%;
-
-    max-width: 260px;
-
-    height:52px;
-
-    margin:22px auto 0;
-
-    border-radius:999px;
-
-    background:#215B35;
-
-    color:white;
-
-    font-size:20px;
-
-    font-weight:700;
-
-}
-
-#startButton:disabled{
-
-    opacity:.45;
-
-    cursor:not-allowed;
-
-}
-
-#startButton:not(:disabled):hover{
-
-    transform:translateY(-3px);
-
-}
-

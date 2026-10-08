@@ -1,28 +1,26 @@
 const checkboxes =
-document.querySelectorAll(".teeCard input");
+    document.querySelectorAll(".teeCard input");
 
 const startButton =
-document.getElementById("startButton");
+    document.getElementById("startButton");
 
-const randomMode = document.getElementById("randomMode").checked;
-sessionStorage.setItem("randomMode", randomMode);
+const randomModeCheckbox =
+    document.getElementById("randomMode");
 
-checkboxes.forEach(function(checkbox){
+checkboxes.forEach(function(checkbox) {
 
     checkbox.addEventListener("change", updateSelection);
 
 });
 
-function updateSelection(){
+function updateSelection() {
 
     const selectedTees = [];
 
-    checkboxes.forEach(function(checkbox){
+    checkboxes.forEach(function(checkbox) {
 
-        if(checkbox.checked){
-
+        if (checkbox.checked) {
             selectedTees.push(checkbox.value);
-
         }
 
     });
@@ -33,23 +31,28 @@ function updateSelection(){
 
 startButton.addEventListener("click", startGame);
 
-function startGame(){
+function startGame() {
 
     const selectedTees = [];
 
-    checkboxes.forEach(function(checkbox){
+    checkboxes.forEach(function(checkbox) {
 
-        if(checkbox.checked){
-
+        if (checkbox.checked) {
             selectedTees.push(checkbox.value);
-
         }
 
     });
 
+    const randomMode = randomModeCheckbox.checked;
+
     localStorage.setItem(
         "tees",
         JSON.stringify(selectedTees)
+    );
+
+    sessionStorage.setItem(
+        "randomMode",
+        randomMode
     );
 
     location.href = "draaien.html";

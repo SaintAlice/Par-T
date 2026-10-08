@@ -37,7 +37,12 @@
 
     flex-shrink:0;
 
-    padding-top:24px;
+    display:flex;
+
+    justify-content:center;
+
+    padding-top:16px;
+
 }
 
 .addPlayer{
@@ -241,52 +246,5 @@
     background:#E8E8E8;
 
     transform:scale(1.05);
-
-}
-
-/* VOLGENDE */
-
-#nextButton{
-
-    display:block;
-
-    width:280px;
-
-    height:70px;
-
-    margin:0 auto;
-
-    border:none;
-
-    border-radius:999px;
-
-    background:#215B35;
-
-    color:white;
-
-    font-size:28px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.18);
-
-}
-
-#nextButton:hover{
-
-    transform:translateY(-3px);
-
-}
-
-#nextButton:disabled{
-
-    opacity:.45;
-
-    cursor:not-allowed;
 
 }
