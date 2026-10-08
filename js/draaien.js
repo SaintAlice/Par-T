@@ -81,7 +81,7 @@ function createResults(){
 
         });
 
-    }else{
+    } else {
 
         const teePool = [];
 
@@ -91,6 +91,8 @@ function createResults(){
         const extra =
             players.length % tees.length;
 
+
+        // Iedere tee krijgt eerst hetzelfde aantal spelers
         tees.forEach(function(tee){
 
             for(let i = 0; i < base; i++){
@@ -101,26 +103,24 @@ function createResults(){
 
         });
 
-        const randomTees =
-            [...tees].sort(function(){
 
-                return Math.random() - 0.5;
-
-            });
-
+        // De resterende spelers krijgen willekeurig een tee
         for(let i = 0; i < extra; i++){
 
-            teePool.push(randomTees[i]);
+            const randomTee =
+                tees[Math.floor(Math.random() * tees.length)];
+
+            teePool.push(randomTee);
 
         }
 
-        teePool.sort(function(){
 
-            return Math.random() - 0.5;
+        // De volgorde van de tees wordt willekeurig gemaakt
+        shuffle(teePool);
 
-        });
 
-        players.forEach(function(player,index){
+        // Koppel de tees aan de spelers
+        players.forEach(function(player, index){
 
             results.push({
 
@@ -137,6 +137,26 @@ function createResults(){
         "results",
         JSON.stringify(results)
     );
+
+}
+
+function shuffle(array){
+
+    for(let i = array.length - 1; i > 0; i--){
+
+        const randomIndex =
+            Math.floor(Math.random() * (i + 1));
+
+        const temporary =
+            array[i];
+
+        array[i] =
+            array[randomIndex];
+
+        array[randomIndex] =
+            temporary;
+
+    }
 
 }
 

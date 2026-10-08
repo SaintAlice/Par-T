@@ -2,33 +2,36 @@
    WHEEL
 ========================================== */
 
-#wheelWrapper{
+#wheelWrapper {
 
-    position:relative;
+    position: relative;
 
-    width:min(94vw, 424px);
+    width: min(82vw, 380px);
 
-    aspect-ratio:1;
+    aspect-ratio: 1;
 
-    margin-top:40px;
+    margin-top: 12px;
+
+    flex-shrink: 1;
 
 }
 
-#wheel{
+#wheel {
 
-    width:100%;
+    width: 100%;
+    height: 100%;
 
-    height:100%;
+    display: block;
 
-    display:block;
+    cursor: pointer;
 
-    cursor:pointer;
+    transform-origin: center;
 
-    transform-origin:center;
+    transition:
+        transform 2.4s cubic-bezier(.2,.8,.25,1);
 
-    transition:transform 2.4s cubic-bezier(.2,.8,.25,1);
-
-    filter:drop-shadow(0 18px 30px rgba(0,0,0,.28));
+    filter:
+        drop-shadow(0 14px 24px rgba(0,0,0,.28));
 
 }
 
@@ -37,26 +40,65 @@
    POINTER
 ========================================== */
 
-#pointer{
+#pointer {
 
-    position:absolute;
+    position: absolute;
 
-    top:-18px;
+    top: -14px;
 
-    left:50%;
+    left: 50%;
 
-    transform:translateX(-50%);
+    transform: translateX(-50%);
 
-    width:0;
+    width: 0;
+    height: 0;
 
-    height:0;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top: 23px solid white;
 
-    border-left:16px solid transparent;
+    z-index: 5;
 
-    border-right:16px solid transparent;
+}
 
-    border-top:26px solid white;
 
-    z-index:5;
+/* ==========================================
+   KLEINERE SCHERMEN
+========================================== */
+
+@media (max-height: 750px) {
+
+    #wheelWrapper {
+
+        width: min(72vw, 320px);
+
+        margin-top: 4px;
+
+    }
+
+    #pointer {
+
+        top: -12px;
+
+        border-left-width: 12px;
+        border-right-width: 12px;
+        border-top-width: 20px;
+
+    }
+
+}
+
+
+/* ==========================================
+   ZEER KLEINE SCHERMEN
+========================================== */
+
+@media (max-height: 650px) {
+
+    #wheelWrapper {
+
+        width: min(65vw, 280px);
+
+    }
 
 }
