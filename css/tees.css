@@ -1,425 +1,415 @@
-/* PAGINA */
+/* ==========================================
+   PAGINA
+========================================== */
 
-.teesPage{
+.teesPage {
 
-    flex:1;
+    flex: 1;
 
-    display:flex;
+    display: flex;
+    flex-direction: column;
 
-    flex-direction:column;
-
-}
-
-.pageHeader{
-
-    flex-shrink:0;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    text-align:center;
+    min-height: 100dvh;
 
 }
 
-.pageContent{
+.pageHeader {
 
-    flex:1;
+    flex-shrink: 0;
 
-    min-height:0;
+    display: flex;
+    flex-direction: column;
 
-    overflow-y:auto;
+    align-items: center;
 
-    display:flex;
-
-    flex-direction:column;
+    text-align: center;
 
 }
 
 
-/* TITELS */
+/* ==========================================
+   CONTENT
+========================================== */
 
-h1{
+.pageContent {
 
-    font-size:clamp(2.3rem,8vw,3.2rem);
+    flex: 1;
 
-    font-weight:700;
+    min-height: 0;
 
-    line-height:1.05;
+    overflow-y: auto;
 
-    margin-bottom:6px;
+    display: flex;
+    flex-direction: column;
 
-}
+    align-items: center;
 
-.subtitle{
+    padding-bottom: 16px;
 
-    font-size:clamp(1rem,4vw,1.2rem);
-
-    color:rgba(255,255,255,.8);
-
-    margin-bottom:18px;
-
-}
-
-
-/* INSTELLINGEN */
-
-.settingsCard{
-
-    width:86%;
-    max-width:300px;
-
-    margin:6px auto 18px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    color:white;
-
-}
-
-.settingsTitle{
-
-    font-size:14px;
-
-    font-weight:600;
-
-}
-
-.settingsSubtitle{
-
-    display:none;
+    box-sizing: border-box;
 
 }
 
 
-/* SWITCH */
+/* ==========================================
+   TITELS
+========================================== */
 
-.switch{
+h1 {
 
-    position:relative;
+    font-size: clamp(2rem, 7vw, 3.2rem);
 
-    display:inline-block;
+    font-weight: 700;
 
-    width:52px;
+    line-height: 1.05;
 
-    height:30px;
-
-    flex-shrink:0;
-
-}
-
-.switch input{
-
-    opacity:0;
-
-    width:0;
-
-    height:0;
+    margin: 0 0 4px;
 
 }
 
-.slider{
+.subtitle {
 
-    position:absolute;
+    font-size: clamp(.9rem, 3.5vw, 1.2rem);
 
-    inset:0;
+    color: rgba(255,255,255,.8);
 
-    background:#777;
-
-    border-radius:999px;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-}
-
-.slider::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:3px;
-
-    top:3px;
-
-    width:24px;
-
-    height:24px;
-
-    border-radius:50%;
-
-    background:white;
-
-    transition:.25s;
-
-}
-
-.switch input:checked + .slider{
-
-    background:#215B35;
-
-}
-
-.switch input:checked + .slider::before{
-
-    transform:translateX(22px);
+    margin: 0 0 clamp(10px, 2vh, 18px);
 
 }
 
 
-/* GRID */
+/* ==========================================
+   INSTELLINGEN
+========================================== */
 
-#teeGrid{
+.settingsCard {
 
-    display:grid;
+    width: min(86%, 360px);
 
-    grid-template-columns:repeat(2,1fr);
+    margin: 0 auto clamp(10px, 2vh, 18px);
 
-    gap:8px;
+    display: flex;
 
-    width:100%;
+    justify-content: space-between;
+
+    align-items: center;
+
+    color: white;
+
+}
+
+.settingsTitle {
+
+    font-size: clamp(.8rem, 3vw, .95rem);
+
+    font-weight: 600;
+
+}
+
+.settingsSubtitle {
+
+    display: none;
 
 }
 
 
-/* TEE CARD */
+/* ==========================================
+   SWITCH
+========================================== */
 
-.teeCard{
+.switch {
 
-    position:relative;
+    position: relative;
 
-}
+    display: inline-block;
 
-.teeCard input{
+    width: 52px;
+    height: 30px;
 
-    display:none;
-
-}
-
-.teeCard label{
-
-    width:86%;
-
-    aspect-ratio:1 / 1.2;
-
-    justify-self:center;
-
-    background:white;
-
-    border-radius:28px;
-
-    border:2px solid transparent;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    cursor:pointer;
-
-    position:relative;
-
-    transition:.25s;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    flex-shrink: 0;
 
 }
 
-.teeCard label:hover{
+.switch input {
 
-    transform:translateY(-4px);
+    opacity: 0;
 
-    box-shadow:0 18px 40px rgba(0,0,0,.22);
-
-}
-
-
-/* SVG */
-
-.teeSvg{
-
-    width:42px;
-
-    height:82px;
-
-    margin-bottom:12px;
+    width: 0;
+    height: 0;
 
 }
 
+.slider {
 
-/* TEKST */
+    position: absolute;
 
-.teeCard span{
+    inset: 0;
 
-    font-size:clamp(1.45rem,4.8vw,1.75rem);
+    background: #777;
 
-    font-weight:700;
+    border-radius: 999px;
 
-    color:#21422c;
+    cursor: pointer;
+
+    transition: .25s;
+
+}
+
+.slider::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 3px;
+    top: 3px;
+
+    width: 24px;
+    height: 24px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    transition: .25s;
+
+}
+
+.switch input:checked + .slider {
+
+    background: #215B35;
+
+}
+
+.switch input:checked + .slider::before {
+
+    transform: translateX(22px);
 
 }
 
 
-/* KLEURLIJN */
+/* ==========================================
+   TEE GRID
+========================================== */
 
-.teeLine{
+#teeGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(6px, 2vw, 14px);
+    width: min(100%, 560px, 45dvh);
+    margin: 0 auto;
+    box-sizing: border-box;
+}
 
-    width:46px;
+/* ==========================================
+   TEE CARD
+========================================== */
 
-    height:5px;
+.teeCard {
 
-    margin-top:18px;
+    position: relative;
 
-    border-radius:999px;
+    min-width: 0;
 
 }
 
-.teeLine.wit{
+.teeCard input {
 
-    background:#d8d8d8;
-
-}
-
-.teeLine.geel{
-
-    background:#FFD229;
+    display: none;
 
 }
 
-.teeLine.blauw{
+.teeCard label {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    background: white;
+    border-radius: clamp(16px, 4vw, 28px);
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    transition: .25s;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
 
-    background:#2D8CEB;
+.teeCard label:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 18px 40px rgba(0,0,0,.22);
 
 }
 
-.teeLine.rood{
+.teeSvg {
+    width: clamp(22px, 7vw, 42px);
+    height: auto;
+    max-height: 30%;
+    margin-bottom: clamp(3px, 1.5vw, 12px);
+}
 
-    background:#F44336;
+.teeCard span {
+    font-size: clamp(.85rem, 4vw, 1.75rem);
+    font-weight: 700;
+    color: #21422c;
+}
+
+.teeLine {
+    width: clamp(24px, 9vw, 46px);
+    height: clamp(3px, .8vw, 5px);
+    margin-top: clamp(5px, 2vw, 18px);
+    border-radius: 999px;
+}
+.teeLine.wit {
+
+    background: #d8d8d8;
 
 }
 
-.teeLine.oranje{
+.teeLine.geel {
 
-    background:#FF9800;
-
-}
-
-
-/* SELECTIE */
-
-.teeCard input:checked + label{
-
-    transform:translateY(-6px);
-
-    box-shadow:0 20px 40px rgba(0,0,0,.22);
+    background: #FFD229;
 
 }
 
-.teeCard input:checked + label::after{
+.teeLine.blauw {
 
-    content:"✓";
-
-    position:absolute;
-
-    top:16px;
-
-    right:16px;
-
-    width:30px;
-
-    height:30px;
-
-    border-radius:50%;
-
-    background:#215B35;
-
-    color:white;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:18px;
-
-    font-weight:700;
+    background: #2D8CEB;
 
 }
 
-#wit:checked + label{
+.teeLine.rood {
 
-    border-color:#d8d8d8;
-
-}
-
-#geel:checked + label{
-
-    border-color:#FFD229;
+    background: #F44336;
 
 }
 
-#blauw:checked + label{
+.teeLine.oranje {
 
-    border-color:#2D8CEB;
-
-}
-
-#rood:checked + label{
-
-    border-color:#F44336;
-
-}
-
-#oranje:checked + label{
-
-    border-color:#FF9800;
+    background: #FF9800;
 
 }
 
 
-/* VIJFDE TEE */
+/* ==========================================
+   SELECTIE
+========================================== */
 
-#teeGrid .teeCard:last-child{
+.teeCard input:checked + label {
 
-    grid-column:1 / -1;
+    transform: translateY(-6px);
 
-    display:flex;
-
-    justify-content:center;
-
-    margin-top:4px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.22);
 
 }
 
-#teeGrid .teeCard:last-child label{
+.teeCard input:checked + label::after {
 
-    width:calc(50% - 11px);
+    content: "✓";
+
+    position: absolute;
+
+    top: clamp(8px, 2vw, 16px);
+
+    right: clamp(8px, 2vw, 16px);
+
+    width: clamp(24px, 6vw, 30px);
+
+    height: clamp(24px, 6vw, 30px);
+
+    border-radius: 50%;
+
+    background: #215B35;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: clamp(14px, 3.5vw, 18px);
+
+    font-weight: 700;
 
 }
 
 
-/* FOOTER */
+/* ==========================================
+   GESELECTEERDE TEE
+========================================== */
 
-.pageFooter{
+#wit:checked + label {
 
-    flex-shrink:0;
+    border-color: #d8d8d8;
 
-    display:flex;
+}
 
-    justify-content:center;
+#geel:checked + label {
 
-    padding-top:16px;
+    border-color: #FFD229;
+
+}
+
+#blauw:checked + label {
+
+    border-color: #2D8CEB;
+
+}
+
+#rood:checked + label {
+
+    border-color: #F44336;
+
+}
+
+#oranje:checked + label {
+
+    border-color: #FF9800;
+
+}
+
+
+/* ==========================================
+   VIJFDE TEE
+========================================== */
+
+#teeGrid .teeCard:last-child {
+
+    grid-column: 1 / -1;
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+#teeGrid .teeCard:last-child label {
+
+    width: calc(50% - 3px);
+
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.pageFooter {
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    padding:
+        10px
+        16px
+        calc(env(safe-area-inset-bottom) + 12px);
 
 }
