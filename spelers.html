@@ -3,65 +3,135 @@
 <html lang="nl">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spelers - Spin to Tee</title>
 
-<title>Spelers - Spin to Tee</title>
-
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/spelers.css">
-
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/spelers.css">
 </head>
 
 <body>
 
-<a href="index.html" class="homeButton">
-    🏠
-</a>
+<a href="index.html" class="homeButton">🏠</a>
 
 <main class="page playersPage">
 
     <header class="pageHeader">
-
         <h1>Spelers</h1>
-
-        <p class="subtitle">
-            Wie doen er vandaag mee?
-        </p>
-
+        <p class="subtitle">Wie doen er vandaag mee?</p>
     </header>
 
     <section class="pageContent">
 
         <div class="addPlayer">
-
             <input
                 type="text"
                 id="playerInput"
-                placeholder="Naam speler">
+                placeholder="Naam speler"
+                aria-label="Naam speler">
 
-            <button id="addPlayerButton">
+            <button id="addPlayerButton" aria-label="Speler toevoegen">
                 +
             </button>
-
         </div>
 
+        <section class="gameSettings">
+
+            <div class="generalTeesCard">
+
+                <button
+                    type="button"
+                    id="generalTeesToggle"
+                    class="generalTeesHeader"
+                    aria-expanded="true">
+
+                    <span class="generalTeesHeading">
+                        <strong>Algemene tee-selectie</strong>
+                        <span>Welke tee's doen mee?</span>
+                    </span>
+
+                    <span id="generalTeesCount" class="generalTeesCount">
+                        5 van 5
+                    </span>
+
+                    <span class="settingsArrow">⌄</span>
+                </button>
+
+                <div id="generalTeesContent" class="generalTeesContent">
+
+                    <div id="generalTeeOptions" class="generalTeeOptions">
+
+                        <label class="generalTeeOption">
+                            <input type="checkbox" value="Wit" data-tee="wit">
+                            <img src="images/tee-wit.svg" alt="">
+                            <span>Wit</span>
+                        </label>
+
+                        <label class="generalTeeOption">
+                            <input type="checkbox" value="Geel" data-tee="geel">
+                            <img src="images/tee-geel.svg" alt="">
+                            <span>Geel</span>
+                        </label>
+
+                        <label class="generalTeeOption">
+                            <input type="checkbox" value="Blauw" data-tee="blauw">
+                            <img src="images/tee-blauw.svg" alt="">
+                            <span>Blauw</span>
+                        </label>
+
+                        <label class="generalTeeOption">
+                            <input type="checkbox" value="Rood" data-tee="rood">
+                            <img src="images/tee-rood.svg" alt="">
+                            <span>Rood</span>
+                        </label>
+
+                        <label class="generalTeeOption">
+                            <input type="checkbox" value="Oranje" data-tee="oranje">
+                            <img src="images/tee-oranje.svg" alt="">
+                            <span>Oranje</span>
+                        </label>
+
+                    </div>
+
+                    <p class="settingsHint">
+                        Deze selectie geldt voor alle spelers.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="randomModeCard">
+
+                <div class="randomModeText">
+                    <strong>Willekeurige tee's</strong>
+                    <span>
+                        Iedere speler krijgt onafhankelijk een willekeurige
+                        toegestane tee.
+                    </span>
+                </div>
+
+                <label class="switch" for="randomMode">
+                    <input type="checkbox" id="randomMode">
+                    <span class="slider"></span>
+                </label>
+
+            </div>
+
+        </section>
+
         <div id="playerList"></div>
+
+        <p id="gameValidationMessage" class="validationMessage" hidden></p>
 
     </section>
 
     <footer class="pageFooter">
-
-    <button
-        id="nextButton"
-        class="primaryButton"
-        disabled>
-
-        Volgende →
-
-    </button>
-
+        <button id="nextButton" class="primaryButton" disabled>
+            Start draaien →
+        </button>
     </footer>
 
 </main>

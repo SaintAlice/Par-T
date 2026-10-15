@@ -5,430 +5,366 @@ const results = [];
 const wheelSegments = [];
 
 const players =
-JSON.parse(localStorage.getItem("players")) || [];
+    JSON.parse(localStorage.getItem("players")) || [];
 
 const tees =
-JSON.parse(localStorage.getItem("tees")) || [];
+    JSON.parse(localStorage.getItem("tees")) || [];
+
+const allPlayers =
+    JSON.parse(localStorage.getItem("allPlayers")) || [];
 
 const teeColors = {
-
-    "Wit":"#ffffff",
-    "Geel":"#ffd700",
-    "Blauw":"#2196f3",
-    "Rood":"#f44336",
-    "Oranje":"#ff9800"
-
+    "Wit": "#ffffff",
+    "Geel": "#ffd700",
+    "Blauw": "#2196f3",
+    "Rood": "#f44336",
+    "Oranje": "#ff9800"
 };
 
 const currentPlayer =
-document.getElementById("currentPlayer");
+    document.getElementById("currentPlayer");
 
 const wheel =
-document.getElementById("wheel");
+    document.getElementById("wheel");
 
 const svg =
-document.getElementById("segments");
+    document.getElementById("segments");
 
 const playersBar =
-document.getElementById("playersBar");
+    document.getElementById("playersBar");
 
 const statusText =
-document.getElementById("statusText");
+    document.getElementById("statusText");
 
 const randomMode =
-sessionStorage.getItem("randomMode") === "true";
+    sessionStorage.getItem("randomMode") === "true";
+
+let playerTees = {};
 
 init();
 
-function init(){
+function init() {
+    if (players.length === 0 || tees.length === 0) {
+        alert("Er zijn geen spelers of tee's geselecteerd.");
+        location.href = "spelers.html";
+        return;
+    }
+
+    if (!createPlayerTees()) {
+        return;
+    }
 
     createResults();
 
     drawPlayers();
-
     createWheel();
-
     drawWheel();
-
     showCurrentPlayer();
-
     updatePlayerBar();
 
-    wheel.addEventListener(
-        "click",
-        spinWheel
-    );
-
+    wheel.addEventListener("click", spinWheel);
 }
 
-function createResults(){
+function createPlayerTees() {
+    const spelersZonderTee = [];
 
+    players.forEach(function(playerName) {
+        const player = allPlayers.find(function(item) {
+            return item.name.toLowerCase() ===
+                playerName.toLowerCase();
+        });
+
+        const availableTees =
+            player && Array.isArray(player.availableTees)
+                ? player.availableTees
+                : tees.map(function(tee) {
+                    return tee.toLowerCase();
+                });
+
+        playerTees[playerName] = tees.filter(function(tee) {
+        return availableTees.includes(tee.toLowerCase());
+        });
+
+        if (playerTees[playerName].length === 0) {
+            spelersZonderTee.push(playerName);
+        }
+    });
+
+    if (spelersZonderTee.length > 0) {
+        alert(
+            "Geen beschikbare tee voor: " +
+            spelersZonderTee.join(", ") +
+            ". Pas de instellingen aan."
+        );
+
+        location.href = "spelers.html";
+        return false;
+    }
+
+    return true;
+}
+
+function createResults() {
     results.length = 0;
 
-    if(randomMode){
-
-        players.forEach(function(player){
+    if (randomMode) {
+        players.forEach(function(player) {
+            const allowedTees = playerTees[player];
 
             const randomTee =
-                tees[Math.floor(Math.random() * tees.length)];
+                allowedTees[
+                    Math.floor(Math.random() * allowedTees.length)
+                ];
 
             results.push({
-
                 player: player,
                 tee: randomTee
-
             });
-
         });
-
     } else {
-
-        const teePool = [];
-
-        const base =
-            Math.floor(players.length / tees.length);
-
-        const extra =
-            players.length % tees.length;
-
-
-        // Iedere tee krijgt eerst hetzelfde aantal spelers
-        tees.forEach(function(tee){
-
-            for(let i = 0; i < base; i++){
-
-                teePool.push(tee);
-
-            }
-
+        // Verwerk spelers in willekeurige volgorde om te voorkomen
+        // dat dezelfde spelers steeds als eerste worden ingedeeld.
+        const playerIndices = players.map(function(player, index) {
+            return index;
         });
 
+        shuffle(playerIndices);
 
-        // De resterende spelers krijgen willekeurig een tee
-        for(let i = 0; i < extra; i++){
+        const assignedCounts = {};
 
-            const randomTee =
-                tees[Math.floor(Math.random() * tees.length)];
+        tees.forEach(function(tee) {
+            assignedCounts[tee] = 0;
+        });
 
-            teePool.push(randomTee);
+        const assignedTees = new Array(players.length);
 
-        }
+        playerIndices.forEach(function(index) {
+            const player = players[index];
+            const allowedTees = playerTees[player];
 
+            // Kies alleen uit toegestane tee's met het laagste
+            // huidige aantal toewijzingen.
+            const minimum = Math.min.apply(
+                null,
+                allowedTees.map(function(tee) {
+                    return assignedCounts[tee];
+                })
+            );
 
-        // De volgorde van de tees wordt willekeurig gemaakt
-        shuffle(teePool);
-
-
-        // Koppel de tees aan de spelers
-        players.forEach(function(player, index){
-
-            results.push({
-
-                player: player,
-                tee: teePool[index]
-
+            const candidates = allowedTees.filter(function(tee) {
+                return assignedCounts[tee] === minimum;
             });
 
+            const chosenTee =
+                candidates[Math.floor(Math.random() * candidates.length)];
+
+            assignedTees[index] = chosenTee;
+            assignedCounts[chosenTee]++;
         });
 
+        players.forEach(function(player, index) {
+            results.push({
+                player: player,
+                tee: assignedTees[index]
+            });
+        });
     }
 
     localStorage.setItem(
         "results",
         JSON.stringify(results)
     );
-
 }
 
-function shuffle(array){
-
-    for(let i = array.length - 1; i > 0; i--){
-
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
         const randomIndex =
             Math.floor(Math.random() * (i + 1));
 
-        const temporary =
-            array[i];
-
-        array[i] =
-            array[randomIndex];
-
-        array[randomIndex] =
-            temporary;
-
+        [array[i], array[randomIndex]] =
+            [array[randomIndex], array[i]];
     }
-
 }
 
-function createWheel(){
-
+function createWheel() {
     wheelSegments.length = 0;
 
-    const repeats =
-    Math.ceil(24 / tees.length);
+    const repeats = Math.ceil(24 / tees.length);
 
-    for(let i = 0; i < repeats; i++){
-
-        tees.forEach(function(tee){
-
+    for (let i = 0; i < repeats; i++) {
+        tees.forEach(function(tee) {
             wheelSegments.push({
-
-                naam:tee,
-                kleur:teeColors[tee]
-
+                naam: tee,
+                kleur: teeColors[tee]
             });
-
         });
-
     }
-
 }
 
-function drawWheel(){
-
+function drawWheel() {
     svg.innerHTML = "";
 
-    const total =
-    wheelSegments.length;
+    const total = wheelSegments.length;
+    const slice = 360 / total;
 
-    const slice =
-    360 / total;
-
-    for(let i = 0; i < total; i++){
-
-        const start =
-        i * slice;
-
-        const end =
-        start + slice;
-
-        const center =
-        start + (slice / 2);
+    for (let i = 0; i < total; i++) {
+        const start = i * slice;
+        const end = start + slice;
+        const center = start + slice / 2;
 
         wheelSegments[i].angle = center;
 
         const x1 =
-        200 + 180 * Math.cos((start - 90) * Math.PI / 180);
+            200 + 180 * Math.cos((start - 90) * Math.PI / 180);
 
         const y1 =
-        200 + 180 * Math.sin((start - 90) * Math.PI / 180);
+            200 + 180 * Math.sin((start - 90) * Math.PI / 180);
 
         const x2 =
-        200 + 180 * Math.cos((end - 90) * Math.PI / 180);
+            200 + 180 * Math.cos((end - 90) * Math.PI / 180);
 
         const y2 =
-        200 + 180 * Math.sin((end - 90) * Math.PI / 180);
+            200 + 180 * Math.sin((end - 90) * Math.PI / 180);
 
         svg.innerHTML += `
-
-        <path
-            d="
-            M200 200
-            L${x1} ${y1}
-            A180 180 0 0 1 ${x2} ${y2}
-            Z
-            "
-            fill="${wheelSegments[i].kleur}"
-            stroke="#222"
-            stroke-width="0.5"
-        />
-
+            <path
+                d="
+                    M200 200
+                    L${x1} ${y1}
+                    A180 180 0 0 1 ${x2} ${y2}
+                    Z
+                "
+                fill="${wheelSegments[i].kleur}"
+                stroke="#222"
+                stroke-width="0.5"
+            />
         `;
-
     }
-
 }
 
-function showCurrentPlayer(){
-
+function showCurrentPlayer() {
     currentPlayer.textContent =
         results[currentPlayerIndex].player.charAt(0).toUpperCase() +
         results[currentPlayerIndex].player.slice(1) +
         " draait";
 
     if (currentPlayerIndex === 0) {
-
-    statusText.innerHTML =
-        "Tik op het rad om te draaien";
-
+        statusText.innerHTML = "Tik op het rad om te draaien";
     } else {
-
         statusText.innerHTML = "";
-
     }
-
 }
 
-function spinWheel(){
+function spinWheel() {
+    wheel.style.pointerEvents = "none";
 
-wheel.style.pointerEvents = "none";
+    const teeNaam = results[currentPlayerIndex].tee;
 
-const teeNaam =
-results[currentPlayerIndex].tee;
+    const mogelijkeSegmenten =
+        wheelSegments.filter(function(segment) {
+            return segment.naam === teeNaam;
+        });
 
-const mogelijkeSegmenten =
-wheelSegments.filter(function(segment){
+    const gekozenSegment =
+        mogelijkeSegmenten[
+            Math.floor(Math.random() * mogelijkeSegmenten.length)
+        ];
 
-    return segment.naam === teeNaam;
+    const target = 360 - gekozenSegment.angle;
 
-});
+    const currentAngle =
+        ((currentRotation % 360) + 360) % 360;
 
-const gekozenSegment =
-mogelijkeSegmenten[
-    Math.floor(
-        Math.random() *
-        mogelijkeSegmenten.length
-    )
-];
+    const extraRotation =
+        (target - currentAngle + 360) % 360;
 
-const target =
-360 - gekozenSegment.angle;
+    currentRotation += 3 * 360 + extraRotation;
 
-const currentAngle =
-((currentRotation % 360) + 360) % 360;
+    wheel.style.transform = `rotate(${currentRotation}deg)`;
 
-const extraRotation =
-(target - currentAngle + 360) % 360;
-
-currentRotation +=
-(3 * 360) + extraRotation;
-
-wheel.style.transform =
-`rotate(${currentRotation}deg)`;
-
-setTimeout(function(){
-
-    showResult();
-
-},2400);
+    setTimeout(function() {
+        showResult();
+    }, 2400);
 }
 
-
-
-function showResult(){
-
+function showResult() {
     updatePlayerColor();
 
-    const speler =
-    results[currentPlayerIndex].player;
-
-    const tee =
-    results[currentPlayerIndex].tee;
+    const speler = results[currentPlayerIndex].player;
+    const tee = results[currentPlayerIndex].tee;
 
     const kleurEmoji = {
-
-        "Wit":"⚪",
-        "Geel":"🟡",
-        "Blauw":"🔵",
-        "Rood":"🔴",
-        "Oranje":"🟠"
-
+        "Wit": "⚪",
+        "Geel": "🟡",
+        "Blauw": "🔵",
+        "Rood": "🔴",
+        "Oranje": "🟠"
     };
 
     statusText.innerHTML =
         `${kleurEmoji[tee]} <strong>${speler}</strong> speelt vanaf <strong>${tee}</strong>`;
 
-    setTimeout(function(){
-
+    setTimeout(function() {
         nextPlayer();
-
-    },1000);
-
+    }, 1000);
 }
 
-function nextPlayer(){
-
+function nextPlayer() {
     currentPlayerIndex++;
 
-    if(currentPlayerIndex >= results.length){
-
-        location.href =
-        "resultaat.html";
-
+    if (currentPlayerIndex >= results.length) {
+        location.href = "resultaat.html";
         return;
-
     }
 
     showCurrentPlayer();
-
     updatePlayerBar();
 
     wheel.style.pointerEvents = "auto";
-
 }
 
-function drawPlayers(){
-
+function drawPlayers() {
     playersBar.innerHTML = "";
 
-    results.forEach(function(result,index){
-
+    results.forEach(function(result, index) {
         const initial =
-        result.player
-            .trim()
-            .charAt(0)
-            .toUpperCase();
+            result.player.trim().charAt(0).toUpperCase();
 
         playersBar.innerHTML += `
+            <div class="playerCard">
+                <div
+                    class="playerPhoto"
+                    id="player-${index}">
+                    ${initial}
+                </div>
 
-        <div class="playerCard">
-
-            <div
-                class="playerPhoto"
-                id="player-${index}">
-
-                ${initial}
-
+                <div class="playerName">
+                    ${result.player}
+                </div>
             </div>
-
-            <div class="playerName">
-
-                ${result.player}
-
-            </div>
-
-        </div>
-
         `;
-
     });
-
 }
 
-function updatePlayerBar(){
-
-    document
-    .querySelectorAll(".playerPhoto")
-    .forEach(function(photo){
-
+function updatePlayerBar() {
+    document.querySelectorAll(".playerPhoto").forEach(function(photo) {
         photo.classList.remove("active");
-
     });
 
     const current =
-    document.getElementById(
-        "player-" + currentPlayerIndex
-    );
+        document.getElementById("player-" + currentPlayerIndex);
 
-    if(current){
-
+    if (current) {
         current.classList.add("active");
-
     }
-
 }
 
-function updatePlayerColor(){
-
+function updatePlayerColor() {
     const player =
-    document.getElementById(
-        "player-" + currentPlayerIndex
-    );
+        document.getElementById("player-" + currentPlayerIndex);
 
-    if(!player){
-
+    if (!player) {
         return;
-
     }
 
     player.classList.remove(
@@ -439,11 +375,7 @@ function updatePlayerColor(){
         "photo-oranje"
     );
 
-    const tee =
-    results[currentPlayerIndex].tee.toLowerCase();
+    const tee = results[currentPlayerIndex].tee.toLowerCase();
 
-    player.classList.add(
-        "photo-" + tee
-    );
-
+    player.classList.add("photo-" + tee);
 }
