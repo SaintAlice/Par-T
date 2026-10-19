@@ -1,117 +1,164 @@
-.playersPage{
 
-    flex:1;
+/* PAGINA-INDELING */
 
-    display:flex;
-
-    flex-direction:column;
+.resultsPage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-.pageHeader{
-
-    flex-shrink:0;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    text-align:center;
+.resultsPage .pageHeader {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 12px;
 }
 
-.subtitle{
-
-    text-align:center;
-
-    color:rgba(255,255,255,.8);
-
-    font-size:clamp(1rem,4vw,1.4rem);
-
-    margin-bottom:clamp(24px,5vw,40px);
+.resultsPage .pageContent {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-#results{
+/* TITEL EN SUBTITEL */
 
-    flex:1;
-
-    width:100%;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:clamp(12px,3vw,18px);
-
-    overflow-y:auto;
-
-    padding-right:4px;
+.resultsPage .subtitle {
+    margin-bottom: 8px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: clamp(1rem, 4vw, 1.4rem);
 }
 
-.resultBadge{
+/* RESULTATENLIJST */
 
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    padding:clamp(8px,2vw,10px)
-            clamp(12px,3vw,18px);
-
-    border-radius:999px;
-
-    color:white;
-
-    font-size:clamp(.9rem,3vw,1.1rem);
-
-    font-weight:700;
-
-    flex-shrink:0;
+#results {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    padding-right: 4px;
 }
 
-.resultBadge.blauw{
+/* SPELERSKAARTEN */
 
-    color:#0057B8;
-
+.resultsPage .player {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-shrink: 0;
+    padding: 12px 16px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
-.resultBadge.rood{
-
-    color:#C62828;
-
+.resultsPage .playerInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
 }
 
-.resultBadge.oranje{
-
-    color:#E67E00;
-
+.resultsPage .playerAvatar {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: 700;
 }
 
-.resultBadge.geel{
-
-    color:#A36B00;
-
+.resultsPage .playerName {
+    min-width: 0;
+    color: #21422C;
+    font-size: 17px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
 }
 
-.resultBadge.wit{
+/* TEEKLEUREN INITIALEN */
 
-    color:#666;
-
+.resultsPage .playerAvatar.blauw {
+    background: #2D8CEB;
+    border-color: #2D8CEB;
+    color: white;
 }
 
-#newGameButton{
+.resultsPage .playerAvatar.rood {
+    background: #F44336;
+    border-color: #F44336;
+    color: white;
+}
 
-    width:min(100%,320px);
+.resultsPage .playerAvatar.oranje {
+    background: #FF9800;
+    border-color: #FF9800;
+    color: #215B35;
+}
 
-    height:clamp(56px,9vw,70px);
+.resultsPage .playerAvatar.geel {
+    background: #FFD229;
+    border-color: #FFD229;
+    color: #215B35;
+}
 
-    margin:clamp(24px,5vw,40px) auto 0;
+.resultsPage .playerAvatar.wit {
+    background: #FFFFFF;
+    border-color: #D8D8D8;
+    color: #215B35;
+}
 
-    background:#215B35;
+/* TEE-BADGES */
 
-    color:white;
+.resultsPage .resultBadge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: #F3F5F3;
+    font-size: 13px;
+    font-weight: 700;
+}
 
-    font-size:clamp(1.1rem,4vw,1.5rem);
+.resultBadge.blauw {
+    color: #0057B8;
+}
 
+.resultBadge.rood {
+    color: #C62828;
+}
+
+.resultBadge.oranje {
+    color: #E67E00;
+}
+
+.resultBadge.geel {
+    color: #A36B00;
+}
+
+.resultBadge.wit {
+    color: #666666;
+}
+
+/* NIEUW SPEL */
+
+#newGameButton {
+    width: min(100%, 320px);
+    height: clamp(56px, 9vw, 70px);
+    margin: 20px auto 0;
+    background: #215B35;
+    color: white;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
 }

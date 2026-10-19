@@ -2,63 +2,55 @@
 <html lang="nl">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draaien - Spin to Tee</title>
 
-<title>Draaien - Spin to Tee</title>
-
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/wheel.css">
-<link rel="stylesheet" href="css/draaien.css">
-
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/wheel.css">
+    <link rel="stylesheet" href="css/draaien.css">
 </head>
 
 <body>
 
-<header class="topBar">
+    <header class="topBar">
 
-    <a href="index.html" class="homeButton">
-        🏠
-    </a>
+        <a href="index.html" class="homeButton">
+            🏠
+        </a>
 
-</header>
+    </header>
 
-<main class="gameArea">
+    <main class="gameArea">
 
-    <h1 id="currentPlayer"></h1>
+        <h1 id="currentPlayer"></h1>
 
-    <div id="wheelWrapper">
+        <div id="wheelWrapper">
 
-        <div id="pointer"></div>
+            <div id="pointer"></div>
 
-        <svg
-            id="wheel"
-            viewBox="0 0 400 400">
+            <svg id="wheel" viewBox="0 0 400 400">
 
-            <g id="segments"></g>
+                <g id="segments"></g>
 
-            <circle
-                cx="200"
-                cy="200"
-                r="25"
-                fill="white"/>
+                <circle cx="200" cy="200" r="25" fill="white" />
 
-        </svg>
+            </svg>
 
-    </div>
+        </div>
 
-    <p id="statusText"></p>
+        <p id="statusText"></p>
 
-</main>
+    </main>
 
-<footer>
+    <footer>
 
-    <div id="playersBar"></div>
+        <div id="playersBar"></div>
 
-</footer>
+    </footer>
 
-<script src="js/draaien.js"></script>
+    <script src="js/draaien.js"></script>
 
 </body>
 
