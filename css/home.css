@@ -1,34 +1,8 @@
-/*  START BUTTON*/
-
-#startButton{
-
-    width:280px;
-
-    height:70px;
-
-    border:none;
-
-    border-radius:999px;
-
-    background:#215B35;
-
-    color:white;
-
-    font-size:28px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-    box-shadow:
-        0 12px 30px rgba(0,0,0,.18);
-
-}
-
-#startButton:hover{
-
-    transform:translateY(-3px);
-
+#startButton {
+    width: 280px;
+    height: 70px;
+    background: #215B35;
+    color: white;
+    font-size: 28px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .18);
 }

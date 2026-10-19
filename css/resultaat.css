@@ -108,24 +108,10 @@
 
     margin:clamp(24px,5vw,40px) auto 0;
 
-    border:none;
-
-    border-radius:999px;
-
     background:#215B35;
 
     color:white;
 
     font-size:clamp(1.1rem,4vw,1.5rem);
 
-    font-weight:700;
-
-    cursor:pointer;
-
-    transition:.25s;
-}
-
-#newGameButton:hover{
-
-    transform:translateY(-3px);
 }

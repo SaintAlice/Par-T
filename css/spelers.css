@@ -1,4 +1,3 @@
-
 /* ========================================
    PAGINA-INDELING
 ======================================== */
@@ -129,8 +128,8 @@
     font-weight: 700;
 }
 
-.generalTeesHeading > span,
-.randomModeText > span {
+.generalTeesHeading>span,
+.randomModeText>span {
     color: #647168;
     font-size: 12px;
     line-height: 1.4;
@@ -167,28 +166,35 @@
     display: none !important;
 }
 
-.generalTeeOptions {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 7px;
-}
-
-.generalTeeOption {
+/* Basis tee-opties */
+.generalTeeOption,
+.teeOption {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-width: 0;
-    gap: 5px;
-    padding: 9px 2px;
     border: 1px solid #E0E5E1;
     border-radius: 13px;
     background: #FAFBFA;
     cursor: pointer;
 }
 
-.generalTeeOption:has(input:checked) {
+/* Algemene tee-selectie */
+.generalTeeOption {
+    justify-content: center;
+    gap: 5px;
+    padding: 9px 2px;
+}
+
+/* Persoonlijke tee-selectie */
+.teeOption {
+    gap: 7px;
+    padding: 10px 2px;
+}
+
+.generalTeeOption:has(input:checked),
+.teeOption:has(input:checked) {
     border-color: #215B35;
     background: #EFF5F0;
 }
@@ -278,15 +284,15 @@
     transition: transform 0.2s;
 }
 
-.switch input:checked + .slider {
+.switch input:checked+.slider {
     background: #215B35;
 }
 
-.switch input:checked + .slider::before {
+.switch input:checked+.slider::before {
     transform: translateX(20px);
 }
 
-.switch input:focus-visible + .slider {
+.switch input:focus-visible+.slider {
     outline: 2px solid #215B35;
     outline-offset: 3px;
 }
@@ -431,29 +437,11 @@
     font-weight: 600;
 }
 
+.generalTeeOptions,
 .teeOptions {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 7px;
-}
-
-.teeOption {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 0;
-    gap: 7px;
-    padding: 10px 2px;
-    border: 1px solid #E0E5E1;
-    border-radius: 13px;
-    background: #FAFBFA;
-    cursor: pointer;
-}
-
-.teeOption:has(input:checked) {
-    border-color: #215B35;
-    background: #EFF5F0;
 }
 
 .teeOption input {
@@ -478,7 +466,7 @@
     display: none;
 }
 
-.teeOption input:checked ~ .teeCheck {
+.teeOption input:checked~.teeCheck {
     position: absolute;
     top: 4px;
     left: 5px;
