@@ -30,9 +30,7 @@ const validationMessage = document.getElementById("gameValidationMessage");
 init();
 
 
-/* ========================================
-   INITIALISATIE
-======================================== */
+/* INITIALISATIE */
 
 function init() {
     migratePlayerSettings();
@@ -73,9 +71,7 @@ function init() {
 }
 
 
-/* ========================================
-   OPSLAG EN MIGRATIE
-======================================== */
+/* OPSLAG EN MIGRATIE */
 
 function savePlayers() {
     localStorage.setItem("allPlayers", JSON.stringify(allPlayers));
@@ -110,10 +106,7 @@ function migratePlayerSettings() {
     }
 }
 
-
-/* ========================================
-   ALGEMENE TEE-INSTELLINGEN
-======================================== */
+/* ALGEMENE TEE-INSTELLINGEN*/
 
 function setGeneralTeesOpen(isOpen) {
     generalTeesContent.hidden = !isOpen;
@@ -167,10 +160,7 @@ function renderGeneralTees() {
     updateNextButton();
 }
 
-
-/* ========================================
-   SPELERS TOEVOEGEN EN VERWIJDEREN
-======================================== */
+/* SPELERS TOEVOEGEN EN VERWIJDEREN*/
 
 function addPlayer() {
     const name = playerInput.value.trim();
@@ -211,10 +201,7 @@ function removePlayer(id) {
     renderPlayers();
 }
 
-
-/* ========================================
-   BESCHIKBARE TEE'S
-======================================== */
+/* BESCHIKBARE TEE'S*/
 
 function getAvailableTees(player) {
     return selectedTees.filter(function(tee) {
@@ -222,10 +209,7 @@ function getAvailableTees(player) {
     });
 }
 
-
-/* ========================================
-   SPELERS WEERGEVEN
-======================================== */
+/* SPELERS WEERGEVEN*/
 
 function renderPlayers() {
     playerList.innerHTML = "";
@@ -293,60 +277,9 @@ function renderPlayers() {
         top.append(info, actions);
 
         // Persoonlijke tee-instellingen.
-        const settings = document.createElement("div");
-        settings.className = "teeSettings";
-        settings.hidden = true;
+        const settings = createPlayerTeeSettings(player);
 
-        const settingsTitle = document.createElement("p");
-        settingsTitle.className = "teeSettingsTitle";
-        settingsTitle.textContent =
-            "Welke tee's mag deze speler gebruiken?";
-
-        const teeOptions = document.createElement("div");
-        teeOptions.className = "teeOptions";
-
-        TEE_OPTIONS.forEach(function(tee) {
-            const label = document.createElement("label");
-            label.className = "teeOption";
-
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.setAttribute(
-                "aria-label",
-                tee.name + " voor " + player.name
-            );
-
-            // Alleen aangevinkt als de tee algemeen én persoonlijk
-            // is toegestaan.
-            checkbox.checked =
-                selectedTees.includes(tee.value) &&
-                player.availableTees.includes(tee.id);
-
-            // Een algemeen uitgeschakelde tee kan niet worden aangezet.
-            checkbox.disabled = !selectedTees.includes(tee.value);
-
-            const color = document.createElement("span");
-            color.className = "teeColor";
-            color.style.setProperty("--tee-color", tee.color);
-
-            const check = document.createElement("span");
-            check.className = "teeCheck";
-            check.textContent = "✓";
-
-            const teeName = document.createElement("span");
-            teeName.className = "teeName";
-            teeName.textContent = tee.name;
-
-            label.append(checkbox, color, check, teeName);
-            teeOptions.append(label);
-
-            checkbox.addEventListener("change", function() {
-                updatePlayerTee(player, tee, checkbox.checked);
-            });
-        });
-
-        settings.append(settingsTitle, teeOptions);
-
+        // Persoonlijke instellingen openen en sluiten.
         settingsButton.addEventListener("click", function() {
             const isOpen = settings.hidden;
 
@@ -368,6 +301,63 @@ function renderPlayers() {
     });
 
     updateNextButton();
+}
+
+function createPlayerTeeSettings(player) {
+    const settings = document.createElement("div");
+    settings.className = "teeSettings";
+    settings.hidden = true;
+
+    const settingsTitle = document.createElement("p");
+    settingsTitle.className = "teeSettingsTitle";
+    settingsTitle.textContent =
+        "Welke tee's mag deze speler gebruiken?";
+
+    const teeOptions = document.createElement("div");
+    teeOptions.className = "teeOptions";
+
+    TEE_OPTIONS
+    .filter(tee => selectedTees.includes(tee.value))
+    .forEach(function(tee) {
+        const label = document.createElement("label");
+        label.className = "teeOption";
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.setAttribute(
+            "aria-label",
+            tee.name + " voor " + player.name
+        );
+
+        checkbox.checked =
+            selectedTees.includes(tee.value) &&
+            player.availableTees.includes(tee.id);
+
+        checkbox.disabled = !selectedTees.includes(tee.value);
+
+        const color = document.createElement("span");
+        color.className = "teeColor";
+        color.style.setProperty("--tee-color", tee.color);
+
+        const check = document.createElement("span");
+        check.className = "teeCheck";
+        check.textContent = "✓";
+
+        const teeName = document.createElement("span");
+        teeName.className = "teeName";
+        teeName.textContent = tee.name;
+
+        label.append(checkbox, color, check, teeName);
+        teeOptions.append(label);
+
+        checkbox.addEventListener("change", function() {
+            updatePlayerTee(player, tee, checkbox.checked);
+        });
+    });
+
+    settings.append(settingsTitle, teeOptions);
+
+    return settings;
 }
 
 function updatePlayerTee(player, tee, isChecked) {
@@ -396,7 +386,7 @@ function updatePlayerCount(player, count, card) {
     const available = getAvailableTees(player);
 
     count.textContent =
-        available.length + " van " + TEE_OPTIONS.length +
+        available.length + " van " + selectedTees.length + " tee's beschikbaar";
         " tee's beschikbaar";
 
     card.classList.toggle(
@@ -405,10 +395,7 @@ function updatePlayerCount(player, count, card) {
     );
 }
 
-
-/* ========================================
-   VALIDATIE EN STARTEN
-======================================== */
+/* VALIDATIE EN STARTEN */
 
 function updateNextButton() {
     const spelersGenoeg = allPlayers.length >= 2;
