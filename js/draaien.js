@@ -36,8 +36,8 @@ const playersBar =
 const statusText =
     document.getElementById("statusText");
 
-const randomMode =
-    sessionStorage.getItem("randomMode") === "true";
+const teeDistribution =
+    localStorage.getItem("teeDistribution") || "random";
 
 let playerTees = {};
 
@@ -107,7 +107,7 @@ function createPlayerTees() {
 function createResults() {
     results.length = 0;
 
-    if (randomMode) {
+    if (teeDistribution === "random") {
         players.forEach(function(player) {
             const allowedTees = playerTees[player];
 

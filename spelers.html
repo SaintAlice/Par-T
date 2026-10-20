@@ -45,78 +45,109 @@
                     type="button"
                     id="generalTeesToggle"
                     class="generalTeesHeader"
-                    aria-expanded="true">
+                    aria-expanded="false">
+
+                    <span class="settingsIcon" aria-hidden="true">⚙</span>
 
                     <span class="generalTeesHeading">
-                        <strong>Algemene tee-selectie</strong>
-                        <span>Welke tee's doen mee?</span>
+                        <strong>Spelinstellingen</strong>
+                        <span>Tee-selectie en verdeling</span>
                     </span>
-
-                    <span id="generalTeesCount" class="generalTeesCount">
-                        5 van 5
-                    </span>
-
-                    <span class="settingsArrow">⌄</span>
+                    <span class="settingsArrow" aria-hidden="true"></span>
                 </button>
 
-                <div id="generalTeesContent" class="generalTeesContent">
+                <div id="generalTeesContent" class="generalTeesContent" hidden>
 
-                    <div id="generalTeeOptions" class="generalTeeOptions">
+                    <section class="settingsSection">
+                        <h2>Welke tee's doen mee?</h2>
 
-                        <label class="generalTeeOption">
-                            <input type="checkbox" value="Wit" data-tee="wit">
-                            <img src="images/tee-wit.svg" alt="">
-                            <span>Wit</span>
-                        </label>
+                        <div id="generalTeeOptions" class="generalTeeOptions">
 
-                        <label class="generalTeeOption">
-                            <input type="checkbox" value="Geel" data-tee="geel">
-                            <img src="images/tee-geel.svg" alt="">
-                            <span>Geel</span>
-                        </label>
+                            <label class="generalTeeOption">
+                                <input type="checkbox" value="Wit" data-tee="wit">
+                                <span class="teeDot teeDot-wit" aria-hidden="true"></span>
+                                <span>Wit</span>
+                            </label>
 
-                        <label class="generalTeeOption">
-                            <input type="checkbox" value="Blauw" data-tee="blauw">
-                            <img src="images/tee-blauw.svg" alt="">
-                            <span>Blauw</span>
-                        </label>
+                            <label class="generalTeeOption">
+                                <input type="checkbox" value="Geel" data-tee="geel">
+                                <span class="teeDot teeDot-geel" aria-hidden="true"></span>
+                                <span>Geel</span>
+                            </label>
 
-                        <label class="generalTeeOption">
-                            <input type="checkbox" value="Rood" data-tee="rood">
-                            <img src="images/tee-rood.svg" alt="">
-                            <span>Rood</span>
-                        </label>
+                            <label class="generalTeeOption">
+                                <input type="checkbox" value="Blauw" data-tee="blauw">
+                                <span class="teeDot teeDot-blauw" aria-hidden="true"></span>
+                                <span>Blauw</span>
+                            </label>
 
-                        <label class="generalTeeOption">
-                            <input type="checkbox" value="Oranje" data-tee="oranje">
-                            <img src="images/tee-oranje.svg" alt="">
-                            <span>Oranje</span>
-                        </label>
+                            <label class="generalTeeOption">
+                                <input type="checkbox" value="Rood" data-tee="rood">
+                                <span class="teeDot teeDot-rood" aria-hidden="true"></span>
+                                <span>Rood</span>
+                            </label>
 
-                    </div>
+                            <label class="generalTeeOption">
+                                <input type="checkbox" value="Oranje" data-tee="oranje">
+                                <span class="teeDot teeDot-oranje" aria-hidden="true"></span>
+                                <span>Oranje</span>
+                            </label>
 
-                    <p class="settingsHint">
-                        Deze selectie geldt voor alle spelers.
-                    </p>
+                        </div>
+
+                        <p class="settingsHint">
+                            Deze selectie geldt voor alle spelers.
+                        </p>
+                    </section>
+
+                    <div class="settingsDivider"></div>
+
+                    <section class="settingsSection">
+                        <h2>Tee-verdeling</h2>
+                        <p class="settingsDescription">
+                            Hoe verdelen we de tee's over de spelers?
+                        </p>
+
+                        <div class="teeDistributionOptions">
+
+                            <label class="teeDistributionOption">
+                                <input
+                                    type="radio"
+                                    name="teeDistribution"
+                                    value="random"
+                                    checked>
+
+                                <span class="distributionIcon" aria-hidden="true">↝</span>
+
+                                <span class="distributionText">
+                                    <strong>Willekeurig</strong>
+                                    <small>
+                                        Verdeel de tee's willekeurig over de spelers. 
+                                    </small>
+                                </span>
+                            </label>
+
+                            <label class="teeDistributionOption">
+                                <input
+                                    type="radio"
+                                    name="teeDistribution"
+                                    value="balanced">
+
+                                <span class="distributionIcon" aria-hidden="true">⇄</span>
+
+                                <span class="distributionText">
+                                    <strong>Gelijkmatig</strong>
+                                    <small>
+                                        Verdeel de tee's zo gelijk mogelijk.
+                                        Elke tee wordt minstens één keer gebruikt.
+                                    </small>
+                                </span>
+                            </label>
+
+                        </div>
+                    </section>
 
                 </div>
-
-            </div>
-
-            <div class="randomModeCard">
-
-                <div class="randomModeText">
-                    <strong>Willekeurige tee's</strong>
-                    <span>
-                        Iedere speler krijgt onafhankelijk een willekeurige
-                        toegestane tee.
-                    </span>
-                </div>
-
-                <label class="switch" for="randomMode">
-                    <input type="checkbox" id="randomMode">
-                    <span class="slider"></span>
-                </label>
 
             </div>
 

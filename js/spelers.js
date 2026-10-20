@@ -24,7 +24,8 @@ const nextButton = document.getElementById("nextButton");
 const generalTeesToggle = document.getElementById("generalTeesToggle");
 const generalTeesContent = document.getElementById("generalTeesContent");
 const generalTeesCount = document.getElementById("generalTeesCount");
-const randomModeCheckbox = document.getElementById("randomMode");
+const teeDistributionOptions = document.querySelectorAll(
+    'input[name="teeDistribution"]');
 const validationMessage = document.getElementById("gameValidationMessage");
 
 init();
@@ -154,16 +155,14 @@ function updateGeneralTee(teeValue, isChecked) {
 }
 
 function renderGeneralTees() {
-    generalTeesCount.textContent =
-        selectedTees.length + " van " + TEE_OPTIONS.length;
-
     updateNextButton();
 }
 
 /* SPELERS TOEVOEGEN EN VERWIJDEREN*/
 
 function addPlayer() {
-    const name = playerInput.value.trim();
+    const inputName = playerInput.value.trim();
+    const name = inputName.charAt(0).toUpperCase() + inputName.slice(1);
 
     if (!name) {
         return;
@@ -217,6 +216,7 @@ function renderPlayers() {
     allPlayers.forEach(function(player) {
         const card = document.createElement("article");
         card.className = "player";
+        card.dataset.playerId = player.id;
 
         const top = document.createElement("div");
         top.className = "playerTop";
@@ -253,7 +253,7 @@ function renderPlayers() {
 
         const arrow = document.createElement("span");
         arrow.className = "settingsArrow";
-        arrow.textContent = "⌄";
+        arrow.setAttribute("aria-hidden", "true");
 
         settingsButton.append(arrow);
 
@@ -362,8 +362,7 @@ function createPlayerTeeSettings(player) {
 
 function updatePlayerTee(player, tee, isChecked) {
     if (isChecked) {
-        // Extra controle: een algemeen uitgeschakelde tee mag
-        // niet persoonlijk worden ingeschakeld.
+        // Een algemeen uitgeschakelde tee mag niet persoonlijk worden ingeschakeld.
         if (!selectedTees.includes(tee.value)) {
             return;
         }
@@ -379,14 +378,25 @@ function updatePlayerTee(player, tee, isChecked) {
     }
 
     savePlayers();
-    renderPlayers();
+
+    // Werk alleen de teller en validatie bij.
+    const card = document.querySelector(
+        `.player[data-player-id="${player.id}"]`
+    );
+
+    if (card) {
+        const count = card.querySelector(".teeCount");
+        updatePlayerCount(player, count, card);
+    }
+
+    updateNextButton();
 }
 
 function updatePlayerCount(player, count, card) {
     const available = getAvailableTees(player);
 
     count.textContent =
-        available.length + " van " + selectedTees.length + " tee's beschikbaar";
+        available.length + " van " + selectedTees.length + 
         " tee's beschikbaar";
 
     card.classList.toggle(
@@ -412,8 +422,8 @@ function updateNextButton() {
     } else if (!teesGenoeg) {
         message = "Selecteer minimaal twee algemene tee's.";
     } else if (spelersZonderTee.length > 0) {
-        message = "Geen beschikbare tee voor: " +
-            spelersZonderTee.map(player => player.name).join(", ") + ".";
+        message = "Selecteer minimaal één tee voor: " +
+             spelersZonderTee.map(player => player.name).join(", ") + ".";
     }
 
     validationMessage.textContent = message;
@@ -441,10 +451,14 @@ function startGame() {
         )
     );
 
-    sessionStorage.setItem(
-        "randomMode",
-        String(randomModeCheckbox.checked)
+    const selectedDistribution = document.querySelector(
+        'input[name="teeDistribution"]:checked'
     );
+
+    localStorage.setItem(
+        "teeDistribution",
+        selectedDistribution ? selectedDistribution.value : "random"
+    );  
 
     location.href = "draaien.html";
 }
