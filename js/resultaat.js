@@ -88,6 +88,6 @@ function newGame(){
     localStorage.removeItem("tees");
     localStorage.removeItem("results");
 
-    location.href = "index.html";
+    location.href = "spin-the-tee.html";
 
 }
