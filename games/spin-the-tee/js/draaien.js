@@ -97,7 +97,7 @@ function createPlayerTees() {
             ". Pas de instellingen aan."
         );
 
-        location.href = "spelers.html";
+        location.href = "games/spin-the-tee/spelers.html";
         return false;
     }
 
