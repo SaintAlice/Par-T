@@ -2,7 +2,7 @@
 /* PAR-T — gedeelde navigatie */
 
 const navigationScript = document.currentScript;
-const projectRoot = new URL("../", navigationScript.src);
+const projectRoot = new URL("./", navigationScript.src);
 
 const homeUrl = new URL("index.html", projectRoot).href;
 const gamesUrl = new URL("games/games.html", projectRoot).href;
