@@ -6,10 +6,7 @@ const projectRoot = new URL("../", navigationScript.src);
 
 const homeUrl = new URL("index.html", projectRoot).href;
 const gamesUrl = new URL("games/games.html", projectRoot).href;
-const settingsUrl = new URL(
-    "instellingen/instellingen.html",
-    projectRoot
-).href;
+const settingsUrl = new URL("instellingen/instellingen.html", projectRoot).href;
 
 const currentPage = window.location.pathname;
 
