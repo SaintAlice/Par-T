@@ -1,18 +1,85 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAR-T</title>
-    <link rel="stylesheet" href="games/spin-the-tee/css/style.css">
-    <link rel="stylesheet" href="games/spin-the-tee/css/home.css">
+    <meta name="theme-color" content="#194D3A">
+
+    <!--<title>PAR-T | Golf games for every round</title>-->
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/header.css">
 </head>
+
 <body>
 
-    <main>
-        <h1>PAR-T</h1>
-        <p>Golf games for every round</p>
+    <main class="homePage">
+        <div class="homeVisual">
+
+            <div id="appHeader"></div>
+
+            
+            <section class="welcomeSection" aria-labelledby="welcomeTitle">
+                <p class="welcomeEyebrow">WELKOM</p>
+
+                <h1 id="welcomeTitle">
+                    Maak je<br>ronde leuker
+                </h1>
+
+                <p class="welcomeDescription">
+                    Spelletjes, uitdagingen en meer voor elke golfbaan.
+                </p>
+            </section>
+
+
+            <section class="gamesSection" id="games"
+                aria-labelledby="gamesTitle">
+
+                <h2 class="visuallyHidden" id="gamesTitle">
+                    Onze spellen
+                </h2>
+
+                <a
+                    class="featuredGameCard"
+                    href="games/spin-the-tee/spin-the-tee.html"
+                >
+                    <div class="featuredGameContent">
+                        <span class="gameStatus gameStatusAvailable">
+                            NIEUW
+                        </span>
+
+                        <h3>Spin the Tee</h3>
+                        <p>Laat het lot je tee bepalen.</p>
+
+                        <span class="gameAction">
+                            <span>Start spel</span>
+                            <span class="arrow" aria-hidden="true">›</span>
+                        </span>
+                    </div>
+                </a>
+
+                <div class="comingSoonGames">
+                    <article class="comingSoonCard">
+                        <h3>Meer uitdagingen</h3>
+                        <span class="comingSoonLabel">COMING SOON</span>
+                    </article>
+
+                    <article class="comingSoonCard">
+                        <h3>Multiplayer</h3>
+                        <span class="comingSoonLabel">COMING SOON</span>
+                    </article>
+                </div>
+
+            </section>
+        </div>
     </main>
 
+    <script src="header.js" data-root=""></script>
+    <script src="navigation.js"></script>
+
 </body>
+
 </html>

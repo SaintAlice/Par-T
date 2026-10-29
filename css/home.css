@@ -1,0 +1,436 @@
+
+/* PAR-T homepage */
+
+/* Welkomsttekst */
+
+.welcomeSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 0;
+    padding: 8px 0 2px;
+}
+
+.welcomeEyebrow {
+    margin: 0;
+    color: #194D3A;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+}
+
+.welcomeSection h1 {
+    max-width: 340px;
+    margin: 0;
+    color: #194D3A;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.35;
+    letter-spacing: -0.055em;
+}
+
+.welcomeDescription {
+    max-width: 340px;
+    margin: 2px 0 0;
+    color: #194D3A;
+    font-size: 1.rem;
+    font-weight: 400;
+    line-height: 1.35;
+}
+
+
+/* Pagina en achtergrond */
+
+.homePage {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    max-width: 1100px;
+    min-height: 100dvh;
+    margin: 0 auto;
+    padding: 18px 20px calc(110px + env(safe-area-inset-bottom));
+    background: #194D3A;
+}
+
+.homePage::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: "";
+    background: #F5F3EA;
+}
+
+.homeVisual {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Header en logo */
+
+.homeHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    margin: 0;
+    padding: 4px 0;
+    background: transparent;
+}
+
+.brand {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    text-decoration: none;
+}
+
+.brandLogo {
+    display: block;
+    width: 150px;
+    height: auto;
+    margin-left: -18px;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.brandSubtitle {
+    display: block;
+    margin-left: 0;
+    color: #194D3A;
+    font-size: 0.53rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.settingsButton {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.94);
+    color: #194D3A;
+    cursor: pointer;
+}
+
+.settingsIcon {
+    font-size: 1.35rem;
+}
+
+/* Welkomsttekst */
+
+.welcomeSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 0;
+    padding: 4px 0 0;
+}
+
+.welcomeEyebrow {
+    margin: 0;
+    color: #194D3A;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+}
+
+.welcomeSection h1 {
+    margin: 0;
+    font-size: clamp(1.8rem, 5.5vw, 2.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+    max-width: 100%;
+}
+
+/* Spellenoverzicht */
+
+.gamesSection {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: -8px;
+}
+
+.visuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Uitgelicht spel */
+
+.featuredGameCard {
+    position: relative;
+    isolation: isolate;
+    min-height: 0px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+    border-radius: 24px;
+    background:
+    linear-gradient(
+        90deg,
+        rgba(7, 48, 32, 0.88) 0%,
+        rgba(7, 48, 32, 0.68) 55%,
+        rgba(7, 48, 32, 0.18) 100%
+    ),
+    url("../games/spin-the-tee/images/background-hrd18.1.png")
+    center / cover no-repeat;
+    color: #194D3A;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 180ms ease;
+}
+
+.featuredGameCard {
+    position: relative;
+    isolation: isolate;
+}
+
+.featuredGameArtwork {
+    position: absolute;
+    z-index: -1;
+    right: 12px;
+    bottom: 14px;
+    width: 125px;
+    height: auto;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+.featuredGameCard:hover {
+    transform: translateY(-2px);
+}
+
+.featuredGameContent {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 400px;
+}
+
+.gameStatus {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.gameStatusAvailable {
+    background: #C8E77B;
+    color: #194D3A;
+    border: 1px solid rgba(200, 231, 123, 0.45);
+}
+
+.featuredGameCard h3 {
+    margin: 14px 0 6px;
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    color: #FFFFFF;
+}
+
+.featuredGameCard p {
+    max-width: 300px;
+    margin: 0 0 18px;
+    margin-bottom: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.gameAction {
+    width: 100%;
+    max-width: 280px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #F6F5EF;
+    color: #194D3A;
+    font-weight: 800;
+}
+
+.arrow {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+/* Spelletjes en multiplayer */
+
+.comingSoonGames {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.comingSoonCard {
+    min-width: 0;
+    min-height: 105px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px;
+    border-radius: 19px;
+    background: rgba(245, 243, 234, 0.96);
+    color: #194D3A;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 10px 28px rgba(13, 43, 31, 0.14);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+}
+
+.comingSoonCard h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 650;
+    letter-spacing: -0.025em;
+}
+
+.comingSoonLabel {
+    color: #71876A;
+    font-size: 0.55rem;
+    font-weight: 750;
+    letter-spacing: 0.1em;
+}
+
+
+/* Decoratieve limegroene boogjes op de kleine kaarten */
+
+.comingSoonCard::before,
+.comingSoonCard::after {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    pointer-events: none;
+    border-radius: 50%;
+    background: rgba(200, 231, 123, 0.22);
+}
+
+.comingSoonCard::before {
+    width: 150px;
+    height: 75px;
+    right: -45px;
+    bottom: -42px;
+    transform: rotate(-25deg);
+}
+
+.comingSoonCard::after {
+    width: 115px;
+    height: 58px;
+    right: -30px;
+    bottom: -35px;
+    transform: rotate(-25deg);
+    background: rgba(200, 231, 123, 0.14);
+}
+
+
+/* Desktop */
+
+@media (min-width: 800px) {
+    .homeVisual {
+        gap: 30px;
+    }
+
+    .featuredGameCard {
+        min-height: 300px;
+        padding: 30px;
+    }
+
+    .comingSoonCard {
+        min-height: 125px;
+        padding: 20px;
+    }
+}
+
+/* Mobiel */
+
+@media (max-width: 600px) {
+    .homeVisual {
+        gap: 22px;
+    }
+
+    .appHeader .brandLogo {
+    width: 150px;
+    max-height: 52px;
+    }
+    .welcomeSection h1 {
+        font-size: 2.35rem;
+    }
+
+    .featuredGameCard {
+        min-height: 235px;
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .featuredGameCard h3 {
+        font-size: 1.8rem;
+    }
+
+    .featuredGameCard p {
+        font-size: 0.85rem;
+    }
+
+    .comingSoonGames {
+        gap: 10px;
+    }
+
+    .comingSoonCard {
+        min-height: 100px;
+        padding: 13px;
+        border-radius: 17px;
+    }
+
+    .comingSoonCard h3 {
+        font-size: 0.92rem;
+    }
+
+    .comingSoonLabel {
+        font-size: 0.49rem;
+        letter-spacing: 0.07em;
+    }
+}
+
+/* Toegankelijkheid */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

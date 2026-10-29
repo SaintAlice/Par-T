@@ -152,12 +152,27 @@
     color: #666666;
 }
 
+
 /* NIEUW SPEL */
+
+.resultsPage .pageFooter {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    padding: 16px 0 calc(
+        var(--navigation-height, 76px) +
+        var(--navigation-bottom-gap, 10px) +
+        12px
+    );
+}
 
 #newGameButton {
     width: min(100%, 320px);
     height: clamp(56px, 9vw, 70px);
-    margin: 20px auto 0;
+    margin: 0 auto;
+
+    flex-shrink: 0;
+
     background: #215B35;
     color: white;
     font-size: clamp(1.1rem, 4vw, 1.5rem);

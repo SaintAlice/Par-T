@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#F5F3EA">
+
+    <title>Instellingen | PAR-T</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="css/instellingen.css">
+    <link rel="stylesheet" href="../css/header.css">
+</head>
+<body>
+
+    <main class="settingsPage">
+        <div id="appHeader"></div>
+
+        <div class="settingsVisual">
+
+
+            <section
+                class="settingsSection"
+                aria-labelledby="generalSettingsTitle"
+            >
+                <h2 id="generalSettingsTitle">Algemeen</h2>
+
+                <div class="settingsCard">
+
+                    <div class="settingsRow">
+                        <span class="settingsRowIcon" aria-hidden="true">
+                            文
+                        </span>
+
+                        <div class="settingsRowContent">
+                            <label for="languageSelect">Taal</label>
+                            <p>Kies de taal van de app.</p>
+                        </div>
+
+                        <select id="languageSelect" name="language">
+                            <option value="nl">Nederlands</option>
+                            <!-- <option value="en">English</option> -->
+                        </select>
+                    </div>
+
+                    <a class="settingsRow" href="over-par-t.html">
+                        <span class="settingsRowIcon" aria-hidden="true">
+                            ⓘ
+                        </span>
+
+                        <span class="settingsRowContent">
+                            <span class="settingsRowTitle">
+                                Over PAR-T
+                            </span>
+                            <span class="settingsRowDescription">
+                                Meer informatie over de app.
+                            </span>
+                        </span>
+
+                        <span class="settingsArrow" aria-hidden="true">
+                            ›
+                        </span>
+                    </a>
+
+                    <a class="settingsRow" href="spelregels/spelregels.html">
+                        <span class="settingsRowIcon" aria-hidden="true">
+                            🎮
+                        </span>
+
+                        <span class="settingsRowContent">
+                            <span class="settingsRowTitle">
+                                Spelregels
+                            </span>
+                            <span class="settingsRowDescription">
+                                Lees de spelregels van de PAR-T-spellen.
+                            </span>
+                        </span>
+
+                        <span class="settingsArrow" aria-hidden="true">
+                            ›
+                        </span>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="../navigation.js"></script>
+    <script src="instellingen.js"></script>
+    <script src="../header.js" data-root="../"></script>
+
+</body>
+</html>

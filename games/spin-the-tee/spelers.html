@@ -10,11 +10,11 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/spelers.css">
+    <link rel="stylesheet" href="css/navigation.css">
+
 </head>
 
 <body>
-
-<a href="spin-the-tee.html" class="homeButton">🏠</a>
 
 <main class="page playersPage">
 
@@ -167,7 +167,30 @@
 
 </main>
 
+<nav class="bottomNav" aria-label="Hoofdnavigatie">
+
+    <a class="navItem" href="../../index.html">
+        <span class="navIcon" aria-hidden="true">⌂</span>
+        <span>Home</span>
+    </a>
+
+    <a class="navItem active"
+       href="spin-the-tee.html"
+       aria-current="page">
+        <span class="navIcon" aria-hidden="true">♧</span>
+        <span>Spellen</span>
+    </a>
+
+    <span class="navItem navDisabled" aria-disabled="true">
+        <span class="navIcon" aria-hidden="true">⚙</span>
+        <span>Instellingen</span>
+    </span>
+
+</nav>
+
+
 <script src="js/spelers.js"></script>
+<script src="../../navigation.js"></script>
 
 </body>
 </html>

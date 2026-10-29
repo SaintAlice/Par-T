@@ -1,0 +1,352 @@
+
+/* PAR-T — Spellenpagina */
+
+/* Pagina */
+
+.gamesPage {
+    width: 100%;
+    max-width: 1100px;
+    min-height: 100dvh;
+    margin: 0 auto;
+    padding: 18px 20px calc(110px + env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow: visible;
+    background: #F5F3EA;
+    color: #194D3A;
+}
+
+/* Header */
+
+.homeHeader {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding: 0;
+}
+
+.brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.brandLogo {
+    display: block;
+    width: 150px;
+    max-width: 100%;
+    height: auto;
+    margin-left: -20px;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.brandSubtitle {
+    display: block;
+    margin: 0;
+    padding: 0;
+    color: #194D3A;
+    font-size: 0.53rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+/* Paginatitel */
+
+.gamesHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.gamesHeader h1 {
+    margin: 0;
+    color: #194D3A;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    line-height: 1.1;
+}
+
+.gamesHeader p {
+    margin: 0;
+    color: #68786E;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Spellenraster */
+
+.gamesGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 16px;
+}
+
+.gameCard {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-width: 0;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    border: 1px solid rgba(25, 77, 58, 0.08);
+    border-radius: 24px;
+    color: #194D3A;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(25, 77, 58, 0.08);
+    transition: transform 180ms ease;
+}
+
+.gameCard:hover {
+    transform: translateY(-2px);
+}
+
+.gameCard:focus-visible {
+    outline: 3px solid #C8E77B;
+    outline-offset: 3px;
+}
+
+/* Beschikbaar spel */
+
+.spinCard {
+    background: #194D3A;
+    color: #F5F3EA;
+}
+
+.spinCard .gameStatus {
+    color: #C8E77B;
+}
+
+/* Binnenkort beschikbaar */
+
+.miniGamesCard {
+    background: #DDE7D8;
+    color: #194D3A;
+}
+
+.miniGamesCard .gameStatus {
+    color: #71876A;
+}
+
+
+/* Sink or Win — binnenkort beschikbaar */
+
+.sinkWinCard {
+    background: #F5F3EA;
+    color: #194D3A;
+    border: 1px solid rgba(25, 77, 58, 0.12);
+}
+
+.sinkWinCard .gameStatus {
+    color: #71876A;
+}
+
+.sinkWinIcon {
+    display: grid;
+    place-items: center;
+    width: 68px;
+    height: 68px;
+    border: 5px solid #C8E77B;
+    border-radius: 50%;
+    color: #194D3A;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+/* Illustraties */
+
+.gameArtwork {
+    width: 100%;
+    min-height: 100px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.spinWheel {
+    width: 76px;
+    height: 76px;
+    display: grid;
+    place-items: center;
+    border: 6px solid #C8E77B;
+    border-radius: 50%;
+    color: #C8E77B;
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1;
+    transform: rotate(-20deg);
+}
+
+.golfClubs {
+    font-size: 4.5rem;
+    line-height: 1;
+}
+
+/* Spelinformatie */
+
+.gameInfo {
+    min-width: 0;
+    padding: 8px 0 0;
+}
+
+.gameStatus {
+    display: inline-block;
+    margin-bottom: 8px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+}
+
+.gameInfo h2 {
+    margin: 0 0 8px;
+    color: inherit;
+    font-size: 1.4rem;
+    font-weight: 750;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+    overflow-wrap: break-word;
+}
+
+.gameInfo p {
+    margin: 0;
+    color: inherit;
+    opacity: 0.85;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Pijl op beschikbare spelkaart */
+
+.gameArrow {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #C8E77B;
+    color: #194D3A;
+    font-size: 2rem;
+    line-height: 1;
+}
+
+/* Mobiel: twee kaarten naast elkaar */
+
+@media (max-width: 600px) {
+    .gamesPage {
+        padding: 18px 16px calc(110px + env(safe-area-inset-bottom));
+        gap: 20px;
+    }
+
+    .gamesGrid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .gameCard {
+        min-height: 235px;
+        padding: 12px 10px;
+        border-radius: 20px;
+    }
+
+    .gameArtwork {
+        min-height: 76px;
+    }
+
+    .spinWheel {
+        width: 62px;
+        height: 62px;
+        border-width: 5px;
+        font-size: 3.3rem;
+    }
+
+    .golfClubs {
+        font-size: 3.2rem;
+    }
+
+    .gameInfo {
+        padding-top: 6px;
+    }
+
+    .gameStatus {
+        margin-bottom: 7px;
+        font-size: 0.55rem;
+        letter-spacing: 0.06em;
+    }
+
+    .gameInfo h2 {
+        margin-bottom: 7px;
+        font-size: 1.05rem;
+        line-height: 1.2;
+    }
+
+    .gameInfo p {
+        font-size: 0.78rem;
+        line-height: 1.4;
+        overflow-wrap: break-word;
+    }
+
+    .gameArrow {
+        right: 8px;
+        bottom: 8px;
+        width: 30px;
+        height: 30px;
+        font-size: 1.5rem;
+    }
+
+    .spinCard .gameInfo {
+        padding-bottom: 28px;
+    }
+}
+
+/* Zeer smalle telefoons */
+
+@media (max-width: 360px) {
+    .gamesPage {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .gamesGrid {
+        gap: 8px;
+    }
+
+    .gameCard {
+        padding: 10px 8px;
+        border-radius: 17px;
+    }
+
+    .gameInfo h2 {
+        font-size: 0.95rem;
+    }
+
+    .gameInfo p {
+        font-size: 0.72rem;
+    }
+}
+
+/* Desktop hover en toegankelijkheid */
+
+@media (prefers-reduced-motion: reduce) {
+    .gameCard {
+        transition: none;
+    }
+}

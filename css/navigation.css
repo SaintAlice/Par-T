@@ -1,0 +1,75 @@
+
+/* PAR-T — gedeelde navigatiebalk */
+
+:root {
+    --navigation-height: 76px;
+    --navigation-bottom-gap: 10px;
+    --navigation-radius: 24px;
+    --navigation-item-radius: 16px;
+}
+
+.bottomNav {
+    position: fixed;
+    left: 50%;
+    bottom: max(
+        var(--navigation-bottom-gap),
+        env(safe-area-inset-bottom)
+    );
+    transform: translateX(-50%);
+    z-index: 1000;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: center;
+    gap: 6px;
+
+    width: calc(100% - 40px);
+    max-width: 520px;
+    min-height: var(--navigation-height);
+    padding: 7px;
+
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: var(--navigation-radius);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+.navItem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+
+    min-width: 0;
+    min-height: 60px;
+    border-radius: var(--navigation-item-radius);
+
+    color: #626762;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+.navIcon {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.navItem.active {
+    background: #E3F0E8;
+    color: #194D3A;
+}
+
+.navDisabled {
+    cursor: default;
+    opacity: 0.85;
+}
+
+@media (min-width: 800px) {
+    .bottomNav {
+        width: calc(100% - 64px);
+    }
+}

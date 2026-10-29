@@ -38,21 +38,43 @@ body {
 
 /* PAGINA-INDELING */
 
+
+/* PAGINA-INDELING */
+
+:root {
+    --navigation-height: 76px;
+    --navigation-bottom-gap: 10px;
+}
+
 .page {
     display: flex;
     flex-direction: column;
 
     width: min(100%, 700px);
-    height: 100dvh;
+    min-height: 100dvh;
+    height: auto;
 
     margin: 0 auto;
 
     padding:
-        max(56px, env(safe-area-inset-top))
+        max(76px, env(safe-area-inset-top))
         clamp(20px, 5vw, 32px)
-        calc(env(safe-area-inset-bottom) + 20px);
+        calc(
+            var(--navigation-height) +
+            var(--navigation-bottom-gap) +
+            30px +
+            env(safe-area-inset-bottom)
+        );
 
-    overflow: hidden;
+    .page {
+    padding-bottom: calc(
+        var(--navigation-height) +
+        var(--navigation-bottom-gap) +
+        30px +
+        env(safe-area-inset-bottom)
+    );
+    }
+    overflow: visible;
 }
 
 .homePage {
@@ -60,6 +82,7 @@ body {
     align-items: center;
     text-align: center;
 }
+
 
 /* TYPOGRAFIE */
 
@@ -166,4 +189,71 @@ input {
 .homeButton:hover {
     background: white;
     transform: translateY(-2px);
+}
+
+
+/* VASTE ONDERNAVIGATIE */
+
+.bottomNav {
+    position: fixed;
+    left: 50%;
+    bottom: max(var(--navigation-bottom-gap), env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    z-index: 1000;
+
+    width: calc(100% - 40px);
+    max-width: 520px;
+    min-height: var(--navigation-height);
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: center;
+    gap: 6px;
+
+    padding: 7px;
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+.navItem {
+    min-width: 0;
+    min-height: 60px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+
+    border-radius: 999px;
+    color: #626762;
+
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+}
+
+.navIcon {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.navItem.active {
+    background: #E3F0E8;
+    color: #194D3A;
+}
+
+.navDisabled {
+    cursor: default;
+    opacity: 0.85;
+}
+
+@media (min-width: 800px) {
+    .bottomNav {
+        width: calc(100% - 64px);
+        max-width: 520px;
+    }
 }

@@ -1,0 +1,411 @@
+
+/* ========================================
+   PAR-T — Instellingen en spelregels
+   ======================================== */
+
+/* Pagina en achtergrond */
+
+.settingsPage {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    max-width: 1100px;
+    min-height: 100dvh;
+    margin: 0 auto;
+    padding: 18px 20px calc(110px + env(safe-area-inset-bottom));
+    box-sizing: border-box;
+    background: #F5F3EA;
+    color: #194D3A;
+}
+
+.settingsPage::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: "";
+    background: #F5F3EA;
+}
+
+/* Header */
+
+.settingsPage .homeHeader {
+    justify-content: flex-start;
+}
+
+/* Algemene pagina-indeling */
+
+.settingsVisual {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    min-width: 0;
+}
+
+.settingsPageHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.settingsHeading {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 4px;
+}
+
+.settingsEyebrow {
+    margin: 0;
+    color: #526D60;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+}
+
+.settingsHeading h1 {
+    margin: 0;
+    color: #194D3A;
+    font-size: clamp(1.8rem, 5.5vw, 2.35rem);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+}
+
+.settingsIntro {
+    margin: 5px 0 0;
+    color: #526D60;
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+/* Instellingen */
+
+.settingsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: -5px;
+}
+
+.settingsSection h2 {
+    margin: 0 0 0 4px;
+    color: #194D3A;
+    font-size: 1rem;
+    font-weight: 750;
+}
+
+/* Groene instellingenkaart */
+
+.settingsCard {
+    overflow: hidden;
+    border: 1px solid rgba(25, 77, 58, 0.1);
+    border-radius: 22px;
+    background: #194D3A;
+    color: #F5F3EA;
+    box-shadow: 0 8px 24px rgba(25, 77, 58, 0.08);
+}
+
+/* Instellingenrijen */
+
+.settingsRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    min-height: 88px;
+    padding: 18px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    text-align: left;
+    text-decoration: none;
+}
+
+.settingsRow + .settingsRow {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Iconen */
+
+.settingsRowIcon {
+    display: grid;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border-radius: 14px;
+    background: #C8E77B;
+    color: #194D3A;
+    font-size: 1.3rem;
+}
+
+/* Instellingsteksten */
+
+.settingsRowContent {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.settingsRowContent label,
+.settingsRowTitle {
+    display: block;
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.settingsRowContent p,
+.settingsRowDescription {
+    display: block;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.86rem;
+    line-height: 1.4;
+}
+
+/* Taalkeuze */
+
+#languageSelect {
+    display: block;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 145px;
+    min-height: 40px;
+    padding: 8px 10px;
+    border: 1px solid rgba(25, 77, 58, 0.2);
+    border-radius: 10px;
+    background: #F6F5EF;
+    color: #194D3A;
+    font: inherit;
+    font-size: 0.85rem;
+}
+
+/* Pijlen en interacties */
+
+.settingsArrow {
+    flex: 0 0 auto;
+    color: #FFFFFF;
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.settingsRow[href]:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.settingsRow[href]:focus-visible,
+#languageSelect:focus-visible {
+    outline: 2px solid #C8E77B;
+    outline-offset: -3px;
+}
+
+/* ========================================
+   Spelregels
+   ======================================== */
+
+.rulesHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0 4px;
+}
+
+.rulesHeader h1 {
+    margin: 0;
+    color: #194D3A;
+    font-size: 1rem;
+    font-weight: 750;
+    line-height: 1.3;
+    letter-spacing: 0;
+}
+
+.rulesHeader p {
+    margin: 0;
+    color: #526D60;
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+/* Eén doorlopende groene kaart, zoals bij Instellingen */
+
+.rulesList {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid rgba(25, 77, 58, 0.1);
+    border-radius: 22px;
+    background: #194D3A;
+    color: #F5F3EA;
+    box-shadow: 0 8px 24px rgba(25, 77, 58, 0.08);
+}
+
+.rulesCard {
+    min-width: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #F5F3EA;
+    box-shadow: none;
+}
+
+.rulesCard + .rulesCard {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Uitklapbare rij */
+
+.rulesCard summary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    min-height: 88px;
+    padding: 18px;
+    box-sizing: border-box;
+    cursor: pointer;
+    list-style: none;
+}
+
+.rulesCard summary::-webkit-details-marker {
+    display: none;
+}
+
+.rulesCard summary::marker {
+    content: "";
+}
+
+/* Spelregeliconen */
+
+.rulesCard .settingsRowIcon {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    background: #C8E77B;
+    color: #194D3A;
+}
+
+/* Spelnamen en omschrijvingen */
+
+.rulesCardContent {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.rulesCard .settingsRowTitle {
+    color: #FFFFFF;
+}
+
+.rulesCard .settingsRowDescription {
+    color: rgba(255, 255, 255, 0.82);
+}
+
+/* Uitklappijl */
+
+.rulesArrow {
+    flex: 0 0 auto;
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.rulesCard[open] .rulesArrow {
+    transform: rotate(180deg);
+}
+
+.rulesCard summary:focus-visible {
+    outline: 2px solid #C8E77B;
+    outline-offset: -4px;
+}
+
+/* Inhoud van de spelregels */
+
+.rulesCardBody {
+    padding: 0 18px 18px 76px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.rulesCardBody p {
+    margin: 0 0 12px;
+}
+
+.rulesCardBody p:last-child {
+    margin-bottom: 0;
+}
+
+/* Mobiele weergave */
+
+@media (max-width: 600px) {
+    .settingsVisual {
+        gap: 22px;
+    }
+
+    .settingsLogo {
+        width: 132px;
+    }
+
+    .settingsPageHeader {
+        gap: 18px;
+    }
+
+    .settingsHeading h1 {
+        font-size: 2.35rem;
+    }
+
+    .settingsCard {
+        border-radius: 22px;
+    }
+
+    .settingsRow {
+        gap: 12px;
+        padding: 16px;
+    }
+
+    #languageSelect {
+        max-width: 130px;
+        padding: 8px 6px;
+        font-size: 0.8rem;
+    }
+
+    .rulesHeader {
+        margin-right: 4px;
+        margin-left: 4px;
+    }
+
+    .rulesList {
+        border-radius: 22px;
+    }
+
+    .rulesCard summary {
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .rulesCardBody {
+        padding: 0 16px 18px;
+    }
+}
+
+/* Toegankelijkheid */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

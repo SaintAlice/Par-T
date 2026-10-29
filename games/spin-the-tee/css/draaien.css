@@ -51,12 +51,17 @@ body {
 }
 
 footer {
-
-    padding: 12px 16px calc(env(safe-area-inset-bottom) + 16px);
+    padding:
+        12px 16px
+        calc(
+            var(--navigation-height, 76px) +
+            var(--navigation-bottom-gap, 10px) +
+            24px +
+            env(safe-area-inset-bottom)
+        );
 
     display: flex;
     justify-content: center;
-
 }
 
 /* HUIDIGE SPELER */
