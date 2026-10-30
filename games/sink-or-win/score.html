@@ -80,19 +80,15 @@
                 </div>
 
                 <div class="formGroup">
-                    <label>Inzet</label>
-
-                    <div class="challengeStakeOptions">
-                        <label>
-                            <input type="radio" name="challengeStake" value="1" checked>
-                            <span>1 punt</span>
-                        </label>
-
-                        <label>
-                            <input type="radio" name="challengeStake" value="3">
-                            <span>3 punten</span>
-                        </label>
-                    </div>
+                    <label for="challengeStake">Aantal punten</label>
+                    <input
+                        type="number"
+                        id="challengeStake"
+                        min="1"
+                        step="1"
+                        value="1"
+                        inputmode="numeric"
+                        placeholder="Vul het aantal punten in">
                 </div>
 
                 <p id="challengeValidationMessage" role="status" hidden></p>

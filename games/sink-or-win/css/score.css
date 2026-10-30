@@ -308,15 +308,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    padding: 0;
     border: none;
     border-radius: 50%;
     background: #DDE7D8;
     color: #194D3A;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .scoreValue {
@@ -656,4 +660,80 @@
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
+}
+
+/* Uitklapbare eindstand per speler */
+
+.finalPlayerDetails {
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: #F5F3EA;
+    color: #194D3A;
+}
+
+.finalPlayerDetails + .finalPlayerDetails {
+    margin-top: 8px;
+}
+
+.finalPlayerSummary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 28px;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+}
+
+.finalPlayerSummary::-webkit-details-marker {
+    display: none;
+}
+
+.finalPlayerSummary::after {
+    content: "⌄";
+    margin-left: 4px;
+    transition: transform 0.2s ease;
+}
+
+.finalPlayerDetails[open] .finalPlayerSummary::after {
+    transform: rotate(180deg);
+}
+
+.finalPlayerBreakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(25, 77, 58, 0.18);
+}
+
+.finalPlayerBreakdownRow {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.finalPlayerBreakdownRow span {
+    color: #52675A;
+}
+
+/* Mobiele bediening */
+
+.scoreControls {
+    gap: 12px;
+}
+
+.challengeForm input[type="number"],
+.challengeForm select {
+    box-sizing: border-box;
+    min-height: 46px;
+    font-size: 16px;
+    touch-action: manipulation;
+}
+
+button {
+    touch-action: manipulation;
 }

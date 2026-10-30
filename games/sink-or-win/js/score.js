@@ -28,6 +28,7 @@ const opponentSelect = document.querySelector("#opponentSelect");
 const saveChallengeButton = document.querySelector("#saveChallengeButton");
 const cancelChallengeButton = document.querySelector("#cancelChallengeButton");
 const challengeValidationMessage = document.querySelector("#challengeValidationMessage");
+const challengeStakeInput = document.querySelector("#challengeStake");
 
 const challengeResultSection = document.querySelector(".challengeResultSection");
 
@@ -351,12 +352,12 @@ function renderChallengerOptions() {
 }
 
 function renderOpponentOptions() {
+    const selectedOpponent = opponentSelect.value;
+
     opponentSelect.replaceChildren();
 
     const challengerId = challengerSelect.value;
-    const stake = Number(
-        document.querySelector('input[name="challengeStake"]:checked').value
-    );
+    const stake = Number(challengeStakeInput.value);
 
     if (!challengerId) {
         opponentSelect.disabled = true;
@@ -365,6 +366,7 @@ function renderOpponentOptions() {
         option.value = "";
         option.textContent = "Kies eerst een uitdager";
         opponentSelect.append(option);
+
         return;
     }
 
@@ -375,6 +377,7 @@ function renderOpponentOptions() {
     placeholder.textContent = "Kies een tegenstander";
     opponentSelect.append(placeholder);
 
+    const validStake = Number.isInteger(stake) && stake >= 1;
     const challenges = getCurrentChallenges();
 
     const alreadyChallenged = challenges
@@ -386,24 +389,34 @@ function renderOpponentOptions() {
         if (alreadyChallenged.includes(player.id)) return;
 
         const reservedPoints = getReservedPoints(player.id, challenges);
+        const availablePoints = player.points - reservedPoints;
 
-        if (player.points - reservedPoints < stake) return;
+        const hasEnoughPoints = validStake && availablePoints >= stake;
+        const wasSelected = player.id === selectedOpponent;
+
+        // Toon beschikbare spelers en behoud altijd de huidige selectie.
+        if (!hasEnoughPoints && !wasSelected) return;
 
         const option = document.createElement("option");
         option.value = player.id;
-        option.textContent = player.name;
+
+        option.textContent = hasEnoughPoints
+            ? player.name
+            : `${player.name} (onvoldoende punten)`;
 
         opponentSelect.append(option);
     });
+
+    // Behoud de eerder gekozen tegenstander.
+    if (selectedOpponent) {
+        opponentSelect.value = selectedOpponent;
+    }
 }
 
 function saveChallenge() {
     const challengerId = challengerSelect.value;
     const opponentId = opponentSelect.value;
-
-    const stake = Number(
-        document.querySelector('input[name="challengeStake"]:checked').value
-    );
+    const stake = Number(challengeStakeInput.value);
 
     const challenges = getCurrentChallenges();
 
@@ -417,6 +430,11 @@ function saveChallenge() {
 
     if (!challenger || !opponent) {
         showChallengeValidation("Kies een uitdager en een tegenstander.");
+        return;
+    }
+
+    if (!Number.isInteger(stake) || stake < 1) {
+        showChallengeValidation("Vul een geldig aantal punten in.");
         return;
     }
 
@@ -780,7 +798,7 @@ function editScores() {
 function renderFinalResults() {
     holeResultSection.hidden = false;
     holeResultSection.classList.add("isFinalResult");
-    holeResultHeading.textContent = "Eindresultaat";
+    holeResultHeading.textContent = "Eindstand";
 
     scoreSection.hidden = true;
     challengeSection.hidden = true;
@@ -811,8 +829,11 @@ function renderFinalResults() {
         .sort((a, b) => b.finalPoints - a.finalPoints);
 
     sortedPlayers.forEach((player, index) => {
-        const row = document.createElement("div");
-        row.className = "resultPlayer";
+        const details = document.createElement("details");
+        details.className = "finalPlayerDetails";
+
+        const summary = document.createElement("summary");
+        summary.className = "finalPlayerSummary";
 
         const name = document.createElement("span");
         name.textContent = `${index + 1}. ${player.name}`;
@@ -820,31 +841,55 @@ function renderFinalResults() {
         const points = document.createElement("strong");
         points.textContent = `${player.finalPoints} punten`;
 
-        row.append(name, points);
-        holeResultList.append(row);
+        summary.append(name, points);
+        details.append(summary);
+
+        const breakdown = document.createElement("div");
+        breakdown.className = "finalPlayerBreakdown";
+
+        const earned = document.createElement("div");
+        earned.className = "finalPlayerBreakdownRow";
+
+        const earnedLabel = document.createElement("span");
+        earnedLabel.textContent = "Behaalde punten";
+
+        const earnedValue = document.createElement("strong");
+        earnedValue.textContent = player.points;
+
+        earned.append(earnedLabel, earnedValue);
+        breakdown.append(earned);
 
         if (player.penaltyCards > 0) {
-            const penalty = document.createElement("div");
-            penalty.className = "resultPoints";
+            const cards = document.createElement("div");
+            cards.className = "finalPlayerBreakdownRow";
 
-            const description = document.createElement("span");
-            description.textContent =
-                `${player.penaltyCards} overgebleven Birdiekaarten`;
+            const cardsLabel = document.createElement("span");
+            cardsLabel.textContent = "Overgebleven Birdiekaarten";
 
-            const deduction = document.createElement("strong");
-            deduction.textContent = `−${player.penaltyCards} punt`;
+            const cardsValue = document.createElement("strong");
+            cardsValue.textContent = player.penaltyCards;
 
-            penalty.append(description, deduction);
-            holePointsList.append(penalty);
+            cards.append(cardsLabel, cardsValue);
+            breakdown.append(cards);
+
+            const deduction = document.createElement("div");
+            deduction.className = "finalPlayerBreakdownRow";
+
+            const deductionLabel = document.createElement("span");
+            deductionLabel.textContent = "Aftrek";
+
+            const deductionValue = document.createElement("strong");
+            deductionValue.textContent = `−${player.penaltyCards} punten`;
+
+            deduction.append(deductionLabel, deductionValue);
+            breakdown.append(deduction);
         }
+
+        details.append(breakdown);
+        holeResultList.append(details);
     });
 
-    holePointsList.parentElement.hidden =
-        !sortedPlayers.some((player) => player.penaltyCards > 0);
-
-    holePointsList.parentElement.querySelector("h3").textContent =
-        "Aftrek Birdiekaarten";
-
+    holePointsList.parentElement.hidden = true;
     challengeResultSection.hidden = true;
     birdieResultList.hidden = true;
 
@@ -942,8 +987,9 @@ opponentSelect.addEventListener("change", () => {
     showChallengeValidation("");
 });
 
-document.querySelectorAll('input[name="challengeStake"]').forEach((radio) => {
-    radio.addEventListener("change", renderOpponentOptions);
+challengeStakeInput.addEventListener("input", () => {
+    showChallengeValidation("");
+    renderOpponentOptions();
 });
 
 saveChallengeButton.addEventListener("click", saveChallenge);
