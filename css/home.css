@@ -192,7 +192,7 @@
         rgba(7, 48, 32, 0.68) 55%,
         rgba(7, 48, 32, 0.18) 100%
     ),
-    url("../games/spin-the-tee/images/background-hrd18.1.png")
+    url("../images/background-hrd16.png")
     center / cover no-repeat;
     color: #194D3A;
     border: 1px solid rgba(255, 255, 255, 0.55);
