@@ -1,5 +1,5 @@
 
-/* PAR-T — Handicapberekening */
+/* PAR-TEE — Handicapberekening */
 
 const COURSE_RATINGS = {
     heren: {

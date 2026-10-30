@@ -1,5 +1,5 @@
 
-/* PAR-T — taalvoorkeur */
+/* PAR-TEE — taalvoorkeur */
 
 const languageSelect = document.getElementById("languageSelect");
 const languageStorageKey = "parTLanguage";

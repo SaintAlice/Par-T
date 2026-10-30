@@ -1,5 +1,5 @@
 
-/* PAR-T — Sink or Win spelerspagina */
+/* PAR-TEE — Sink or Win spelerspagina */
 
 const MIN_PLAYERS = 2;
 const MAX_PLAYERS = 4;
