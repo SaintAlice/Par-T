@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#194D3A">
+
+    <title>Sink or Win | PAR-T</title>
+
+    <link rel="stylesheet" href="../spin-the-tee/css/style.css">
+    <link rel="stylesheet" href="../spin-the-tee/css/home.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="css/sink-or-win.css">
+</head>
+<body>
+
+    <main class="page homePage">
+
+        <header class="pageHeader">
+            <h1>Sink or Win</h1>
+
+            <p class="subtitle">
+                Speel om de punten. Daag elkaar uit. Win de ronde.
+            </p>
+        </header>
+
+        <button id="startButton">
+            Start spel
+        </button>
+
+    </main>
+
+    <script>
+        document
+            .getElementById("startButton")
+            .addEventListener("click", () => {
+                location.href = "baan.html";
+            });
+    </script>
+
+    <script src="../../navigation.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#194D3A">
+
+    <title>Score - Sink or Win | PAR-T</title>
+
+    <link rel="stylesheet" href="../spin-the-tee/css/style.css">
+    <link rel="stylesheet" href="../spin-the-tee/css/spelers.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="css/spelers.css">
+    <link rel="stylesheet" href="css/sink-or-win.css">
+    <link rel="stylesheet" href="css/score.css">
+</head>
+
+<body>
+
+<main class="page scorePage">
+
+    <header class="pageHeader">
+        <h1 id="holeTitle">Hole 1</h1>
+        <p class="subtitle" id="holeDetails">Par 4 · SI 8</p>
+    </header>
+
+    <section class="pageContent">
+    
+    <div class="scoreActions">
+        <button type="button" id="standingsButton">
+            Tussenstand bekijken
+        </button>
+    </div>
+
+    <section id="standingsSection" class="standingsSection" hidden>
+        <h2>Tussenstand</h2>
+        <div id="standingsList"></div>
+    </section>
+
+    <section class="challengeSection">
+
+        <button
+            type="button"
+            id="challengeToggleButton"
+            class="challengeToggleButton"
+            aria-expanded="false">
+
+            <span>Uitdagingen</span>
+            <span class="challengeToggleArrow">⌄</span>
+
+        </button>
+
+        <div id="challengeContent" hidden>
+
+            <div id="challengeList">
+                <p class="emptyChallenges">
+                    Er zijn nog geen uitdagingen voor deze hole.
+                </p>
+            </div>
+
+            <button type="button" id="challengeButton">
+                + Iemand uitdagen
+            </button>
+
+            <div id="challengeForm" class="challengeForm" hidden>
+
+                <div class="formGroup">
+                    <label for="challengerSelect">Wie daagt uit?</label>
+                    <select id="challengerSelect">
+                        <option value="">Kies een speler</option>
+                    </select>
+                </div>
+
+                <div class="formGroup">
+                    <label for="opponentSelect">Wie daag je uit?</label>
+                    <select id="opponentSelect" disabled>
+                        <option value="">Kies eerst een uitdager</option>
+                    </select>
+                </div>
+
+                <div class="formGroup">
+                    <label>Inzet</label>
+
+                    <div class="challengeStakeOptions">
+                        <label>
+                            <input type="radio" name="challengeStake" value="1" checked>
+                            <span>1 punt</span>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="challengeStake" value="3">
+                            <span>3 punten</span>
+                        </label>
+                    </div>
+                </div>
+
+                <p id="challengeValidationMessage" role="status" hidden></p>
+
+                <button type="button" id="saveChallengeButton">
+                    Uitdaging bevestigen
+                </button>
+
+                <button type="button" id="cancelChallengeButton">
+                    Annuleren
+                </button>
+
+            </div>
+        </div>
+
+    </section>
+
+
+
+        <section class="scoreSection">
+            <h2>Scores invoeren</h2>
+            <div id="scoreList"></div>
+        </section>
+
+        <p
+            id="scoreValidationMessage"
+            class="validationMessage"
+            role="status"
+            hidden>
+        </p>
+
+        <section id="holeResultSection" class="holeResultSection" hidden>
+
+            <h2 id="holeResultHeading">Resultaat hole</h2>
+
+            <div id="holeResultList"></div>
+
+            <section class="holePointsSection">
+                <h3>Puntenverdeling</h3>
+                <div id="holePointsList"></div>
+            </section>
+
+            <section class="challengeResultSection">
+                <h3>Uitdagingen</h3>
+                <div id="challengeResultList"></div>
+            </section>
+
+            <div id="birdieResultList"></div>
+
+            <button type="button" id="confirmHoleButton" class="primaryButton">
+                Hole afronden →
+            </button>
+
+            <button type="button" id="editScoresButton">
+                Scores aanpassen
+            </button>
+
+            <button type="button" id="newGameButton" class="newGameButton" hidden>
+                Nieuw spel →
+            </button>
+
+        </section>
+
+    </section>
+
+    <footer class="pageFooter">
+        <button
+            type="button"
+            id="finishHoleButton"
+            class="primaryButton"
+            disabled>
+            Scores controleren →
+        </button>
+    </footer>
+
+</main>
+
+<script src="js/handicap.js"></script>
+<script src="js/score.js"></script>
+<script src="../../navigation.js"></script>
+
+</body>
+</html>

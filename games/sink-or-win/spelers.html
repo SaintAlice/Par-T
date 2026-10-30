@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#194D3A">
+
+    <title>Spelers - Sink or Win | PAR-T</title>
+
+    <link rel="stylesheet" href="../spin-the-tee/css/style.css">
+    <link rel="stylesheet" href="../spin-the-tee/css/spelers.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="css/spelers.css">
+    <link rel="stylesheet" href="css/sink-or-win.css">
+</head>
+
+<body>
+
+<main class="page playersPage">
+
+    <header class="pageHeader">
+        <h1>Spelers</h1>
+        <p class="subtitle">Wie doen er vandaag mee?</p>
+    </header>
+
+    <section class="pageContent">
+
+        <!-- Speler toevoegen -->
+        <div class="addPlayer">
+            <input
+                type="text"
+                id="playerInput"
+                placeholder="Naam speler"
+                aria-label="Naam speler"
+                maxlength="30"
+                autocomplete="off">
+
+            <button
+                type="button"
+                id="addPlayerButton"
+                aria-label="Speler toevoegen">
+                +
+            </button>
+        </div>
+
+        <!-- Spelinstellingen -->
+        <section class="gameSettings">
+            <div class="generalTeesCard">
+
+                <button
+                    type="button"
+                    id="gameSettingsToggle"
+                    class="generalTeesHeader"
+                    aria-expanded="false">
+
+                    <span class="settingsIcon" aria-hidden="true">⚙</span>
+
+                    <span class="generalTeesHeading">
+                        <strong>Spelinstellingen</strong>
+                        <span id="selectedModeDescription">
+                            Spelen zonder handicap
+                        </span>
+                    </span>
+
+                    <span class="settingsArrow" aria-hidden="true"></span>
+                </button>
+
+                <div
+                    id="gameSettingsContent"
+                    class="generalTeesContent"
+                    hidden>
+
+                    <section class="settingsSection">
+                        <h2>Spelvariant</h2>
+                        <p class="settingsDescription">
+                            Kies hoe de scores worden vergeleken.
+                        </p>
+
+                        <div class="variantSlider">
+                            <label class="variantOption">
+                                <input
+                                    type="radio"
+                                    name="gameMode"
+                                    value="scratch"
+                                    checked>
+                                <span>Scratch</span>
+                            </label>
+
+                            <label class="variantOption">
+                                <input
+                                    type="radio"
+                                    name="gameMode"
+                                    value="handicap">
+                                <span>Handicap</span>
+                            </label>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Spelerslijst -->
+        <div id="playerList"></div>
+
+        <p
+            id="gameValidationMessage"
+            class="validationMessage"
+            role="status"
+            hidden>
+        </p>
+
+    </section>
+
+    <footer class="pageFooter">
+        <button
+            type="button"
+            id="nextButton"
+            class="primaryButton"
+            disabled>
+            Start de ronde →
+        </button>
+    </footer>
+
+</main>
+
+<script src="js/handicap.js"></script>
+<script src="js/spelers.js"></script>
+<script src="../../navigation.js"></script>
+
+</body>
+</html>

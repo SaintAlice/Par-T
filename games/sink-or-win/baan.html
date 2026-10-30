@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#194D3A">
+
+    <title>Golfbaan kiezen</title>
+
+    <link rel="stylesheet" href="../spin-the-tee/css/style.css">
+    <link rel="stylesheet" href="../../css/navigation.css">
+    <link rel="stylesheet" href="css/sink-or-win.css">
+    <link rel="stylesheet" href="css/baan.css">
+</head>
+
+<body>
+
+    <main class="page baanPage">
+
+        <header class="pageHeader">
+            <h1>Kies je golfbaan</h1>
+        </header>
+
+        <section class="pageContent">
+
+            <section class="courseSection">
+
+                <div id="courseList" class="courseList">
+                    <!-- Golfbanen worden hier weergegeven -->
+                </div>
+            </section>
+
+            <section id="roundSelection" class="roundSelection" hidden>
+
+            <h2>Hoeveel holes spelen jullie?</h2>
+
+            <div id="roundOptions" class="roundOptions">
+                <!-- Rondekeuzes worden hier weergegeven -->
+            </div>
+
+        </section>
+
+            <section class="createCourseSection">
+
+                <button
+                    type="button"
+                    id="createCourseButton"
+                    class="secondaryButton"
+                    disabled
+                >
+                    + Nieuwe golfbaan aanmaken
+                </button>
+
+            </section>
+
+            <section
+                id="courseForm"
+                class="courseForm"
+                hidden
+            >
+
+                <h2>Nieuwe golfbaan</h2>
+
+                <div class="formGroup">
+                    <label for="courseName">Naam golfbaan</label>
+                    <input
+                        type="text"
+                        id="courseName"
+                        placeholder="Bijvoorbeeld Hooge Rotterdamsche"
+                        maxlength="60"
+                    >
+                </div>
+
+                <div class="formGroup">
+                    <label for="holeCount">Aantal holes</label>
+
+                    <select id="holeCount">
+                        <option value="9">9 holes</option>
+                        <option value="18" selected>18 holes</option>
+                    </select>
+                </div>
+
+                <div id="holeInputs">
+                    <!-- Holegegevens worden hier weergegeven -->
+                </div>
+
+                <button
+                    type="button"
+                    id="saveCourseButton"
+                    class="primaryButton"
+                >
+                    Golfbaan opslaan
+                </button>
+
+            </section>
+
+            <p
+                id="courseValidationMessage"
+                class="validationMessage"
+                role="status"
+                hidden
+            ></p>
+
+        </section>
+
+        <footer class="pageFooter">
+            <button
+                type="button"
+                id="continueButton"
+                class="primaryButton"
+                disabled
+            >
+                Kies eerst een baan →
+            </button>
+        </footer>
+
+    </main>
+
+    <section id="existingGamePrompt" class="existingGamePrompt" hidden>
+        <div class="existingGameCard">
+            <h2>Er staat nog een spel open</h2>
+            <p>Wil je verdergaan met je vorige ronde of een nieuw spel starten?</p>
+
+            <button type="button" id="resumeGameButton" class="primaryButton">
+                Verder gaan met spel
+            </button>
+
+            <button type="button" id="startNewGameButton" class="secondaryButton">
+                Nieuw spel starten
+            </button>
+        </div>
+    </section>
+
+    <script src="js/baan.js"></script>
+    <script src="../../navigation.js"></script>
+
+</body>
+</html>
