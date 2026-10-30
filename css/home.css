@@ -264,6 +264,11 @@
     line-height: 1.45;
 }
 
+.cardSubtitle {
+    font-size: 12px;
+    font-weight: 500;
+}
+
 .gameAction {
     width: 100%;
     max-width: 280px;
