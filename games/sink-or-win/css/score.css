@@ -1,6 +1,4 @@
 
-/* Scorepagina */
-
 .scorePage {
     display: flex;
     flex: 1;
@@ -23,11 +21,38 @@
     gap: 22px;
 }
 
+.scorePage .pageFooter {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    padding-top: 16px;
+}
+
 .scoreActions {
+    display: flex;
+    gap: 10px;
     margin-bottom: -12px;
 }
 
-/* Secties */
+.scoreActions button,
+.challengeToggleButton {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 42px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    background: rgba(25, 77, 58, 0.85);
+    color: #F5F3EA;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+}
 
 .challengeSection,
 .scoreSection {
@@ -43,37 +68,19 @@
     font-size: 18px;
 }
 
-/* Uitdagingen */
-
-.challengeToggleButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 42px;
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 12px;
-    background: rgba(25, 77, 58, 0.85);
-    color: #F5F3EA;
-    font: inherit;
-    font-size: 12px;
-    font-weight: 600;
-    text-align: center;
-    cursor: pointer;
-}
-
 #challengeContent {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-#challengeContent[hidden] {
-    display: none;
-}
-
-#challengeList {
+#challengeList,
+#scoreList,
+#standingsList,
+#holeResultList,
+#holePointsList,
+#challengeResultList,
+#birdieResultList {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -83,10 +90,6 @@
     margin: 0;
     color: rgba(255, 255, 255, 0.75);
     font-size: 14px;
-}
-
-.emptyChallenges[hidden] {
-    display: none;
 }
 
 .challengeCard {
@@ -119,6 +122,22 @@
     white-space: nowrap;
 }
 
+.challengeRemoveButton {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: #F5F3EA;
+    font-size: 22px;
+    cursor: pointer;
+}
+
 #challengeButton {
     width: 100%;
     min-height: 48px;
@@ -133,8 +152,6 @@
     cursor: pointer;
 }
 
-/* Uitdagingen instellen */
-
 .challengeForm {
     display: flex;
     flex-direction: column;
@@ -144,10 +161,6 @@
     border-radius: 18px;
     background: rgba(25, 77, 58, 0.95);
     color: #F5F3EA;
-}
-
-.challengeForm[hidden] {
-    display: none;
 }
 
 .challengeForm .formGroup {
@@ -161,7 +174,8 @@
     font-weight: 600;
 }
 
-.challengeForm select {
+.challengeForm input[type="number"] {
+    box-sizing: border-box;
     width: 100%;
     min-height: 46px;
     padding: 10px 12px;
@@ -170,56 +184,65 @@
     background: #F5F3EA;
     color: #194D3A;
     font: inherit;
+    font-size: 16px;
+    touch-action: manipulation;
 }
 
-.challengeStakeOptions {
+.playerOptions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.playerOptionButton {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #F5F3EA;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.playerOptionButton.isSelected {
+    border-color: #C8E77B;
+    background: #C8E77B;
+    color: #194D3A;
+}
+
+.playerOptionButton:disabled,
+.playerOptionButton.isUnavailable {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.optionHint {
+    margin: 0;
+    color: #F5F3EA;
+    opacity: 0.7;
+    font-size: 13px;
+}
+
+.challengeFormActions {
     display: flex;
     gap: 10px;
 }
 
-.challengeStakeOptions label {
-    flex: 1;
-    cursor: pointer;
-}
-
-.challengeStakeOptions input {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.challengeStakeOptions span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 46px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.12);
-    color: #FFFFFF;
-    font-weight: 600;
-}
-
-.challengeStakeOptions input:checked + span {
-    border: 2px solid #C8E77B;
-    background: rgba(200, 231, 123, 0.16);
-    color: #C8E77B;
-}
-
-#challengeValidationMessage {
-    margin: 0;
-    color: #F5D6A0;
-    font-size: 13px;
-}
-
 #saveChallengeButton,
 #cancelChallengeButton {
-    width: 100%;
+    flex: 1;
+    width: auto;
+    min-width: 0;
     min-height: 46px;
-    padding: 12px 16px;
+    padding: 10px 12px;
     border: none;
     border-radius: 14px;
     font: inherit;
+    font-size: 13px;
     font-weight: 600;
     cursor: pointer;
 }
@@ -231,15 +254,13 @@
 
 #cancelChallengeButton {
     background: rgba(255, 255, 255, 0.12);
-    color: #FFFFFF;
+    color: #F5F3EA;
 }
 
-/* Scorekaarten */
-
-#scoreList {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+#challengeValidationMessage {
+    margin: 0;
+    color: #F5D6A0;
+    font-size: 13px;
 }
 
 .scorePlayer {
@@ -285,8 +306,8 @@
 
 .scoreInputRow {
     display: flex;
-    align-items: center;
     flex-shrink: 0;
+    align-items: center;
     gap: 8px;
 }
 
@@ -297,14 +318,14 @@
 .scoreControls {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .scoreControlButton {
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
     width: 44px;
     height: 44px;
     padding: 0;
@@ -328,14 +349,95 @@
     font-variant-numeric: tabular-nums;
 }
 
-/* Hole-resultaat */
+.validationMessage {
+    color: #F5D6A0;
+    font-size: 14px;
+}
+
+#finishHoleButton {
+    width: min(100%, 320px);
+}
+
+#finishHoleButton:disabled {
+    background: rgba(255, 255, 255, 0.75);
+    color: #8A958C;
+    cursor: not-allowed;
+}
+
+.standingsSection {
+    padding: 20px 16px;
+    border: 1px solid rgba(25, 77, 58, 0.08);
+    border-radius: 20px;
+    background: #F5F3EA;
+    color: #194D3A;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.standingsSection > h2 {
+    margin: 0 0 16px;
+    color: #194D3A;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.standingPlayer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 68px;
+    padding: 12px 13px;
+    border: 1px solid rgba(25, 77, 58, 0.04);
+    border-radius: 14px;
+    background: #DDE7D8;
+    color: #194D3A;
+}
+
+.standingPlayerInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.standingPlayerName {
+    color: #194D3A;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.standingBirdieCards {
+    display: flex;
+    gap: 4px;
+}
+
+.standingBirdieCard {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 21px;
+    height: 21px;
+    border-radius: 6px;
+    background: #C8E77B;
+    color: #194D3A;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.standingPoints {
+    color: #194D3A;
+    font-size: 16px;
+    font-weight: 800;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
 
 .holeResultSection {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 100%;
     box-sizing: border-box;
+    width: 100%;
     margin-top: 12px;
     padding: 16px;
     border: 1px solid rgba(25, 77, 58, 0.08);
@@ -343,10 +445,6 @@
     background: #F5F3EA;
     color: #194D3A;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-.holeResultSection[hidden] {
-    display: none;
 }
 
 .holeResultSection h2 {
@@ -361,15 +459,6 @@
     color: #194D3A;
     font-size: 14px;
     font-weight: 700;
-}
-
-#holeResultList,
-#holePointsList,
-#challengeResultList,
-#birdieResultList {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
 }
 
 .resultPlayer,
@@ -431,28 +520,30 @@
     gap: 4px;
 }
 
-/* Resultaatknoppen */
-
 #confirmHoleButton,
-#editScoresButton {
+#editScoresButton,
+#newGameButton {
     display: block;
     box-sizing: border-box;
-    width: 100% !important;
-    max-width: none;
-    align-self: stretch;
+    width: 100%;
     min-height: 48px;
     margin: 0;
-    padding: 12px 16px;
+    padding: 12px;
     border: none;
     border-radius: 14px;
     font: inherit;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     cursor: pointer;
 }
 
+#confirmHoleButton,
+#editScoresButton {
+    flex: 1;
+    min-width: 0;
+}
+
 #confirmHoleButton {
-    margin-top: 4px;
     background: #194D3A;
     color: #F5F3EA;
 }
@@ -462,158 +553,15 @@
     color: #194D3A;
 }
 
-/* Footer */
-
-.scorePage .pageFooter {
-    display: flex;
-    flex-shrink: 0;
-    justify-content: center;
-    padding-top: 16px;
+#newGameButton {
+    background: #194D3A;
+    color: #F5F3EA;
 }
 
-#finishHoleButton {
-    width: min(100%, 320px);
-}
-
-#finishHoleButton:disabled {
-    background: rgba(255, 255, 255, 0.75);
-    color: #8A958C;
-    cursor: not-allowed;
-}
-
-/* Tussenstand */
-
-.scoreActions {
+.holeResultActions {
     display: flex;
     gap: 10px;
 }
-
-.scoreActions button {
-    flex: 1;
-    min-height: 42px;
-    padding: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 12px;
-    background: rgba(25, 77, 58, 0.85);
-    color: #F5F3EA;
-    font: inherit;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.standingsSection {
-    padding: 20px 16px;
-    border: 1px solid rgba(25, 77, 58, 0.08);
-    border-radius: 20px;
-    background: #F5F3EA;
-    color: #194D3A;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-.standingsSection[hidden] {
-    display: none;
-}
-
-.standingsSection > h2 {
-    margin: 0 0 16px;
-    color: #194D3A;
-    font-size: 21px;
-    font-weight: 800;
-}
-
-.standingsHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 12px;
-}
-
-.standingsHeader h2 {
-    margin: 0;
-    font-size: 18px;
-}
-
-#closeStandingsButton {
-    width: 32px;
-    height: 32px;
-    border: none;
-    border-radius: 50%;
-    background: #DDE7D8;
-    color: #194D3A;
-    font-size: 22px;
-}
-
-#standingsList {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-}
-
-.standingPlayer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    min-height: 68px;
-    padding: 12px 13px;
-    border: 1px solid rgba(25, 77, 58, 0.04);
-    border-radius: 14px;
-    background: #DDE7D8;
-    color: #194D3A;
-}
-
-.standingPlayerInfo {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    min-width: 0;
-}
-
-.standingPlayerName {
-    color: #194D3A;
-    font-size: 15px;
-    font-weight: 800;
-}
-
-.standingBirdieCards {
-    display: flex;
-    gap: 4px;
-}
-
-.standingBirdieCard {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 21px;
-    height: 21px;
-    border-radius: 6px;
-    background: #C8E77B;
-    color: #194D3A;
-    font-size: 11px;
-    font-weight: 800;
-}
-
-.standingPoints {
-    color: #194D3A;
-    font-size: 16px;
-    font-weight: 800;
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-}
-
-/* Onderdelen verbergen wanneer ze niet nodig zijn */
-
-.scoreActions[hidden],
-.challengeSection[hidden],
-.scoreSection[hidden],
-.scorePage .pageFooter[hidden],
-#confirmHoleButton[hidden],
-#editScoresButton[hidden],
-#newGameButton[hidden] {
-    display: none !important;
-}
-
-/* Eindresultaat */
 
 .holeResultSection.isFinalResult {
     gap: 14px;
@@ -640,25 +588,6 @@
     font-size: 15px;
     white-space: nowrap;
 }
-
-#newGameButton {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    min-height: 48px;
-    margin: 0;
-    padding: 12px 16px;
-    border: none;
-    border-radius: 14px;
-    background: #194D3A;
-    color: #F5F3EA;
-    font: inherit;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-/* Uitklapbare eindstand per speler */
 
 .finalPlayerDetails {
     padding: 14px 16px;
@@ -716,42 +645,57 @@
     color: #52675A;
 }
 
-/* Mobiele bediening */
-
-.scoreControls {
-    gap: 12px;
+.scoreActions[hidden],
+.challengeSection[hidden],
+.scoreSection[hidden],
+.scorePage .pageFooter[hidden],
+#challengeContent[hidden],
+#challengeForm[hidden],
+#challengeStakeGroup[hidden],
+#challengeFormActions[hidden],
+#holeResultSection[hidden],
+#standingsSection[hidden],
+#confirmHoleButton[hidden],
+#editScoresButton[hidden],
+#newGameButton[hidden],
+#birdieResultList[hidden] {
+    display: none !important;
 }
 
-.challengeForm input[type="number"],
-.challengeForm select {
-    box-sizing: border-box;
-    min-height: 46px;
-    font-size: 16px;
-    touch-action: manipulation;
+.scorePage:has(#holeResultSection:not([hidden])) .pageFooter {
+    display: none;
 }
 
 button {
     touch-action: manipulation;
 }
 
-/* Verberg scores controleren zodra het hole-resultaat zichtbaar is */
-
-.scorePage:has(#holeResultSection:not([hidden])) .pageFooter {
-    display: none;
+.challengeStakeControls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
 }
 
-.challengeRemoveButton {
+.challengeStakeControls button {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    padding: 0;
+    width: 46px;
+    height: 46px;
     border: none;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.15);
+    background: #DDE7D8;
+    color: #194D3A;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+#challengeStakeValue {
+    min-width: 32px;
     color: #F5F3EA;
     font-size: 22px;
-    cursor: pointer;
+    font-weight: 700;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
 }
