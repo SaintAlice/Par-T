@@ -78,3 +78,126 @@ body {
     outline: 2px solid #C8E77B;
     outline-offset: 2px;
 }
+
+
+.homeActions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.homeActions #startButton {
+    align-self: center;
+    width: 100%;
+    max-width: 320px;
+    margin-inline: auto;
+}
+
+.homeActions .rulesButton {
+    align-self: center;
+    width: auto;
+}
+
+.rulesButton {
+    align-self: center;
+    width: auto !important;
+    min-height: 36px;
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    color: #F5F3EA;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.rulesModal[hidden] {
+    display: none;
+}
+
+.rulesModal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.rulesModalContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 480px;
+    max-height: 80dvh;
+    overflow: hidden;
+    border: 1px solid rgba(200, 231, 123, 0.35);
+    border-radius: 20px;
+    background: #F5F3EA;
+    color: #194D3A;
+}
+
+.rulesModalHeader {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(25, 77, 58, 0.15);
+}
+
+.rulesModalHeader h2 {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 800;
+    color: #194D3A;
+}
+
+.closeRulesButton {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #DDE7D8;
+    color: #194D3A;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.rulesModalBody {
+    overflow-y: auto;
+    padding: 18px 20px;
+    overscroll-behavior: contain;
+}
+
+.rulesModalBody > p {
+    margin: 0 0 18px;
+    line-height: 1.5;
+}
+
+.ruleGroup {
+    margin-top: 18px;
+}
+
+.ruleGroup h3 {
+    margin: 0 0 7px;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.ruleGroup p {
+    margin: 0 0 10px;
+    color: #52675A;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+body.modalOpen {
+    overflow: hidden;
+}

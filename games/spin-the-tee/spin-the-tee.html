@@ -1,56 +1,147 @@
+
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#194D3A">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spin the Tee | PAR-TEE</title>
 
-<title>Spin the Tee</title>
-
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/home.css">
-<link rel="stylesheet" href="css/navigation.css">
-
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/navigation.css">
 </head>
 
 <body>
 
-<main class="page homePage">
+    <main class="page homePage">
 
-    <header class="pageHeader">
+        <header class="pageHeader">
+            <h1>Spin the Tee</h1>
 
-        <h1>Spin the Tee</h1>
+            <p class="subtitle">
+                Bepaal vanaf welke tee iedereen speelt.
+            </p>
+        </header>
 
-        <p class="subtitle">
-            Bepaal vanaf welke tee iedereen speelt.
-        </p>
+        <div class="homeActions">
+            <button type="button" id="startButton">
+                Start spel
+            </button>
 
-    </header>
+            <button type="button" id="rulesButton" class="rulesButton">
+                Spelregels
+            </button>
+        </div>
 
-    <button id="startButton">
-        Start spel
-    </button>
+    </main>
 
-</main>
+    <div
+        id="rulesModal"
+        class="rulesModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="rulesTitle"
+        hidden>
 
-<script>
+        <div class="rulesModalContent">
 
-document
-.getElementById("startButton")
-.addEventListener("click", () => {
+            <div class="rulesModalHeader">
+                <h2 id="rulesTitle">Spelregels</h2>
 
-    localStorage.removeItem("players");
-    localStorage.removeItem("tees");
-    localStorage.removeItem("results");
-    localStorage.removeItem("currentPlayer");
+                <button
+                    type="button"
+                    id="closeRulesButton"
+                    class="closeRulesButton"
+                    aria-label="Spelregels sluiten">
+                    ×
+                </button>
+            </div>
 
-    location.href = "spelers.html";
+            <div class="rulesModalBody">
 
-});
+                <p>
+                    Draai aan het wiel en ontdek vanaf welke tee je speelt.
+                    De gekozen tee bepaalt vanaf welke afslagplaats je
+                    de hole speelt.
+                </p>
 
-</script>
+                <section class="ruleGroup">
+                    <h3>Hoe werkt het?</h3>
+                    <p>
+                        Voeg alle spelers toe en selecteer de beschikbare
+                        tees. Vervolgens draait iedere speler aan het wiel
+                        om een tee toegewezen te krijgen.
+                    </p>
+                </section>
 
-<script src="../../navigation.js"></script>
+                <section class="ruleGroup">
+                    <h3>Beschikbare tees</h3>
+                    <p>
+                        Je kunt spelen vanaf wit, geel, blauw, rood en oranje,
+                        afhankelijk van de geselecteerde opties.
+                    </p>
+                </section>
+
+                <section class="ruleGroup">
+                    <h3>De uitslag</h3>
+                    <p>
+                        Na iedere draai zie je welke tee aan de speler
+                        is toegewezen. Aan het einde kun je het resultaat
+                        van alle spelers bekijken.
+                    </p>
+                </section>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const rulesModal = document.querySelector("#rulesModal");
+        const rulesButton = document.querySelector("#rulesButton");
+        const closeRulesButton = document.querySelector("#closeRulesButton");
+
+        document.querySelector("#startButton").addEventListener("click", () => {
+            localStorage.removeItem("players");
+            localStorage.removeItem("tees");
+            localStorage.removeItem("results");
+            localStorage.removeItem("currentPlayer");
+
+            window.location.href = "spelers.html";
+        });
+
+        function openRules() {
+            rulesModal.hidden = false;
+            document.body.classList.add("modalOpen");
+            closeRulesButton.focus();
+        }
+
+        function closeRules() {
+            rulesModal.hidden = true;
+            document.body.classList.remove("modalOpen");
+            rulesButton.focus();
+        }
+
+        rulesButton.addEventListener("click", openRules);
+        closeRulesButton.addEventListener("click", closeRules);
+
+        rulesModal.addEventListener("click", (event) => {
+            if (event.target === rulesModal) {
+                closeRules();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !rulesModal.hidden) {
+                closeRules();
+            }
+        });
+    </script>
+
+    <script src="../../navigation.js"></script>
 
 </body>
 </html>
