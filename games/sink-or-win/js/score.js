@@ -467,17 +467,20 @@ function saveChallenge() {
         return;
     }
 
-    challenges.push({
-        challengerId,
-        opponentId,
-        stake
-    });
-
-    // Verbruik de oudste Birdiekaart eerst.
     challenger.birdieCards--;
 
     challenger.birdieCardPenalties ??= [];
-    challenger.birdieCardPenalties.shift();
+
+    const consumedPenalty = challenger.birdieCardPenalties.length > 0
+        ? challenger.birdieCardPenalties.shift()
+        : null;
+
+    challenges.push({
+        challengerId,
+        opponentId,
+        stake,
+        birdieCardPenalty: consumedPenalty
+    });
 
     saveGame();
     renderPlayers();
@@ -499,7 +502,7 @@ function renderChallenges() {
         return;
     }
 
-    challenges.forEach((challenge) => {
+    challenges.forEach((challenge, index) => {
         const challenger = gameState.players.find(
             (player) => player.id === challenge.challengerId
         );
@@ -525,10 +528,67 @@ function renderChallenges() {
         stake.textContent = `${challenge.stake} punten`;
 
         details.append(names);
-        card.append(details, stake);
+
+        const removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.className = "challengeRemoveButton";
+        removeButton.textContent = "×";
+        removeButton.setAttribute(
+            "aria-label",
+            `Verwijder uitdaging van ${challenger.name} tegen ${opponent.name}`
+        );
+
+        removeButton.addEventListener("click", () => {
+            alert("Verwijderknop werkt");
+            removeChallenge(index);
+        });
+
+        card.append(details, stake, removeButton);
         challengeList.append(card);
     });
 }
+function removeChallenge(index) {
+    const challenges = getCurrentChallenges();
+    const challenge = challenges[index];
+
+    if (!challenge) return;
+
+    const challenger = gameState.players.find(
+        (player) => player.id === challenge.challengerId
+    );
+
+    if (!challenger) return;
+
+    const confirmed = window.confirm(
+        "Weet je zeker dat je deze uitdaging wilt verwijderen?"
+    );
+
+    if (!confirmed) return;
+
+    // Geef de Birdiekaart terug.
+    challenger.birdieCards++;
+
+    challenger.birdieCardPenalties ??= [];
+
+    // Herstel ook de oorspronkelijke eindstraf van de kaart.
+    challenger.birdieCardPenalties.unshift(
+        challenge.birdieCardPenalty === true
+    );
+
+    // Verwijder de uitdaging.
+    challenges.splice(index, 1);
+
+    saveGame();
+
+    renderPlayers();
+    renderChallenges();
+
+    if (!challengeForm.hidden) {
+        renderChallengerOptions();
+        renderOpponentOptions();
+    }
+}
+
 
 /* Scorecontrole */
 

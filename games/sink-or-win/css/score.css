@@ -739,3 +739,19 @@ button {
 .scorePage:has(#holeResultSection:not([hidden])) .pageFooter {
     display: none;
 }
+
+.challengeRemoveButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: #F5F3EA;
+    font-size: 22px;
+    cursor: pointer;
+}
