@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 
@@ -38,86 +39,112 @@
     </header>
 
     <section class="pageContent">
-    
-    <div class="scoreActions">
-        <button type="button" id="standingsButton">
-            Tussenstand bekijken
-        </button>
-    </div>
 
-    <section id="standingsSection" class="standingsSection" hidden>
-        <h2>Tussenstand</h2>
-        <div id="standingsList"></div>
-    </section>
-
-    <section class="challengeSection">
-
-        <button
-            type="button"
-            id="challengeToggleButton"
-            class="challengeToggleButton"
-            aria-expanded="false">
-
-            <span>Uitdagingen</span>
-
-        </button>
-
-        <div id="challengeContent" hidden>
-
-            <div id="challengeList">
-                <p class="emptyChallenges">
-                    Er zijn nog geen uitdagingen voor deze hole.
-                </p>
-            </div>
-
-            <button type="button" id="challengeButton">
-                + Iemand uitdagen
+        <div class="scoreActions">
+            <button type="button" id="standingsButton">
+                Tussenstand bekijken
             </button>
-
-            <div id="challengeForm" class="challengeForm" hidden>
-
-                <div class="formGroup">
-                    <label for="challengerSelect">Wie daagt uit?</label>
-                    <select id="challengerSelect">
-                        <option value="">Kies een speler</option>
-                    </select>
-                </div>
-
-                <div class="formGroup">
-                    <label for="opponentSelect">Wie daag je uit?</label>
-                    <select id="opponentSelect" disabled>
-                        <option value="">Kies eerst een uitdager</option>
-                    </select>
-                </div>
-
-                <div class="formGroup">
-                    <label for="challengeStake">Aantal punten</label>
-                    <input
-                        type="number"
-                        id="challengeStake"
-                        min="1"
-                        step="1"
-                        value="1"
-                        inputmode="numeric"
-                        placeholder="Vul het aantal punten in">
-                </div>
-
-                <p id="challengeValidationMessage" role="status" hidden></p>
-
-                <button type="button" id="saveChallengeButton">
-                    Uitdaging bevestigen
-                </button>
-
-                <button type="button" id="cancelChallengeButton">
-                    Annuleren
-                </button>
-
-            </div>
         </div>
 
-    </section>
+        <section id="standingsSection" class="standingsSection" hidden>
+            <h2>Tussenstand</h2>
+            <div id="standingsList"></div>
+        </section>
 
+        <section class="challengeSection">
 
+            <button
+                type="button"
+                id="challengeToggleButton"
+                class="challengeToggleButton"
+                aria-expanded="false">
+
+                <span>Uitdagingen</span>
+
+            </button>
+
+            <div id="challengeContent" hidden>
+
+                <div id="challengeList">
+                    <p class="emptyChallenges">
+                        Er zijn nog geen uitdagingen voor deze hole.
+                    </p>
+                </div>
+
+                <button type="button" id="challengeButton">
+                    + Iemand uitdagen
+                </button>
+
+                <div id="challengeForm" class="challengeForm" hidden>
+
+                    <div class="formGroup">
+                        <label>Wie daagt uit?</label>
+                        <div
+                            id="challengerOptions"
+                            class="playerOptions">
+                        </div>
+                    </div>
+
+                    <div class="formGroup">
+                        <label>Wie wordt uitgedaagd?</label>
+                        <div
+                            id="opponentOptions"
+                            class="playerOptions">
+                        </div>
+                    </div>
+
+                    <div id="challengeStakeGroup" class="formGroup" hidden>
+                        <label>Aantal punten</label>
+
+                        <div class="challengeStakeControls">
+                            <button
+                                type="button"
+                                id="decreaseChallengeStake"
+                                aria-label="Minder punten">
+                                −
+                            </button>
+
+                            <span id="challengeStakeValue">1</span>
+
+                            <button
+                                type="button"
+                                id="increaseChallengeStake"
+                                aria-label="Meer punten">
+                                +
+                            </button>
+                        </div>
+                    </div>
+
+                    <p
+                        id="challengeValidationMessage"
+                        role="status"
+                        hidden>
+                    </p>
+
+                    <div
+                        id="challengeFormActions"
+                        class="challengeFormActions"
+                        hidden>
+
+                        <button
+                            type="button"
+                            id="saveChallengeButton">
+                            Uitdaging bevestigen
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelChallengeButton">
+                            Annuleren
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
 
         <section class="scoreSection">
             <h2>Scores invoeren</h2>
@@ -131,7 +158,10 @@
             hidden>
         </p>
 
-        <section id="holeResultSection" class="holeResultSection" hidden>
+        <section
+            id="holeResultSection"
+            class="holeResultSection"
+            hidden>
 
             <h2 id="holeResultHeading">Resultaat hole</h2>
 
@@ -149,15 +179,26 @@
 
             <div id="birdieResultList"></div>
 
-            <button type="button" id="confirmHoleButton" class="primaryButton">
-                Hole afronden →
-            </button>
+            <div class="holeResultActions">
+                <button
+                    type="button"
+                    id="confirmHoleButton"
+                    class="primaryButton">
+                    Hole afronden →
+                </button>
 
-            <button type="button" id="editScoresButton">
-                Scores aanpassen
-            </button>
+                <button
+                    type="button"
+                    id="editScoresButton">
+                    Scores aanpassen
+                </button>
+            </div>
 
-            <button type="button" id="newGameButton" class="newGameButton" hidden>
+            <button
+                type="button"
+                id="newGameButton"
+                class="newGameButton"
+                hidden>
                 Nieuw spel →
             </button>
 

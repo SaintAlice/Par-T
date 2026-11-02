@@ -23,12 +23,17 @@ const challengeToggleButton = document.querySelector("#challengeToggleButton");
 const challengeContent = document.querySelector("#challengeContent");
 const challengeButton = document.querySelector("#challengeButton");
 const challengeForm = document.querySelector("#challengeForm");
-const challengerSelect = document.querySelector("#challengerSelect");
-const opponentSelect = document.querySelector("#opponentSelect");
+const challengerOptions = document.querySelector("#challengerOptions");
+const opponentOptions = document.querySelector("#opponentOptions");
+
 const saveChallengeButton = document.querySelector("#saveChallengeButton");
 const cancelChallengeButton = document.querySelector("#cancelChallengeButton");
 const challengeValidationMessage = document.querySelector("#challengeValidationMessage");
-const challengeStakeInput = document.querySelector("#challengeStake");
+const challengeStakeValue = document.querySelector("#challengeStakeValue");
+const decreaseChallengeStake = document.querySelector("#decreaseChallengeStake");
+const increaseChallengeStake = document.querySelector("#increaseChallengeStake");
+const challengeStakeGroup = document.querySelector("#challengeStakeGroup");
+const challengeFormActions = document.querySelector("#challengeFormActions");
 
 const challengeResultSection = document.querySelector(".challengeResultSection");
 
@@ -44,6 +49,9 @@ let gameState = null;
 let currentHoleIndex = 0;
 let scores = {};
 let pendingHoleResult = null;
+let selectedChallengerId = "";
+let selectedOpponentId = "";
+let challengeStake = 1;
 
 /* Gegevens laden */
 
@@ -252,8 +260,15 @@ function createScoreButton(label, callback) {
 }
 
 function changeScore(playerId, amount) {
-    const currentScore = scores[playerId] ?? 0;
-    scores[playerId] = Math.max(1, currentScore + amount);
+    const hole = roundSetup.holes[currentHoleIndex];
+
+    if (scores[playerId] === undefined) {
+        scores[playerId] = amount > 0
+            ? hole.par
+            : hole.par - 1;
+    } else {
+        scores[playerId] = Math.max(1, scores[playerId] + amount);
+    }
 
     gameState.currentScores = { ...scores };
     saveGame();
@@ -317,106 +332,138 @@ function openChallengeForm() {
     challengeForm.hidden = false;
     challengeButton.hidden = true;
 
+    selectedChallengerId = "";
+    selectedOpponentId = "";
+
+    challengeStakeGroup.hidden = true;
+    challengeFormActions.hidden = true;
+
+    challengeStake = 1;
+    challengeStakeValue.textContent = challengeStake;
+
     showChallengeValidation("");
     renderChallengerOptions();
+    renderOpponentOptions();
 }
 
 function closeChallengeForm() {
     challengeForm.hidden = true;
     challengeButton.hidden = false;
 
-    challengerSelect.value = "";
-    opponentSelect.replaceChildren();
-    opponentSelect.disabled = true;
+    selectedChallengerId = "";
+    selectedOpponentId = "";
+
+    challengeStake = 1;
+    challengeStakeValue.textContent = challengeStake;
 
     showChallengeValidation("");
+    challengeStakeGroup.hidden = true;
+    challengeFormActions.hidden = true;
 }
 
 function renderChallengerOptions() {
-    challengerSelect.replaceChildren();
-
-    const placeholder = document.createElement("option");
-    placeholder.value = "";
-    placeholder.textContent = "Kies een speler";
-    challengerSelect.append(placeholder);
+    challengerOptions.replaceChildren();
 
     gameState.players.forEach((player) => {
         if (player.birdieCards <= 0) return;
 
-        const option = document.createElement("option");
-        option.value = player.id;
-        option.textContent = `${player.name} (${player.birdieCards} Birdiekaarten)`;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "playerOptionButton";
+        button.textContent = player.name;
 
-        challengerSelect.append(option);
+        if (player.id === selectedChallengerId) {
+            button.classList.add("isSelected");
+        }
+
+        button.addEventListener("click", () => {
+            selectedChallengerId = player.id;
+            selectedOpponentId = "";
+
+            challengeStakeGroup.hidden = true;
+            challengeFormActions.hidden = true;
+
+            showChallengeValidation("");
+            renderChallengerOptions();
+            renderOpponentOptions();
+        });
+
+        challengerOptions.append(button);
     });
+
+    if (challengerOptions.children.length === 0) {
+        challengerOptions.textContent = "Geen spelers met een beschikbare Birdiekaart.";
+    }
 }
 
 function renderOpponentOptions() {
-    const selectedOpponent = opponentSelect.value;
+    opponentOptions.replaceChildren();
 
-    opponentSelect.replaceChildren();
-
-    const challengerId = challengerSelect.value;
-    const stake = Number(challengeStakeInput.value);
-
-    if (!challengerId) {
-        opponentSelect.disabled = true;
-
-        const option = document.createElement("option");
-        option.value = "";
-        option.textContent = "Kies eerst een uitdager";
-        opponentSelect.append(option);
-
+    if (!selectedChallengerId) {
+        const hint = document.createElement("p");
+        hint.className = "optionHint";
+        hint.textContent = "Kies eerst een uitdager.";
+        opponentOptions.append(hint);
         return;
     }
 
-    opponentSelect.disabled = false;
-
-    const placeholder = document.createElement("option");
-    placeholder.value = "";
-    placeholder.textContent = "Kies een tegenstander";
-    opponentSelect.append(placeholder);
-
+    const stake = challengeStake;
     const validStake = Number.isInteger(stake) && stake >= 1;
     const challenges = getCurrentChallenges();
 
-    const alreadyChallenged = challenges
-        .filter((challenge) => challenge.challengerId === challengerId)
-        .map((challenge) => challenge.opponentId);
-
     gameState.players.forEach((player) => {
-        if (player.id === challengerId) return;
-        if (alreadyChallenged.includes(player.id)) return;
+        if (player.id === selectedChallengerId) return;
+
+        const alreadyChallenged = challenges.some(
+            (challenge) =>
+                challenge.challengerId === selectedChallengerId &&
+                challenge.opponentId === player.id
+        );
+
+        if (alreadyChallenged) return;
 
         const reservedPoints = getReservedPoints(player.id, challenges);
         const availablePoints = player.points - reservedPoints;
-
         const hasEnoughPoints = validStake && availablePoints >= stake;
-        const wasSelected = player.id === selectedOpponent;
 
-        // Toon beschikbare spelers en behoud altijd de huidige selectie.
-        if (!hasEnoughPoints && !wasSelected) return;
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "playerOptionButton";
+        button.textContent = player.name;
 
-        const option = document.createElement("option");
-        option.value = player.id;
+        if (!hasEnoughPoints) {
+            button.disabled = true;
+            button.classList.add("isUnavailable");
+        }
 
-        option.textContent = hasEnoughPoints
-            ? player.name
-            : `${player.name} (onvoldoende punten)`;
+        if (player.id === selectedOpponentId) {
+            button.classList.add("isSelected");
+        }
 
-        opponentSelect.append(option);
+        button.addEventListener("click", () => {
+            if (!hasEnoughPoints) return;
+
+            selectedOpponentId = player.id;
+
+            challengeStakeGroup.hidden = false;
+            challengeFormActions.hidden = false;
+
+            showChallengeValidation("");
+            renderOpponentOptions();
+        });
+
+        opponentOptions.append(button);
     });
 
-    // Behoud de eerder gekozen tegenstander.
-    if (selectedOpponent) {
-        opponentSelect.value = selectedOpponent;
+    if (opponentOptions.children.length === 0) {
+        opponentOptions.textContent = "Geen beschikbare tegenstanders.";
     }
 }
 
 function saveChallenge() {
-    const challengerId = challengerSelect.value;
-    const opponentId = opponentSelect.value;
-    const stake = Number(challengeStakeInput.value);
+    const challengerId = selectedChallengerId;
+    const opponentId = selectedOpponentId;
+    const stake = challengeStake;
 
     const challenges = getCurrentChallenges();
 
@@ -467,21 +514,24 @@ function saveChallenge() {
         return;
     }
 
-    challenges.push({
-        challengerId,
-        opponentId,
-        stake
-    });
-
-    // Verbruik de oudste Birdiekaart eerst.
     challenger.birdieCards--;
 
     challenger.birdieCardPenalties ??= [];
-    challenger.birdieCardPenalties.shift();
+
+    const consumedPenalty = challenger.birdieCardPenalties.length > 0
+        ? challenger.birdieCardPenalties.shift()
+        : null;
+
+    challenges.push({
+        challengerId,
+        opponentId,
+        stake,
+        birdieCardPenalty: consumedPenalty
+    });
 
     saveGame();
     renderPlayers();
-    renderChallenges();
+    updateOpenSections();
     closeChallengeForm();
 }
 
@@ -499,7 +549,7 @@ function renderChallenges() {
         return;
     }
 
-    challenges.forEach((challenge) => {
+    challenges.forEach((challenge, index) => {
         const challenger = gameState.players.find(
             (player) => player.id === challenge.challengerId
         );
@@ -525,10 +575,86 @@ function renderChallenges() {
         stake.textContent = `${challenge.stake} punten`;
 
         details.append(names);
-        card.append(details, stake);
+
+        const removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.className = "challengeRemoveButton";
+        removeButton.textContent = "×";
+        removeButton.setAttribute(
+            "aria-label",
+            `Verwijder uitdaging van ${challenger.name} tegen ${opponent.name}`
+        );
+
+        removeButton.addEventListener("click", () => {
+            removeChallenge(index);
+        });
+
+        card.append(details, stake, removeButton);
         challengeList.append(card);
     });
 }
+
+function updateChallengeStake(amount) {
+    challengeStake = Math.max(1, challengeStake + amount);
+
+    challengeStakeValue.textContent = challengeStake;
+
+    showChallengeValidation("");
+    renderOpponentOptions();
+}
+
+function updateOpenSections() {
+    if (!challengeContent.hidden) {
+        renderChallenges();
+    }
+
+    if (!standingsSection.hidden) {
+        renderStandings();
+    }
+}
+
+function removeChallenge(index) {
+    const challenges = getCurrentChallenges();
+    const challenge = challenges[index];
+
+    if (!challenge) return;
+
+    const challenger = gameState.players.find(
+        (player) => player.id === challenge.challengerId
+    );
+
+    if (!challenger) return;
+
+    const confirmed = window.confirm(
+        "Weet je zeker dat je deze uitdaging wilt verwijderen?"
+    );
+
+    if (!confirmed) return;
+
+    // Geef de Birdiekaart terug.
+    challenger.birdieCards++;
+
+    challenger.birdieCardPenalties ??= [];
+
+    // Herstel ook de oorspronkelijke eindstraf van de kaart.
+    challenger.birdieCardPenalties.unshift(
+        challenge.birdieCardPenalty === true
+    );
+
+    // Verwijder de uitdaging.
+    challenges.splice(index, 1);
+
+    saveGame();
+
+    renderPlayers();
+    updateOpenSections();
+
+    if (!challengeForm.hidden) {
+    renderChallengerOptions();
+    renderOpponentOptions();
+    }
+}
+
 
 /* Scorecontrole */
 
@@ -781,7 +907,7 @@ function confirmHole() {
     finishHoleButton.hidden = false;
 
     renderHole();
-    renderChallenges();
+    updateOpenSections();
 }
 
 function editScores() {
@@ -970,26 +1096,24 @@ newGameButton.addEventListener("click", () => {
 challengeToggleButton.addEventListener("click", () => {
     const isOpen = challengeToggleButton.getAttribute("aria-expanded") !== "true";
 
+    if (isOpen) {
+    renderChallenges();
+    }
+
     challengeContent.hidden = !isOpen;
     challengeToggleButton.setAttribute("aria-expanded", String(isOpen));
     challengeToggleButton.classList.toggle("isOpen", isOpen);
-});
+    });
 
 challengeButton.addEventListener("click", openChallengeForm);
 cancelChallengeButton.addEventListener("click", closeChallengeForm);
 
-challengerSelect.addEventListener("change", () => {
-    showChallengeValidation("");
-    renderOpponentOptions();
+decreaseChallengeStake.addEventListener("click", () => {
+    updateChallengeStake(-1);
 });
 
-opponentSelect.addEventListener("change", () => {
-    showChallengeValidation("");
-});
-
-challengeStakeInput.addEventListener("input", () => {
-    showChallengeValidation("");
-    renderOpponentOptions();
+increaseChallengeStake.addEventListener("click", () => {
+    updateChallengeStake(1);
 });
 
 saveChallengeButton.addEventListener("click", saveChallenge);

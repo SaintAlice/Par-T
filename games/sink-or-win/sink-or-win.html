@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,30 +26,160 @@
     </script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
+
 <body>
 
     <main class="page homePage">
 
         <header class="pageHeader">
             <h1>Sink or Win</h1>
-
             <p class="subtitle">
                 Speel om de punten. Daag elkaar uit. Win de ronde.
             </p>
         </header>
 
-        <button id="startButton">
-            Start spel
-        </button>
+        <div class="homeActions">
+            <button type="button" id="startButton">
+                Start spel
+            </button>
+
+            <button type="button" id="rulesButton" class="rulesButton">
+                Spelregels
+            </button>
+        </div>
 
     </main>
 
+    <div
+        id="rulesModal"
+        class="rulesModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="rulesTitle"
+        hidden>
+
+        <div class="rulesModalContent">
+
+            <div class="rulesModalHeader">
+                <h2 id="rulesTitle">Spelregels</h2>
+
+                <button
+                    type="button"
+                    id="closeRulesButton"
+                    class="closeRulesButton"
+                    aria-label="Spelregels sluiten">
+                    ×
+                </button>
+            </div>
+
+            <div class="rulesModalBody">
+
+                <p>
+                    Speel iedere hole om punten te verdienen.
+                    Gebruik je Birdiekaarten om andere spelers uit te dagen.
+                    Wie eindigt bovenaan?
+                </p>
+
+                <section class="ruleGroup">
+                    <h3>Punten verdienen</h3>
+                    <p>
+                        Heb je als enige de beste score op een hole?
+                        Dan verdien je 3 punten. Deel je de beste score
+                        met andere spelers, dan ontvangt iedere speler
+                        1 punt. De overige spelers verdienen geen punten.
+                    </p>
+                </section>
+
+                <section class="ruleGroup">
+                    <h3>Birdiekaarten</h3>
+                    <p>
+                        Speel een birdie of beter en verdien een Birdiekaart.
+                        Bij Scratch telt je bruto score. Bij Handicap telt
+                        je netto score.
+                    </p>
+                    <p>
+                        Met een Birdiekaart kun je een andere speler uitdagen.
+                        Iedere uitdaging kost één Birdiekaart.
+                    </p>
+                </section>
+
+                <section class="ruleGroup">
+                    <h3>Uitdagingen</h3>
+                    <p>
+                        Kies een tegenstander en bepaal zelf hoeveel punten
+                        je inzet. Beide spelers moeten voldoende punten
+                        beschikbaar hebben.
+                    </p>
+                    <p>
+                        Win je de uitdaging, dan ontvang je de inzet van je
+                        tegenstander. Verlies je, dan betaal je deze punten.
+                        Bij gelijkspel worden er geen punten uitgewisseld.
+                    </p>
+                    <p>
+                        Je kunt meerdere spelers uitdagen, maar dezelfde
+                        speler niet twee keer op één hole.
+                    </p>
+                </section>
+
+                <section class="ruleGroup">
+                    <h3>Scratch of Handicap</h3>
+                    <p>
+                        Bij Scratch vergelijken we de bruto scores:
+                        het aantal slagen dat je daadwerkelijk hebt gemaakt.
+                        Bij Handicap vergelijken we de netto scores,
+                        waarbij je handicap wordt verrekend.
+                    </p>
+                </section>
+
+                <section class="ruleGroup">
+                    <h3>Einde van het spel</h3>
+                    <p>
+                        De speler met de meeste punten wint de ronde.
+                        Ongebruikte Birdiekaarten uit holes 1 t/m 8 kosten
+                        aan het einde 1 punt per kaart.
+                    </p>
+                </section>
+
+            </div>
+
+        </div>
+    </div>
+
     <script>
-        document
-            .getElementById("startButton")
-            .addEventListener("click", () => {
-                location.href = "baan.html";
-            });
+        const rulesModal = document.querySelector("#rulesModal");
+        const rulesButton = document.querySelector("#rulesButton");
+        const closeRulesButton = document.querySelector("#closeRulesButton");
+
+        document.querySelector("#startButton").addEventListener("click", () => {
+            window.location.href = "baan.html";
+        });
+
+        function openRules() {
+            rulesModal.hidden = false;
+            document.body.classList.add("modalOpen");
+            closeRulesButton.focus();
+        }
+
+        function closeRules() {
+            rulesModal.hidden = true;
+            document.body.classList.remove("modalOpen");
+            rulesButton.focus();
+        }
+
+        rulesButton.addEventListener("click", openRules);
+        closeRulesButton.addEventListener("click", closeRules);
+
+        rulesModal.addEventListener("click", (event) => {
+            if (event.target === rulesModal) {
+                closeRules();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !rulesModal.hidden) {
+                closeRules();
+            }
+        });
     </script>
 
     <script src="../../navigation.js"></script>
