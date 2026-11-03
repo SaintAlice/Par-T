@@ -43,6 +43,13 @@ const standingsList = document.querySelector("#standingsList");
 const newGameButton = document.querySelector("#newGameButton");
 const holeResultHeading = document.querySelector("#holeResultHeading");
 
+// Definitieve resultatenpagina
+const finalResultsSection = document.querySelector("#finalResultsSection");
+const finalStandingsList = document.querySelector("#finalStandingsList");
+const finalPointsChart = document.querySelector("#finalPointsChart");
+const finalEventsList = document.querySelector("#finalEventsList");
+const finalScorecard = document.querySelector("#finalScorecard");
+
 let setup = null;
 let roundSetup = null;
 let gameState = null;
@@ -921,10 +928,11 @@ function editScores() {
 
 /* Eindresultaat */
 
+/* Definitieve resultatenpagina */
+
 function renderFinalResults() {
-    holeResultSection.hidden = false;
-    holeResultSection.classList.add("isFinalResult");
-    holeResultHeading.textContent = "Eindstand";
+    holeResultSection.hidden = true;
+    finalResultsSection.hidden = false;
 
     scoreSection.hidden = true;
     challengeSection.hidden = true;
@@ -932,11 +940,6 @@ function renderFinalResults() {
 
     document.querySelector(".scoreActions").hidden = true;
     document.querySelector(".scorePage .pageFooter").hidden = true;
-
-    holeResultList.replaceChildren();
-    holePointsList.replaceChildren();
-    challengeResultList.replaceChildren();
-    birdieResultList.replaceChildren();
 
     holeTitle.textContent = "Ronde afgerond";
     holeDetails.textContent = "Dit is de definitieve eindstand.";
@@ -954,74 +957,375 @@ function renderFinalResults() {
         })
         .sort((a, b) => b.finalPoints - a.finalPoints);
 
-    sortedPlayers.forEach((player, index) => {
-        const details = document.createElement("details");
-        details.className = "finalPlayerDetails";
+    renderFinalStandings(sortedPlayers);
+    renderFinalPointsChart();
+    renderFinalEvents();
+    renderFinalScorecard();
+}
 
-        const summary = document.createElement("summary");
-        summary.className = "finalPlayerSummary";
 
-        const name = document.createElement("span");
-        name.textContent = `${index + 1}. ${player.name}`;
+/* Eindstand */
+
+function renderFinalStandings(players) {
+    finalStandingsList.replaceChildren();
+
+    players.forEach((player, index) => {
+        const card = document.createElement("article");
+        card.className = "finalStandingPlayer";
+
+        const highestPoints = players[0].finalPoints;
+
+        if (player.finalPoints === highestPoints) {
+            card.classList.add("isWinner");
+        }
+        
+        const position = document.createElement("span");
+        position.className = "finalStandingPosition";
+        position.textContent = index + 1;
+
+        const info = document.createElement("div");
+        info.className = "finalStandingInfo";
+
+        const name = document.createElement("strong");
+        name.textContent = player.name;
+
+        info.append(name);
 
         const points = document.createElement("strong");
+        points.className = "finalStandingPoints";
         points.textContent = `${player.finalPoints} punten`;
 
-        summary.append(name, points);
-        details.append(summary);
-
-        const breakdown = document.createElement("div");
-        breakdown.className = "finalPlayerBreakdown";
-
-        const earned = document.createElement("div");
-        earned.className = "finalPlayerBreakdownRow";
-
-        const earnedLabel = document.createElement("span");
-        earnedLabel.textContent = "Behaalde punten";
-
-        const earnedValue = document.createElement("strong");
-        earnedValue.textContent = player.points;
-
-        earned.append(earnedLabel, earnedValue);
-        breakdown.append(earned);
+        card.append(position, info, points);
 
         if (player.penaltyCards > 0) {
-            const cards = document.createElement("div");
-            cards.className = "finalPlayerBreakdownRow";
+            const penalty = document.createElement("p");
+            penalty.className = "finalStandingPenalty";
+            penalty.textContent =
+                `${player.penaltyCards} punten aftrek voor overgebleven Birdiekaarten`;
 
-            const cardsLabel = document.createElement("span");
-            cardsLabel.textContent = "Overgebleven Birdiekaarten";
-
-            const cardsValue = document.createElement("strong");
-            cardsValue.textContent = player.penaltyCards;
-
-            cards.append(cardsLabel, cardsValue);
-            breakdown.append(cards);
-
-            const deduction = document.createElement("div");
-            deduction.className = "finalPlayerBreakdownRow";
-
-            const deductionLabel = document.createElement("span");
-            deductionLabel.textContent = "Aftrek";
-
-            const deductionValue = document.createElement("strong");
-            deductionValue.textContent = `−${player.penaltyCards} punten`;
-
-            deduction.append(deductionLabel, deductionValue);
-            breakdown.append(deduction);
+            card.append(penalty);
         }
 
-        details.append(breakdown);
-        holeResultList.append(details);
+        finalStandingsList.append(card);
+    });
+}
+
+
+/* Puntenverloop */
+
+function renderFinalPointsChart() {
+    finalPointsChart.replaceChildren();
+
+    const players = gameState.players;
+    const holes = gameState.completedHoles;
+
+    if (holes.length === 0) return;
+
+    const width = 600;
+    const height = 280;
+    const padding = {
+        top: 20,
+        right: 25,
+        bottom: 35,
+        left: 35
+    };
+
+    const chartWidth = width - padding.left - padding.right;
+    const chartHeight = height - padding.top - padding.bottom;
+
+    const totals = players.map((player) => {
+        let total = 0;
+
+        const values = [{
+            hole: 0,
+            points: 0
+        }];
+
+        holes.forEach((hole) => {
+            const result = hole.results.find(
+                (item) => item.id === player.id
+            );
+
+            total += result?.totalPoints ?? 0;
+
+            values.push({
+                hole: hole.holeNumber,
+                points: total
+            });
+        });
+
+        return {
+            player,
+            values
+        };
     });
 
-    holePointsList.parentElement.hidden = true;
-    challengeResultSection.hidden = true;
-    birdieResultList.hidden = true;
+    const allValues = totals.flatMap((item) =>
+        item.values.map((value) => value.points)
+    );
 
-    confirmHoleButton.hidden = true;
-    editScoresButton.hidden = true;
-    newGameButton.hidden = false;
+    const minValue = Math.min(0, ...allValues);
+    const maxValue = Math.max(1, ...allValues);
+    const range = maxValue - minValue || 1;
+
+    const x = (index) =>
+        padding.left + (index / holes.length) * chartWidth;
+
+    const y = (value) =>
+        padding.top +
+        ((maxValue - value) / range) * chartHeight;
+
+    const svg = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg"
+    );
+
+    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+    svg.setAttribute("role", "img");
+    svg.setAttribute(
+        "aria-label",
+        "Grafiek met het puntenverloop per speler"
+    );
+
+    // Horizontale nullijn.
+    const zeroLine = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
+    );
+
+    zeroLine.setAttribute("x1", padding.left);
+    zeroLine.setAttribute("x2", width - padding.right);
+    zeroLine.setAttribute("y1", y(0));
+    zeroLine.setAttribute("y2", y(0));
+    zeroLine.setAttribute("stroke", "#A8B7A5");
+    zeroLine.setAttribute("stroke-dasharray", "4 4");
+
+    svg.append(zeroLine);
+
+    // Holelabels.
+    holes.forEach((hole, index) => {
+        const label = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "text"
+        );
+
+        label.setAttribute("x", x(index + 1));
+        label.setAttribute("y", height - 10);
+        label.setAttribute("text-anchor", "middle");
+        label.setAttribute("font-size", "12");
+        label.setAttribute("fill", "#52675A");
+        label.textContent = hole.holeNumber;
+
+        svg.append(label);
+    });
+
+    const colors = [
+        "#194D3A",
+        "#83A84D",
+        "#547A9B",
+        "#B77B42",
+        "#9674A5",
+        "#C56C70"
+    ];
+
+    totals.forEach((item, playerIndex) => {
+        const color = colors[playerIndex % colors.length];
+
+        const points = item.values
+            .map((value, index) => `${x(index)},${y(value.points)}`)
+            .join(" ");
+
+        const line = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "polyline"
+        );
+
+        line.setAttribute("points", points);
+        line.setAttribute("fill", "none");
+        line.setAttribute("stroke", color);
+        line.setAttribute("stroke-width", "3");
+        line.setAttribute("stroke-linecap", "round");
+        line.setAttribute("stroke-linejoin", "round");
+
+        svg.append(line);
+
+        item.values.forEach((value, index) => {
+            const circle = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "circle"
+            );
+
+            circle.setAttribute("cx", x(index));
+            circle.setAttribute("cy", y(value.points));
+            circle.setAttribute("r", "3.5");
+            circle.setAttribute("fill", color);
+
+            svg.append(circle);
+        });
+    });
+
+    finalPointsChart.append(svg);
+
+    // Legenda.
+    const legend = document.createElement("div");
+    legend.className = "finalChartLegend";
+
+    totals.forEach((item, index) => {
+        const entry = document.createElement("span");
+        entry.className = "finalChartLegendItem";
+
+        const marker = document.createElement("span");
+        marker.className = "finalChartLegendMarker";
+        marker.style.backgroundColor =
+            colors[index % colors.length];
+
+        const name = document.createElement("span");
+        name.textContent = item.player.name;
+
+        entry.append(marker, name);
+        legend.append(entry);
+    });
+
+    finalPointsChart.append(legend);
+}
+
+
+/* Gebeurtenissen */
+
+function renderFinalEvents() {
+    finalEventsList.replaceChildren();
+
+    gameState.completedHoles.forEach((hole) => {
+        const group = document.createElement("article");
+        group.className = "finalEventHole";
+
+        const heading = document.createElement("h4");
+        heading.textContent = `Hole ${hole.holeNumber}`;
+
+        group.append(heading);
+
+        hole.results.forEach((result) => {
+            if (result.points !== 0) {
+                const event = document.createElement("p");
+
+                event.textContent = result.points === 3
+                    ? `${result.name} wint de hole en verdient 3 punten.`
+                    : `${result.name} deelt de beste score en verdient 1 punt.`;
+
+                group.append(event);
+            }
+        });
+
+        hole.challenges.forEach((challenge) => {
+            const challenger = gameState.players.find(
+                (player) => player.id === challenge.challengerId
+            );
+
+            const opponent = gameState.players.find(
+                (player) => player.id === challenge.opponentId
+            );
+
+            const challengerResult = hole.results.find(
+                (player) => player.id === challenge.challengerId
+            );
+
+            const opponentResult = hole.results.find(
+                (player) => player.id === challenge.opponentId
+            );
+
+            if (!challenger || !opponent ||
+                !challengerResult || !opponentResult) return;
+
+            const event = document.createElement("p");
+
+            if (
+                challengerResult.comparisonScore <
+                opponentResult.comparisonScore
+            ) {
+                event.textContent =
+                    `${challenger.name} steelt ${challenge.stake} punten van ${opponent.name}.`;
+            } else if (
+                challengerResult.comparisonScore >
+                opponentResult.comparisonScore
+            ) {
+                event.textContent =
+                    `${opponent.name} wint ${challenge.stake} punten van ${challenger.name}.`;
+            } else {
+                event.textContent =
+                    `${challenger.name} en ${opponent.name} spelen gelijk. Geen punten uit de uitdaging.`;
+            }
+
+            group.append(event);
+        });
+
+        hole.results
+            .filter((result) => result.earnsBirdieCard)
+            .forEach((result) => {
+                const event = document.createElement("p");
+                event.textContent =
+                    `${result.name} verdient een Birdiekaart.`;
+
+                group.append(event);
+            });
+
+        finalEventsList.append(group);
+    });
+}
+
+
+/* Scorekaart */
+
+function renderFinalScorecard() {
+    finalScorecard.replaceChildren();
+
+    const header = document.createElement("p");
+    header.className = "finalScorecardDescription";
+    header.textContent = setup.mode === "handicap"
+        ? "Bruto slagen, netto slagen en behaalde punten per hole."
+        : "Bruto slagen en behaalde punten per hole.";
+
+    finalScorecard.append(header);
+
+    gameState.players.forEach((player) => {
+        const details = document.createElement("details");
+        details.className = "finalScorecardPlayer";
+
+        const summary = document.createElement("summary");
+        summary.textContent = player.name;
+
+        details.append(summary);
+
+        gameState.completedHoles.forEach((hole) => {
+            const result = hole.results.find(
+                (item) => item.id === player.id
+            );
+
+            if (!result) return;
+
+            const row = document.createElement("div");
+            row.className = "finalScorecardRow";
+
+            const holeName = document.createElement("strong");
+            holeName.textContent = `Hole ${hole.holeNumber}`;
+
+            const score = document.createElement("span");
+
+            score.textContent = setup.mode === "handicap"
+                ? `${result.grossScore} bruto · ${result.netScore} netto`
+                : `${result.grossScore} slagen`;
+
+            const points = document.createElement("strong");
+            const sign = result.totalPoints > 0 ? "+" : "";
+
+            points.textContent =
+                `${sign}${result.totalPoints} punten`;
+
+            row.append(holeName, score, points);
+            details.append(row);
+        });
+
+        finalScorecard.append(details);
+    });
 }
 
 /* Tussenstand */

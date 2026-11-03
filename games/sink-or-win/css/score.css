@@ -699,3 +699,248 @@ button {
     text-align: center;
     font-variant-numeric: tabular-nums;
 }
+
+/* Definitieve resultatenpagina */
+
+.finalResultsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    color: #194D3A;
+}
+
+.finalResultsSection[hidden] {
+    display: none;
+}
+
+.finalResultsHeader {
+    text-align: center;
+    color: #F5F3EA;
+}
+
+.finalResultsHeader h2 {
+    margin: 5px 0;
+    font-size: 26px;
+}
+
+.finalResultsHeader p {
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+.finalStandingsSection,
+.finalPointsSection,
+.finalEventsSection,
+.finalScorecardSection {
+    padding: 18px;
+    border-radius: 18px;
+    background: #F5F3EA;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.finalResultsSection h3 {
+    margin: 0 0 14px;
+    font-size: 17px;
+}
+
+#finalStandingsList,
+#finalEventsList,
+#finalScorecard {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.finalStandingPlayer {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 5px;
+    padding: 13px;
+    border-radius: 12px;
+    background: #DDE7D8;
+}
+
+.finalStandingPlayer.isWinner {
+    background: #C8E77B;
+}
+
+.finalStandingPosition {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #194D3A;
+    color: #F5F3EA;
+    font-weight: 800;
+}
+
+.finalStandingInfo {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.finalStandingPoints {
+    grid-column: 3;
+    grid-row: 1;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.finalStandingPenalty {
+    grid-column: 2 / 4;
+    grid-row: 2;
+    margin: 0;
+    color: #52675A;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+#finalPointsChart svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.finalChartLegend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.finalChartLegendItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+}
+
+.finalChartLegendMarker {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+}
+
+.finalEventHole {
+    padding: 12px;
+    border-radius: 12px;
+    background: #DDE7D8;
+}
+
+.finalEventHole h4 {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+.finalEventHole p {
+    margin: 5px 0;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.finalScorecardDescription {
+    margin: 0 0 8px;
+    color: #52675A;
+    font-size: 12px;
+}
+
+.finalScorecardPlayer {
+    padding: 13px;
+    border-radius: 12px;
+    background: #DDE7D8;
+}
+
+.finalScorecardPlayer summary {
+    font-weight: 750;
+    cursor: pointer;
+}
+
+.finalScorecardRow {
+    display: grid;
+    grid-template-columns: 65px 1fr auto;
+    gap: 8px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(25, 77, 58, 0.12);
+    font-size: 12px;
+}
+
+.finalScorecardRow:last-child {
+    border-bottom: none;
+}
+
+/* Uitklapbare resultatenonderdelen */
+
+.finalAccordion {
+    overflow: hidden;
+    border-radius: 18px;
+    background: #F5F3EA;
+    color: #194D3A;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.finalAccordion > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 54px;
+    padding: 0 18px;
+    font-size: 16px;
+    font-weight: 750;
+    cursor: pointer;
+    list-style: none;
+}
+
+.finalAccordion > summary::-webkit-details-marker {
+    display: none;
+}
+
+.finalAccordion > summary::after {
+    content: "+";
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.finalAccordion[open] > summary::after {
+    content: "−";
+}
+
+.finalAccordion > section {
+    padding: 0 18px 18px;
+}
+
+.finalAccordion > section h3 {
+    display: none;
+}
+
+/* Scorekaart */
+
+.finalScorecardSection {
+    width: 100%;
+}
+
+/* Puntenverloop */
+
+.finalPointsSection {
+    width: 100%;
+}
+
+/* Gebeurtenissen */
+
+.finalEventsSection {
+    width: 100%;
+}
+
+.finalAccordion[open] {
+    padding-bottom: 0;
+}
