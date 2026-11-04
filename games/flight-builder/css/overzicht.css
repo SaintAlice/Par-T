@@ -1,0 +1,213 @@
+
+.overviewPage {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100dvh;
+    box-sizing: border-box;
+    padding: 32px 24px calc(110px + env(safe-area-inset-bottom));
+    overflow: hidden;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(15, 45, 32, 0.15),
+            rgba(15, 45, 32, 0.65)
+        ),
+        url("../../../images/background-hrd10.1.png") center / cover no-repeat;
+    color: #FFFFFF;
+}
+
+.overviewPage > .pageHeader,
+.overviewPage > .pageContent,
+.overviewPage > .pageFooter {
+    width: 100%;
+    max-width: 560px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.overviewPage .pageHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.overviewPage .pageContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    gap: 14px;
+}
+
+.overviewStats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+}
+
+.overviewStat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    box-sizing: border-box;
+    min-width: 0;
+    padding: 16px;
+    border: 1px solid rgba(25, 77, 58, 0.08);
+    border-radius: 14px;
+    background: #F5F3EA;
+    color: #194D3A;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.overviewStat span:first-child {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.overviewStat span:last-child {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.overviewMethod {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(25, 77, 58, 0.08);
+    border-radius: 14px;
+    background: #F5F3EA;
+    color: #194D3A;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.overviewLabel {
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.7;
+}
+
+#distributionMethod {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.overviewFlightList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.overviewFlightCard {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px;
+    border: 1px solid rgba(25, 77, 58, 0.08);
+    border-radius: 18px;
+    background: #F5F3EA;
+    color: #194D3A;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.overviewFlightTitle {
+    margin: 0 0 12px;
+    color: #194D3A;
+    font-size: 16px;
+    font-weight: 750;
+}
+
+.overviewPlayerList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.overviewPlayer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 0;
+    min-height: 38px;
+    padding: 9px 12px;
+    border: 1px solid rgba(25, 77, 58, 0.04);
+    border-radius: 11px;
+    background: #DDE7D8;
+    color: #194D3A;
+}
+
+.overviewPlayerName {
+    min-width: 0;
+    overflow: hidden;
+    color: #194D3A;
+    font-size: 14px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.overviewPlayerHandicap {
+    flex-shrink: 0;
+    color: #194D3A;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.overviewPage .pageFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 16px;
+}
+
+.overviewPage .pageFooter > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 48px;
+    margin: 0;
+    padding: 12px;
+    border: none;
+    border-radius: 14px;
+    background: #DDE7D8;
+    color: #194D3A;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.overviewPage button:focus-visible {
+    outline: 3px solid #C8E77B;
+    outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+    .overviewFlightCard {
+        padding: 14px;
+    }
+
+    .overviewPlayer {
+        padding: 9px 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .overviewPage {
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+}

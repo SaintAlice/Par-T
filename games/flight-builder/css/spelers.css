@@ -1,0 +1,162 @@
+.playersPage {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    padding: 32px 24px calc(110px + env(safe-area-inset-bottom));
+    overflow: hidden;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(15, 45, 32, 0.15) 0%,
+            rgba(15, 45, 32, 0.35) 45%,
+            rgba(15, 45, 32, 0.65) 100%
+        ),
+        url("../../../images/background-hrd10.1.png");
+    background-size: cover;
+    background-position: center;
+    color: #FFFFFF;
+}
+
+.playersPage .playerDetails {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    min-width: 0;
+    gap: 10px;
+}
+
+.playersPage .playerName {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.playersPage .player .handicapField {
+    display: block;
+    flex-shrink: 0;
+    width: 65px;
+    height: 38px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 6px;
+    border: 1px solid #D5E0D7;
+    border-radius: 10px;
+    background: #F5F3EA;
+    color: #194D3A;
+    font: inherit;
+    font-size: 14px;
+    text-align: center;
+    outline: none;
+}
+
+.playersPage .settingsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.playersPage .settingsSection:last-child {
+    margin-bottom: 0;
+}
+
+
+.playersPage .settingsSection h2 {
+    margin: 0;
+    color: #194D3A;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.playersPage .settingsDescription {
+    margin: 0;
+    color: #68786E;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.playersPage .variantSlider {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 18px;
+    background: #DDE7D8;
+}
+
+.playersPage .variantOption {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
+}
+
+.playersPage .variantOption input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.playersPage .variantOption span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 8px 10px;
+    border-radius: 14px;
+    color: #526354;
+    font-size: 12px;
+    font-weight: 650;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.playersPage .variantOption input:checked + span {
+    background: #194D3A;
+    color: #FFFFFF;
+}
+
+.playersPage .variantOption input:focus-visible + span {
+    outline: 2px solid #C8E77B;
+    outline-offset: 2px;
+}
+
+.playersPage .variantOption input:checked + span {
+    background: #194D3A;
+    color: #FFFFFF;
+}
+
+.playersPage .variantOption input:focus-visible + span {
+    outline: 2px solid #C8E77B;
+    outline-offset: 2px;
+}
+
+.playersPage .variantSlider:has(input[name="distributionMethod"]) {
+    flex-direction: column;
+}
+
+.playersPage .variantSlider:has(input[name="playersPerFlight"]) {
+    flex-direction: row;
+}
+
+.playersPage {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.playersPage > .pageHeader,
+.playersPage > .pageContent,
+.playersPage > .pageFooter {
+    width: 100%;
+    max-width: 420px;
+    min-width: 0;
+    box-sizing: border-box;
+}

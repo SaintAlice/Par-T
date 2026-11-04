@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#194D3A">
+
+    <title>Flight Builder | PAR-TEE</title>
+
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/navigation.css">
+    <link rel="stylesheet" href="../css/flight-builder.css">
+</head>
+
+<body>
+
+    <main class="page homePage">
+
+        <header class="pageHeader">
+            <h1>Flight Builder</h1>
+            <p class="subtitle">
+                Stel je flights samen. Speel eerlijk. Geniet van de ronde.
+            </p>
+        </header>
+
+        <div class="homeActions">
+            <button type="button" id="startButton">
+                Start spel
+            </button>
+
+            <button type="button" id="rulesButton" class="rulesButton">
+                Spelregels
+            </button>
+        </div>
+
+    </main>
+
+    <div
+        id="rulesModal"
+        class="rulesModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="rulesTitle"
+        hidden>
+
+        <div class="rulesModalContent">
+
+            <div class="rulesModalHeader">
+                <h2 id="rulesTitle">Spelregels</h2>
+
+                <button
+                    type="button"
+                    id="closeRulesButton"
+                    class="closeRulesButton"
+                    aria-label="Spelregels sluiten">
+                    ×
+                </button>
+            </div>
+
+            <div class="rulesModalBody">
+
+                <p>
+                    Met Flight Builder deel je spelers eenvoudig in
+                    flights in. Kies hoe je de flights wilt samenstellen
+                    en laat de verdeling berekenen.
+                </p>
+
+                <section class="ruleGroup">
+                    <h3>Spelers per flight</h3>
+                    <p>
+                        Een flight bestaat uit maximaal vier spelers.
+                        De verdeling wordt afgestemd op het aantal
+                        deelnemende spelers.
+                    </p>
+                </section>
+
+                <section class="ruleGroup">
+                    <h3>Handicaplimiet</h3>
+                    <p>
+                        Een flight met vier spelers mag samen maximaal
+                        110 handicap hebben. Als dit niet mogelijk is,
+                        worden de spelers over extra flights verdeeld.
+                    </p>
+                </section>
+
+                <section class="ruleGroup">
+                    <h3>Indelingsmethodes</h3>
+                    <p>
+                        Je kunt kiezen uit drie manieren om spelers
+                        in te delen:
+                    </p>
+                    <p>
+                        <strong>Willekeurig:</strong>
+                        spelers worden willekeurig verdeeld over de flights.
+                    </p>
+                    <p>
+                        <strong>Gelijk gemiddeld handicap:</strong>
+                        de gemiddelde handicap per flight wordt zo gelijk
+                        mogelijk gehouden.
+                    </p>
+                    <p>
+                        <strong>Handicap spreiding:</strong>
+                        spelers met vergelijkbare handicaps worden
+                        bij elkaar ingedeeld.
+                    </p>
+                </section>
+
+                <section class="ruleGroup">
+                    <h3>Flights aanpassen</h3>
+                    <p>
+                        Na het automatisch indelen kun je de verdeling
+                        bekijken en spelers handmatig tussen flights
+                        verplaatsen.
+                    </p>
+                </section>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const rulesModal = document.querySelector("#rulesModal");
+        const rulesButton = document.querySelector("#rulesButton");
+        const closeRulesButton = document.querySelector("#closeRulesButton");
+
+        document.querySelector("#startButton").addEventListener("click", () => {
+            window.location.href = "spelers.html";
+        });
+
+        function openRules() {
+            rulesModal.hidden = false;
+            document.body.classList.add("modalOpen");
+            closeRulesButton.focus();
+        }
+
+        function closeRules() {
+            rulesModal.hidden = true;
+            document.body.classList.remove("modalOpen");
+            rulesButton.focus();
+        }
+
+        rulesButton.addEventListener("click", openRules);
+        closeRulesButton.addEventListener("click", closeRules);
+
+        rulesModal.addEventListener("click", (event) => {
+            if (event.target === rulesModal) {
+                closeRules();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !rulesModal.hidden) {
+                closeRules();
+            }
+        });
+    </script>
+
+    <script src="../../../navigation.js"></script>
+
+</body>
+</html>

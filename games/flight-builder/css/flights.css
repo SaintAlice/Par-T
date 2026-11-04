@@ -1,0 +1,307 @@
+.flightsPage {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100dvh;
+    padding: 32px 24px calc(110px + env(safe-area-inset-bottom));
+    overflow: hidden;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(15, 45, 32, 0.15) 0%,
+            rgba(15, 45, 32, 0.35) 45%,
+            rgba(15, 45, 32, 0.65) 100%
+        ),
+        url("../../../images/background-hrd10.1.png");
+    background-size: cover;
+    background-position: center;
+    color: #FFFFFF;
+}
+
+.flightsPage > .pageHeader,
+.flightsPage > .pageContent,
+.flightsPage > .pageFooter {
+    width: 100%;
+    max-width: 560px;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.flightsPage .pageHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.flightsPage .pageContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    gap: 14px;
+}
+
+.flightsPage .pageFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 16px;
+}
+
+.flightSummary {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(25, 77, 58, 0.08);
+    border-radius: 14px;
+    background: #F5F3EA;
+    color: #194D3A;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.flightList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.flightCard {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 16px;
+    border: 1px solid rgba(25, 77, 58, 0.08);
+    border-radius: 18px;
+    background: #F5F3EA;
+    color: #194D3A;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.flightHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 28px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #194D3A;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.flightTitle {
+    margin: 0;
+    color: #194D3A;
+    font-size: 16px;
+    font-weight: 750;
+}
+
+.flightHeaderRight {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #194D3A;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.flightArrow {
+    display: inline-block;
+    color: #194D3A;
+    font-size: 20px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.flightHeader[aria-expanded="true"] .flightArrow {
+    transform: rotate(180deg);
+}
+
+.flightPlayerList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.flightPlayer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-width: 0;
+    min-height: 38px;
+    padding: 9px 12px;
+    border: 1px solid rgba(25, 77, 58, 0.04);
+    border-radius: 11px;
+    background: #DDE7D8;
+    color: #194D3A;
+}
+
+.flightPlayerName {
+    min-width: 0;
+    overflow: hidden;
+    color: #194D3A;
+    font-size: 14px;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.flightPlayerHandicap {
+    flex-shrink: 0;
+    color: #194D3A;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.flightPlayer select {
+    flex-shrink: 0;
+    min-width: 100px;
+    height: 36px;
+    padding: 0 26px 0 10px;
+    border: 1px solid rgba(25, 77, 58, 0.15);
+    border-radius: 10px;
+    background: #F5F3EA;
+    color: #194D3A;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.flightPlayer select:focus-visible {
+    outline: 2px solid #194D3A;
+    outline-offset: 2px;
+}
+
+.flightActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.flightActions button {
+    min-width: 32px;
+    min-height: 32px;
+    border: none;
+    border-radius: 8px;
+    background: #194D3A;
+    color: #F5F3EA;
+    cursor: pointer;
+}
+
+.flightValidationMessage {
+    margin: 0;
+    color: #F5D6A0;
+    font-size: 14px;
+}
+
+.flightsPage .pageFooter > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    min-height: 48px;
+    margin: 0;
+    padding: 12px;
+    border: none;
+    border-radius: 14px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.flightsPage #backButton,
+.flightsPage #shuffleButton {
+    flex: 1;
+    background: #DDE7D8;
+    color: #194D3A;
+}
+
+.flightsPage .pageFooter {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.flightsPage #confirmButton {
+    flex: 0 0 100%;
+    background: #194D3A;
+    color: #F5F3EA;
+}
+
+.flightsPage button:focus-visible {
+    outline: 3px solid #C8E77B;
+    outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+    .flightCard {
+        padding: 14px;
+    }
+
+    .flightPlayer {
+        padding: 9px 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .flightsPage {
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+
+    .flightsPage .pageFooter {
+        gap: 8px;
+    }
+
+    .flightsPage .pageFooter > button {
+        padding: 10px 6px;
+        font-size: 12px;
+    }
+
+    .flightPlayer {
+        gap: 6px;
+    }
+
+    .flightPlayer select {
+        min-width: 90px;
+    }
+}
+
+.toggleAllFlightsButton {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    gap: 5px;
+    margin: -4px 0 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #194D3A;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.toggleAllFlightsButton span:last-child {
+    font-size: 16px;
+    line-height: 1;
+}

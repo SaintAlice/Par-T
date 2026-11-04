@@ -350,3 +350,48 @@
         transition: none;
     }
 }
+
+/* Flight Builder */
+
+.flightBuilderCard {
+    background: #194D3A;
+    color: #F5F3EA;
+}
+
+.flightBuilderCard .gameStatus {
+    color: #C8E77B;
+}
+
+.flightBuilderIcon {
+    color: #C8E77B;
+    font-size: 4rem;
+    font-weight: 600;
+}
+
+/* Toekomstige spellen */
+
+.miniGamesCard {
+    background: #DDE7D8;
+    color: #194D3A;
+    border: 1px dashed rgba(25, 77, 58, 0.55);
+    box-shadow: none;
+}
+
+.miniGamesCard .gameStatus {
+    color: #71876A;
+}
+
+.miniGamesCard .gameArrow {
+    display: none;
+}
+
+.comingSoonIcon {
+    width: 68px;
+    height: 68px;
+    display: grid;
+    place-items: center;
+    border: 2px dashed #71876A;
+    border-radius: 50%;
+    color: #194D3A;
+    font-size: 2.8rem;
+}

@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#194D3A">
+
+    <title>Flightindeling | PAR-TEE</title>
+
+    <link rel="stylesheet" href="../../spin-the-tee/css/style.css">
+    <link rel="stylesheet" href="../../../css/navigation.css">
+    <link rel="stylesheet" href="../css/overzicht.css">
+</head>
+
+<body>
+
+<main class="page overviewPage">
+
+    <header class="pageHeader">
+        <h1>Flightindeling</h1>
+        <p class="subtitle">De definitieve verdeling is klaar!</p>
+    </header>
+
+    <section class="pageContent">
+
+        <section class="overviewStats">
+            <div class="overviewStat">
+                <span id="playerCount">0</span>
+                <span>Spelers</span>
+            </div>
+
+            <div class="overviewStat">
+                <span id="flightCount">0</span>
+                <span>Flights</span>
+            </div>
+        </section>
+
+        <section class="overviewMethod">
+            <span class="overviewLabel">Verdeelmethode</span>
+            <span id="distributionMethod"></span>
+        </section>
+
+        <section id="overviewFlightList" class="overviewFlightList"></section>
+
+    </section>
+
+    <footer class="pageFooter">
+        <button type="button" id="backButton" class="secondaryButton">
+            ← Indeling aanpassen
+        </button>
+    </footer>
+
+</main>
+
+<script src="../js/overzicht.js"></script>
+<script src="../../../navigation.js"></script>
+
+</body>
+</html>

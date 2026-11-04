@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#194D3A">
+
+    <title>Spelers - Flight Builder | PAR-TEE</title>
+
+    <link rel="stylesheet" href="../../spin-the-tee/css/style.css">
+    <link rel="stylesheet" href="../../spin-the-tee/css/spelers.css">
+    <link rel="stylesheet" href="../../../css/navigation.css">
+    <link rel="stylesheet" href="../css/spelers.css">
+
+</head>
+
+<body>
+
+<main class="page playersPage">
+
+    <header class="pageHeader">
+        <h1>Spelers</h1>
+        <p class="subtitle">Wie doen er vandaag mee?</p>
+    </header>
+
+    <section class="pageContent">
+
+        <div class="addPlayer">
+            <input
+                type="text"
+                id="playerInput"
+                placeholder="Naam speler"
+                aria-label="Naam speler"
+                maxlength="30"
+                autocomplete="off">
+
+            <button
+                type="button"
+                id="addPlayerButton"
+                aria-label="Speler toevoegen">
+                +
+            </button>
+        </div>
+
+        <section class="gameSettings">
+            <div class="generalTeesCard">
+
+                <button
+                    type="button"
+                    id="gameSettingsToggle"
+                    class="generalTeesHeader"
+                    aria-expanded="false">
+
+                    <span class="settingsIcon" aria-hidden="true">⚙</span>
+
+                    <span class="generalTeesHeading">
+                        <strong>Flight-instellingen</strong>
+                        <span id="selectedSettingsDescription">
+                            Willekeurige verdeling · 4 spelers per flight
+                        </span>
+                    </span>
+
+                    <span class="settingsArrow" aria-hidden="true"></span>
+                </button>
+
+                <div
+                    id="gameSettingsContent"
+                    class="generalTeesContent"
+                    hidden>
+
+                    <section class="settingsSection">
+                        <h2>Verdeelwijze</h2>
+                        <p class="settingsDescription">
+                            Kies hoe de spelers over de flights worden verdeeld.
+                        </p>
+
+                        <div class="variantSlider">
+                            <label class="variantOption">
+                                <input
+                                    type="radio"
+                                    name="distributionMethod"
+                                    value="random"
+                                    checked>
+                                <span>Willekeurig</span>
+                            </label>
+
+                            <label class="variantOption">
+                                <input
+                                    type="radio"
+                                    name="distributionMethod"
+                                    value="equalHandicap">
+                                <span>Gelijk gemiddeld handicap</span>
+                            </label>
+
+                            <label class="variantOption">
+                                <input
+                                    type="radio"
+                                    name="distributionMethod"
+                                    value="similarHandicap">
+                                <span>Handicap spreiden</span>
+                            </label>
+                        </div>
+                    </section>
+
+                    <section class="settingsSection">
+                        <h2>Flightgrootte</h2>
+                        <p class="settingsDescription">
+                            Kies het gewenste maximale aantal spelers per flight.
+                        </p>
+
+                        <div class="variantSlider">
+                            <label class="variantOption">
+                                <input
+                                    type="radio"
+                                    name="playersPerFlight"
+                                    value="2">
+                                <span>2 spelers</span>
+                            </label>
+
+                            <label class="variantOption">
+                                <input
+                                    type="radio"
+                                    name="playersPerFlight"
+                                    value="3">
+                                <span>3 spelers</span>
+                            </label>
+
+                            <label class="variantOption">
+                                <input
+                                    type="radio"
+                                    name="playersPerFlight"
+                                    value="4"
+                                    checked>
+                                <span>4 spelers</span>
+                            </label>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </section>
+
+        <div id="playerList"></div>
+
+        <p
+            id="gameValidationMessage"
+            class="validationMessage"
+            role="status"
+            hidden>
+        </p>
+
+    </section>
+
+    <footer class="pageFooter">
+        <button
+            type="button"
+            id="nextButton"
+            class="primaryButton"
+            disabled>
+            Flights samenstellen →
+        </button>
+    </footer>
+
+</main>
+
+<script src="../js/spelers.js"></script>
+<script src="../../../navigation.js"></script>
+
+</body>
+</html>

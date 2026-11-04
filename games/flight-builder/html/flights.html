@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#194D3A">
+
+    <title>Flights samenstellen | PAR-TEE</title>
+
+    <link rel="stylesheet" href="../../spin-the-tee/css/style.css">
+    <link rel="stylesheet" href="../../../css/navigation.css">
+    <link rel="stylesheet" href="../css/flights.css">
+</head>
+
+<body>
+
+<main class="page flightsPage">
+
+    <header class="pageHeader">
+        <h1>Flights samenstellen</h1>
+        <p class="subtitle">Bekijk en pas de flightindeling aan.</p>
+    </header>
+
+    <section class="pageContent">
+
+        <div id="flightSummary" class="flightSummary"></div>
+
+        <div id="flightList" class="flightList"></div>
+
+        <p
+            id="flightValidationMessage"
+            class="validationMessage"
+            role="status"
+            hidden>
+        </p>
+
+    </section>
+
+    <footer class="pageFooter">
+        <button type="button" id="backButton" class="secondaryButton">
+            ← Terug naar spelers
+        </button>
+
+        <button type="button" id="shuffleButton" class="secondaryButton">
+            Opnieuw verdelen
+        </button>
+
+        <button type="button" id="confirmButton" class="primaryButton">
+            Indeling bevestigen →
+        </button>
+    </footer>
+
+</main>
+
+<script src="../js/flights.js"></script>
+<script src="../../../navigation.js"></script>
+<script src="../js/overzicht.js"></script>
+
+</body>
+</html>
