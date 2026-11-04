@@ -1,0 +1,10 @@
+.settingsRowIcon {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+}
+.settingsRowIcon svg {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2;
+}

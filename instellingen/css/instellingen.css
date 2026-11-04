@@ -127,13 +127,19 @@
 
 .settingsRowIcon {
     display: grid;
-    flex: 0 0 44px;
-    width: 44px;
-    height: 44px;
+     width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
     place-items: center;
     border-radius: 14px;
     background: transparent;
     color: #C8E77B;
+}
+
+.settingsRowIcon svg {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2;
 }
 
 /* Instellingsteksten */
