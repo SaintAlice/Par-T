@@ -32,7 +32,9 @@ navigation.innerHTML = `
         href="${homeUrl}"
         ${isHomePage ? 'aria-current="page"' : ""}
     >
-        <span class="navIcon" aria-hidden="true">⌂</span>
+        <span class="navIcon" aria-hidden="true">
+            <i data-lucide="house"></i>
+        </span>
         <span>Home</span>
     </a>
 
@@ -41,7 +43,9 @@ navigation.innerHTML = `
         href="${gamesUrl}"
         ${isGamesPage ? 'aria-current="page"' : ""}
     >
-        <span class="navIcon" aria-hidden="true">♧</span>
+        <span class="navIcon" aria-hidden="true">
+            <i data-lucide="club"></i>
+        </span>
         <span>Spellen</span>
     </a>
 
@@ -50,9 +54,17 @@ navigation.innerHTML = `
         href="${settingsUrl}"
         ${isSettingsPage ? 'aria-current="page"' : ""}
     >
-        <span class="navIcon" aria-hidden="true">⚙</span>
+        <span class="navIcon" aria-hidden="true">
+            <i data-lucide="settings"></i>
+        </span>
         <span>Instellingen</span>
     </a>
 `;
+
+document.body.appendChild(navigation);
+
+if (window.lucide) {
+    lucide.createIcons();
+}
 
 document.body.appendChild(navigation);

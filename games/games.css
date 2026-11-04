@@ -128,6 +128,13 @@
     color: #F5F3EA;
 }
 
+.spinIcon {
+      width: 64px;
+    height: 64px;
+    color: #C8E77B;
+    stroke-width: 1.8;
+}
+
 .spinCard .gameStatus {
     color: #C8E77B;
 }
@@ -157,16 +164,10 @@
 }
 
 .sinkWinIcon {
-    display: grid;
-    place-items: center;
-    width: 68px;
-    height: 68px;
-    border: 5px solid #C8E77B;
-    border-radius: 50%;
-    color: #194D3A;
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1;
+      width: 64px;
+    height: 64px;
+    color: #C8E77B;
+    stroke-width: 1.8;
 }
 
 /* Illustraties */
@@ -179,24 +180,6 @@
     flex-shrink: 0;
 }
 
-.spinWheel {
-    width: 76px;
-    height: 76px;
-    display: grid;
-    place-items: center;
-    border: 6px solid #C8E77B;
-    border-radius: 50%;
-    color: #C8E77B;
-    font-size: 4rem;
-    font-weight: 700;
-    line-height: 1;
-    transform: rotate(-20deg);
-}
-
-.golfClubs {
-    font-size: 4.5rem;
-    line-height: 1;
-}
 
 /* Spelinformatie */
 
@@ -363,9 +346,10 @@
 }
 
 .flightBuilderIcon {
+    width: 64px;
+    height: 64px;
     color: #C8E77B;
-    font-size: 4rem;
-    font-weight: 600;
+    stroke-width: 1.8;
 }
 
 /* Toekomstige spellen */
