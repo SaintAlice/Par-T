@@ -2,114 +2,134 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-
     <link rel="manifest" href="/manifest.json">
 
     <meta name="theme-color" content="#194D3A">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="PAR-T">
-    <meta name="apple-mobile-web-app-status-bar-style"
-        content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="PAR-TEE">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <link rel="apple-touch-icon"
-      href="/assets/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#194D3A">
 
-    <!--<title>PAR-TEE | Golf games for every round</title>-->
+    <title>PAR-TEE | Golf Games for Every Round</title>
+
+    <meta name="description" content="Turn your round into a game. Discover golf mini-games, challenge your friends and make every round count.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="PAR-TEE | Golf Games for Every Round">
+    <meta property="og:description" content="Discover golf mini-games and challenge your friends.">
+    <meta property="og:image" content="https://www.par-tee.nl/games/spin-the-tee/images/background-hrd18.1.png">
+    <meta property="og:url" content="https://www.par-tee.nl/">
+    <meta property="og:site_name" content="PAR-TEE">
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/navigation.css">
     <link rel="stylesheet" href="css/header.css">
-
-    <title>PAR-TEE | Golf Games for Every Round</title>
-
-    <meta name="description"
-        content="Turn your round into a game. Discover golf mini-games, challenge your friends and make every round count.">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title"
-        content="PAR-TEE | Golf Games for Every Round">
-
-    <meta property="og:description"
-        content="Discover golf mini-games and challenge your friends.">
-
-    <meta property="og:image"
-        content="https://www.par-tee.nl/games/spin-the-tee/images/background-hrd18.1.png">
-    <meta property="og:url"
-        content="https://www.par-tee.nl/">
-
-    <meta property="og:site_name" content="PAR-TEE">
 </head>
 
 <body>
-
     <main class="homePage">
         <div class="homeVisual">
 
             <div id="appHeader"></div>
 
-            
             <section class="welcomeSection" aria-labelledby="welcomeTitle">
-                <p class="welcomeEyebrow">WELKOM</p>
+                <p class="welcomeEyebrow" data-i18n="home.welcome">WELKOM</p>
 
-                <h1 id="welcomeTitle">  
-                    Maak je<br>ronde leuker
+                <h1 id="welcomeTitle" data-i18n="home.title">
+                    Maak je ronde leuker
                 </h1>
 
-                <p class="welcomeDescription">
+                <p class="welcomeDescription" data-i18n="home.description">
                     Minigames voor iedere golfronde.
                 </p>
             </section>
 
+            <section class="gamesSection" id="games" aria-labelledby="gamesTitle">
 
-            <section class="gamesSection" id="games"
-                aria-labelledby="gamesTitle">
-
-                <h2 class="visuallyHidden" id="gamesTitle">
+                <h2 class="visuallyHidden" id="gamesTitle" data-i18n="home.games">
                     Onze spellen
                 </h2>
 
-                <a
-                    class="featuredGameCard"
-                    href="games/flight-builder/html/flight-builder.html"
-                >
+                <a class="featuredGameCard" href="games/flight-builder/html/flight-builder.html">
                     <div class="featuredGameContent">
-                        <span class="gameStatus gameStatusAvailable">
+                        <span class="gameStatus gameStatusAvailable" data-i18n="common.new">
                             NIEUW
                         </span>
 
-                        <h3>Flight Builder</h3>
-                        <p>Verdeel je flight en daag vrienden uit!</p>
+                        <h3 data-i18n="home.flightBuilder">Flight Builder</h3>
+                        <p data-i18n="home.flightBuilderDescription">
+                            Verdeel je flight en daag vrienden uit!
+                        </p>
 
                         <span class="gameAction">
-                            <span>Start spel</span>
+                            <span data-i18n="common.startGame">Start spel</span>
                             <span class="arrow" aria-hidden="true">›</span>
                         </span>
                     </div>
                 </a>
 
                 <div class="comingSoonGames">
-                    <article class="comingSoonCard">
-                        <h3>Multiplayer</h3>
-                        <span class="comingSoonLabel">COMING SOON</span>
-                    </article>
+                    <button
+                        type="button"
+                        class="comingSoonCard languageCard"
+                        id="languageCard"
+                    >
+                        <span class="cardIcon" aria-hidden="true">
+                            <i data-lucide="languages"></i>
+                        </span>
+
+                        <span class="cardBadge" data-i18n="home.languageCardLabel">
+                            NEW · DUTCH
+                        </span>
+
+                        <span class="cardContent">
+                            <span class="cardTitle" data-i18n="home.languageCard">
+                                Switch language
+                            </span>
+                            <span class="cardSubtitle" data-i18n="home.languageCardDescription">
+                                Explore PAR-TEE in Dutch or English.
+                            </span>
+                        </span>
+
+                        <span class="cardAction">
+                            <span data-i18n="home.languageCardAction">Switch language</span>
+                            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                        </span>
+                    </button>
 
                     <a href="instellingen/spelregels/spelregels.html" class="comingSoonCard">
-                        <h3>Spelregels</h3>
-                        <span class="cardSubtitle">Bekijk de spelregels</span>
+                        <span class="cardIcon" aria-hidden="true">
+                            <i data-lucide="book-open"></i>
+                        </span>
+
+                        <span class="cardContent">
+                            <span class="cardTitle" data-i18n="home.gameRules">
+                                Game rules
+                            </span>
+                            <span class="cardSubtitle" data-i18n="home.gameRulesDescription">
+                                Know the rules. Play your game.
+                            </span>
+                        </span>
+
+                        <span class="cardAction">
+                            <span data-i18n="home.gameRulesAction">Explore rules</span>
+                            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+                        </span>
                     </a>
                 </div>
+
 
             </section>
         </div>
     </main>
-    
 
     <script src="header.js" data-root=""></script>
-    <script src="navigation.js"></script>
+    <script type="module" src="navigation.js"></script>
+    <script type="module" src="home.js"></script>
     <script src="/js/pwa.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="/js/icons.js"></script>
@@ -124,8 +144,5 @@
         };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
-
-
 </body>
-
 </html>

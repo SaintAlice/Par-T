@@ -1,3 +1,4 @@
+import { t, initLanguage } from "../../../js/shared/i18n/i18n.js";
 
 const FLIGHTS_STORAGE_KEY = "flightBuilderFlights";
 const SETTINGS_STORAGE_KEY = "flightBuilderSettings";
@@ -12,9 +13,9 @@ let flights = [];
 let settings = {};
 
 const distributionMethods = {
-    random: "Willekeurige verdeling",
-    equalHandicap: "Gelijk gemiddeld handicap",
-    similarHandicap: "Handicap spreiden"
+    random: "games.flightBuilder.playersPage.methods.random",
+    equalHandicap: "games.flightBuilder.playersPage.methods.equalHandicap",
+    similarHandicap: "games.flightBuilder.playersPage.methods.similarHandicap"
 };
 
 function loadOverviewData() {
@@ -43,7 +44,7 @@ function renderSummary() {
     flightCountElement.textContent = flights.length;
 
     distributionMethodElement.textContent =
-        distributionMethods[settings.method] || "Onbekende methode";
+        t(distributionMethods[settings.method]) || t("games.flightBuilder.overview.unknownMethod");
 }
 
 function renderFlights() {
@@ -55,7 +56,7 @@ function renderFlights() {
 
         const title = document.createElement("h2");
         title.className = "overviewFlightTitle";
-        title.textContent = `Flight ${index + 1}`;
+        title.textContent = `${t("games.flightBuilder.overview.flightTitle")} ${index + 1}`;
 
         const playerList = document.createElement("div");
         playerList.className = "overviewPlayerList";
@@ -88,7 +89,7 @@ function renderFlights() {
 
 function renderEmptyState() {
     overviewFlightList.textContent =
-        "Er is nog geen bevestigde flightindeling beschikbaar.";
+        t("games.flightBuilder.overview.emptyState");
 }
 
 function initialize() {
@@ -108,4 +109,5 @@ backButton.addEventListener("click", () => {
     window.location.href = "flights.html";
 });
 
+initLanguage();
 initialize();

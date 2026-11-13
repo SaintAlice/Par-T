@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#F5F3EA">
 
-    <title>Instellingen | PAR-TEE </title>
+    <title data-i18n="settings.title">Instellingen | PAR-TEE</title>
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/home.css">
@@ -21,19 +21,20 @@
 
         <div class="settingsVisual">
             <section class="settingsSection" aria-labelledby="generalSettingsTitle">
-                <h2 id="generalSettingsTitle">Algemeen</h2>
+                <h2 id="generalSettingsTitle" data-i18n="settings.general">Algemeen</h2>
 
                 <div class="settingsCard">
                     <div class="settingsRow">
                         <i class="settingsRowIcon" data-lucide="languages"></i>
 
                         <div class="settingsRowContent">
-                            <label for="languageSelect">Taal</label>
-                            <p>Kies de taal van de app.</p>
+                            <label for="languageSelect" data-i18n="settings.language">Taal</label>
+                            <p data-i18n="settings.languageDescription">Kies de taal van de app.</p>
                         </div>
 
                         <select id="languageSelect" name="language">
-                            <option value="nl">Nederlands</option>
+                            <option value="nl" data-i18n="settings.dutch">Nederlands</option>
+                            <option value="en" data-i18n="settings.english">Engels</option>
                         </select>
                     </div>
 
@@ -41,8 +42,8 @@
                         <i class="settingsRowIcon" data-lucide="info"></i>
 
                         <span class="settingsRowContent">
-                            <span class="settingsRowTitle">Over PAR-TEE</span>
-                            <span class="settingsRowDescription">
+                            <span class="settingsRowTitle" data-i18n="settings.about">Over PAR-TEE</span>
+                            <span class="settingsRowDescription" data-i18n="settings.aboutDescription">
                                 Meer informatie over de app.
                             </span>
                         </span>
@@ -54,8 +55,8 @@
                         <i class="settingsRowIcon" data-lucide="book-open"></i>
 
                         <span class="settingsRowContent">
-                            <span class="settingsRowTitle">Spelregels</span>
-                            <span class="settingsRowDescription">
+                            <span class="settingsRowTitle" data-i18n="settings.gameRules">Spelregels</span>
+                            <span class="settingsRowDescription" data-i18n="settings.gameRulesDescription">
                                 Lees de spelregels van de PAR-TEE-spellen.
                             </span>
                         </span>
@@ -68,8 +69,8 @@
     </main>
 
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="../navigation.js"></script>
-    <script src="instellingen.js"></script>
+    <script type="module" src="../navigation.js"></script>
+    <script type="module" src="instellingen.js"></script>
     <script src="../header.js" data-root="../"></script>
    
     <script>

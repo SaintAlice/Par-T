@@ -1,3 +1,5 @@
+import { t, initLanguage, getLanguage } from "../../../js/shared/i18n/i18n.js";
+
 const MIN_PLAYERS = 2;
 const STORAGE_KEY = "flightBuilderPlayers";
 const SETTINGS_STORAGE_KEY = "flightBuilderSettings";
@@ -64,6 +66,7 @@ function loadSettings() {
         input.checked = input.value === selectedPlayersPerFlight;
     });
 
+    console.log("Huidige taal:", getLanguage());
     updateSettingsDescription();
 }
 
@@ -78,14 +81,13 @@ function saveSettings() {
 }
 
 function updateSettingsDescription() {
-    const methods = {
-        random: "Willekeurige verdeling",
-        equalHandicap: "Gelijk gemiddeld handicap",
-        similarHandicap: "Handicap spreiden"
-    };
-
-    settingsDescription.textContent =
-        `${methods[selectedMethod]} · ${selectedPlayersPerFlight} spelers per flight`;
+    settingsDescription.textContent = t(
+        "games.flightBuilder.playersPage.selectedSettings",
+        {
+            method: t(`games.flightBuilder.playersPage.methods.${selectedMethod}`),
+            count: selectedPlayersPerFlight
+        }
+    );
 }
 
 function toggleSettings() {
@@ -151,10 +153,14 @@ function getFlightSizeValidation() {
     }
 
     if (suggestedMaxPlayers !== null) {
-        return `Met ${playerCount} spelers en maximaal ${maxPlayers} spelers per flight is een geldige indeling niet mogelijk. Kies maximaal ${suggestedMaxPlayers} spelers per flight.`;
+        return t("games.flightBuilder.errors.invalidDistribution", {
+            playerCount,
+            maxPlayers,
+            suggestedMax: suggestedMaxPlayers
+        });
     }
 
-    return "Met dit aantal spelers is geen geldige flightindeling mogelijk.";
+    return t("games.flightBuilder.errors.impossibleDistribution");
 }
 
 function requiresHandicap() {
@@ -166,7 +172,7 @@ function updateNextButton() {
     let message = "";
 
     if (players.length < MIN_PLAYERS) {
-        message = "Voeg minimaal twee spelers toe.";
+        message = t("games.flightBuilder.errors.minimumPlayers");
     } else {
         message = getFlightSizeValidation();
     }
@@ -185,7 +191,7 @@ function updateNextButton() {
         });
 
         if (invalidHandicap) {
-            message = "Vul voor iedere speler een geldige handicap in.";
+            message = t("games.flightBuilder.errors.invalidHandicap");
         }
     }
 
@@ -197,7 +203,7 @@ function addPlayer() {
     const inputName = playerInput.value.trim();
 
     if (!inputName) {
-        showValidation("Vul eerst een spelersnaam in.");
+        showValidation(t("games.flightBuilder.errors.enterPlayerName"));
         playerInput.focus();
         return;
     }
@@ -210,7 +216,7 @@ function addPlayer() {
     );
 
     if (exists) {
-        showValidation("Deze speler is al toegevoegd.");
+        showValidation(t("games.flightBuilder.errors.duplicatePlayer"));
         playerInput.focus();
         return;
     }
@@ -277,7 +283,9 @@ function renderPlayers() {
             handicapInput.value = player.handicap;
             handicapInput.setAttribute(
                 "aria-label",
-                `Handicap van ${player.name}`
+                t("games.flightBuilder.playersPage.handicap", {
+                    player: player.name
+                })
             );
 
             handicapInput.addEventListener("input", () => {
@@ -295,7 +303,9 @@ function renderPlayers() {
         removeButton.textContent = "×";
         removeButton.setAttribute(
             "aria-label",
-            `Verwijder ${player.name}`
+            t("games.flightBuilder.playersPage.removePlayer", {
+                player: player.name
+            })
         );
 
         removeButton.addEventListener("click", () => {
@@ -310,11 +320,6 @@ function renderPlayers() {
     });
 
     updateNextButton();
-}
-
-function requiresHandicap() {
-    return selectedMethod !== "random"
-        || selectedPlayersPerFlight === "4";
 }
 
 function startFlightBuilder() {
@@ -346,6 +351,7 @@ document.querySelectorAll(
     input.addEventListener("change", updateSettings);
 });
 
+initLanguage();
 loadPlayers();
 loadSettings();
 renderPlayers();

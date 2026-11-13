@@ -19,8 +19,8 @@
 <main class="page playersPage">
 
     <header class="pageHeader">
-        <h1>Spelers</h1>
-        <p class="subtitle">Wie doen er vandaag mee?</p>
+        <h1 data-i18n="games.spinTheTee.players.title">Spelers</h1>
+        <p class="subtitle" data-i18n="games.spinTheTee.players.subtitle">Wie doen er vandaag mee?</p>
     </header>
 
     <section class="pageContent">
@@ -30,7 +30,8 @@
                 type="text"
                 id="playerInput"
                 placeholder="Naam speler"
-                aria-label="Naam speler">
+                aria-label="Naam speler"
+                data-i18n-placeholder="games.spinTheTee.players.addPlayer">
 
             <button id="addPlayerButton" aria-label="Speler toevoegen">
                 +
@@ -50,8 +51,8 @@
                     <span class="settingsIcon" aria-hidden="true">⚙</span>
 
                     <span class="generalTeesHeading">
-                        <strong>Spelinstellingen</strong>
-                        <span>Tee-selectie en verdeling</span>
+                        <strong data-i18n="games.spinTheTee.players.gameSettings">Spelinstellingen</strong>
+                        <span data-i18n="games.spinTheTee.players.generalTeesDescription">Tee-selectie en verdeling</span>
                     </span>
                     <span class="settingsArrow" aria-hidden="true"></span>
                 </button>
@@ -59,43 +60,43 @@
                 <div id="generalTeesContent" class="generalTeesContent" hidden>
 
                     <section class="settingsSection">
-                        <h2>Welke tee's doen mee?</h2>
+                        <h2 data-i18n="games.spinTheTee.players.teeSelectionTitle">Welke tee's doen mee?</h2>
 
                         <div id="generalTeeOptions" class="generalTeeOptions">
 
                             <label class="generalTeeOption">
                                 <input type="checkbox" value="Wit" data-tee="wit">
                                 <span class="teeDot teeDot-wit" aria-hidden="true"></span>
-                                <span>Wit</span>
+                                <span data-i18n="games.spinTheTee.players.teeSelection.white">Wit</span>
                             </label>
 
                             <label class="generalTeeOption">
                                 <input type="checkbox" value="Geel" data-tee="geel">
                                 <span class="teeDot teeDot-geel" aria-hidden="true"></span>
-                                <span>Geel</span>
+                                <span data-i18n="games.spinTheTee.players.teeSelection.yellow">Geel</span>
                             </label>
 
                             <label class="generalTeeOption">
                                 <input type="checkbox" value="Blauw" data-tee="blauw">
                                 <span class="teeDot teeDot-blauw" aria-hidden="true"></span>
-                                <span>Blauw</span>
+                                <span data-i18n="games.spinTheTee.players.teeSelection.blue">Blauw</span>
                             </label>
 
                             <label class="generalTeeOption">
                                 <input type="checkbox" value="Rood" data-tee="rood">
                                 <span class="teeDot teeDot-rood" aria-hidden="true"></span>
-                                <span>Rood</span>
+                                <span data-i18n="games.spinTheTee.players.teeSelection.red">Rood</span>
                             </label>
 
                             <label class="generalTeeOption">
                                 <input type="checkbox" value="Oranje" data-tee="oranje">
                                 <span class="teeDot teeDot-oranje" aria-hidden="true"></span>
-                                <span>Oranje</span>
+                                <span data-i18n="games.spinTheTee.players.teeSelection.orange">Oranje</span>
                             </label>
 
                         </div>
 
-                        <p class="settingsHint">
+                        <p class="settingsHint" data-i18n="games.spinTheTee.players.teeSelectionContext">
                             Deze selectie geldt voor alle spelers.
                         </p>
                     </section>
@@ -103,8 +104,8 @@
                     <div class="settingsDivider"></div>
 
                     <section class="settingsSection">
-                        <h2>Tee-verdeling</h2>
-                        <p class="settingsDescription">
+                        <h2 data-i18n="games.spinTheTee.players.teeDistributionTitle">Tee-verdeling</h2>
+                        <p class="settingsDescription" data-i18n="games.spinTheTee.players.teeDistributionDescription">
                             Hoe verdelen we de tee's over de spelers?
                         </p>
 
@@ -119,9 +120,9 @@
 
                                 <span class="distributionIcon" aria-hidden="true">↝</span>
 
-                                <span class="distributionText">
+                                <span class="distributionText" data-i18n="games.spinTheTee.players.teeDistributionRandom">
                                     <strong>Willekeurig</strong>
-                                    <small>
+                                    <small data-i18n="games.spinTheTee.players.teeDistributionRandomDescription">
                                         Verdeel de tee's willekeurig over de spelers. 
                                     </small>
                                 </span>
@@ -135,9 +136,9 @@
 
                                 <span class="distributionIcon" aria-hidden="true">⇄</span>
 
-                                <span class="distributionText">
+                                <span class="distributionText" data-i18n="games.spinTheTee.players.teeDistributionEven">
                                     <strong>Gelijkmatig</strong>
-                                    <small>
+                                    <small data-i18n="games.spinTheTee.players.teeDistributionEvenDescription">
                                         Verdeel de tee's zo gelijk mogelijk.
                                         Elke tee wordt minstens één keer gebruikt.
                                     </small>
@@ -159,8 +160,8 @@
 
     </section>
 
-    <footer class="pageFooter">
-        <button id="nextButton" class="primaryButton" disabled>
+    <footer class="pageFooter" data-i18n-aria-label="games.spinTheTee.players.footer" aria-label="Spelerslijst en startknop">
+        <button id="nextButton" class="primaryButton" disabled aria-label="Start het spel" data-i18n="games.spinTheTee.players.startGame">
             Start draaien →
         </button>
     </footer>
@@ -189,8 +190,9 @@
 </nav>
 
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="js/spelers.js"></script>
-<script src="../../navigation.js"></script>
+<script type="module" src="js/spelers.js"></script>
+<script type="module"  src="../../../navigation.js"></script>
+<script type="module" src="../../../home.js"></script>
 <script src="../../js/icons.js"></script>
 
 <script>

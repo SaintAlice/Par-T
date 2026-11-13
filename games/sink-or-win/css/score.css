@@ -576,7 +576,7 @@ button {
 
 #confirmHoleButton,
 #editScoresButton,
-#newGameButton {
+#holeResultNewGameButton{
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -589,6 +589,10 @@ button {
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
+}
+
+#holeResultNewGameButton[hidden] {
+    display: none !important;
 }
 
 #confirmHoleButton,

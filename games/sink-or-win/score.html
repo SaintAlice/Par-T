@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#194D3A">
 
-    <title>Score - Sink or Win | PAR-TEE</title>
+    <title data-i18n = "games.sinkOrWin.score.pageTitle">Score - Sink or Win | PAR-TEE</title>
 
     <link rel="stylesheet" href="../spin-the-tee/css/style.css">
     <link rel="stylesheet" href="../spin-the-tee/css/spelers.css">
@@ -29,13 +29,13 @@
     <section class="pageContent">
 
         <div class="scoreActions">
-            <button type="button" id="standingsButton">
+            <button type="button" id="standingsButton" data-i18n="games.sinkOrWin.score.standingsButton">
                 Tussenstand bekijken
             </button>
         </div>
 
         <section id="standingsSection" class="standingsSection" hidden>
-            <h2>Tussenstand</h2>
+            <h2 data-i18n="games.sinkOrWin.score.standingsTitle">Tussenstand</h2>
             <div id="standingsList"></div>
         </section>
 
@@ -47,26 +47,26 @@
                 class="challengeToggleButton"
                 aria-expanded="false">
 
-                <span>Uitdagingen</span>
+                <span data-i18n="games.sinkOrWin.score.challengesTitle">Uitdagingen</span>
 
             </button>
 
             <div id="challengeContent" hidden>
 
                 <div id="challengeList">
-                    <p class="emptyChallenges">
+                    <p class="emptyChallenges" data-i18n="games.sinkOrWin.score.noChallenges">
                         Er zijn nog geen uitdagingen voor deze hole.
                     </p>
                 </div>
 
-                <button type="button" id="challengeButton">
+                <button type="button" id="challengeButton" data-i18n="games.sinkOrWin.score.challengeButton">
                     + Iemand uitdagen
                 </button>
 
                 <div id="challengeForm" class="challengeForm" hidden>
 
                     <div class="formGroup">
-                        <label>Wie daagt uit?</label>
+                        <label data-i18n="games.sinkOrWin.score.challengerLabel">Wie daagt uit?</label>
                         <div
                             id="challengerOptions"
                             class="playerOptions">
@@ -74,7 +74,7 @@
                     </div>
 
                     <div class="formGroup">
-                        <label>Wie wordt uitgedaagd?</label>
+                        <label data-i18n="games.sinkOrWin.score.challengedLabel">Wie wordt uitgedaagd?</label>
                         <div
                             id="opponentOptions"
                             class="playerOptions">
@@ -82,13 +82,14 @@
                     </div>
 
                     <div id="challengeStakeGroup" class="formGroup" hidden>
-                        <label>Aantal punten</label>
+                        <label data-i18n="games.sinkOrWin.score.pointsLabel">Aantal punten</label>
 
                         <div class="challengeStakeControls">
                             <button
                                 type="button"
                                 id="decreaseChallengeStake"
-                                aria-label="Minder punten">
+                                aria-label="Minder punten"
+                                data-i18n-aria-label="games.sinkOrWin.score.ChallengeStakeDecrease">
                                 −
                             </button>
 
@@ -97,7 +98,8 @@
                             <button
                                 type="button"
                                 id="increaseChallengeStake"
-                                aria-label="Meer punten">
+                                aria-label="Meer punten"
+                                data-i18n-aria-label="games.sinkOrWin.score.challengeStakeIncrease">
                                 +
                             </button>
                         </div>
@@ -116,13 +118,15 @@
 
                         <button
                             type="button"
-                            id="saveChallengeButton">
+                            id="saveChallengeButton"
+                            data-i18n="games.sinkOrWin.score.confirmChallenge">
                             Uitdaging bevestigen
                         </button>
 
                         <button
                             type="button"
-                            id="cancelChallengeButton">
+                            id="cancelChallengeButton"
+                            data-i18n="common.cancel">
                             Annuleren
                         </button>
 
@@ -135,7 +139,7 @@
         </section>
 
         <section class="scoreSection">
-            <h2>Scores invoeren</h2>
+            <h2 data-i18n="games.sinkOrWin.score.scoresTitle">Scores invoeren</h2>
             <div id="scoreList"></div>
         </section>
 
@@ -151,17 +155,17 @@
             class="holeResultSection"
             hidden>
 
-            <h2 id="holeResultHeading">Resultaat hole</h2>
+            <h2 id="holeResultHeading" data-i18n="games.sinkOrWin.score.holeResultTitle">Resultaat hole</h2>
 
             <div id="holeResultList"></div>
 
             <section class="holePointsSection">
-                <h3>Puntenverdeling</h3>
+                <h3 data-i18n="games.sinkOrWin.score.pointsDistributionTitle">Puntenverdeling</h3>
                 <div id="holePointsList"></div>
             </section>
 
             <section class="challengeResultSection">
-                <h3>Uitdagingen</h3>
+                <h3 data-i18n="games.sinkOrWin.score.challengesTitle">Uitdagingen</h3>
                 <div id="challengeResultList"></div>
             </section>
 
@@ -171,21 +175,24 @@
                 <button
                     type="button"
                     id="confirmHoleButton"
-                    class="primaryButton">
+                    class="primaryButton"
+                    data-i18n="games.sinkOrWin.score.finishHoleButton">
                     Hole afronden →
                 </button>
 
                 <button
                     type="button"
-                    id="editScoresButton">
+                    id="editScoresButton"
+                    data-i18n="games.sinkOrWin.score.editScoresButton">
                     Scores aanpassen
                 </button>
             </div>
 
             <button
                 type="button"
-                id="newGameButton"
+                id="holeResultNewGameButton"
                 class="newGameButton"
+                data-i18n="common.newGameButton"
                 hidden>
                 Nieuw spel →
             </button>
@@ -199,13 +206,13 @@
 
         <!-- Eindstand -->
         <section class="finalStandingsSection">
-            <h3>Definitieve eindstand</h3>
+            <h3 data-i18n="games.sinkOrWin.score.finalStandingsTitle">Definitieve eindstand</h3>
             <div id="finalStandingsList"></div>
         </section>
 
         <!-- Scorekaart -->
         <details class="finalAccordion">
-            <summary>Scorekaart</summary>
+            <summary data-i18n="games.sinkOrWin.score.scorecardTitle">Scorekaart</summary>
             <section class="finalScorecardSection">
                 <div id="finalScorecard"></div>
             </section>
@@ -213,7 +220,7 @@
 
         <!-- Puntenverloop -->
         <details class="finalAccordion">
-            <summary>Puntenverloop</summary>
+            <summary data-i18n="games.sinkOrWin.score.pointsProgressTitle">Puntenverloop</summary>
             <section class="finalPointsSection">
                 <div id="finalPointsChart"></div>
             </section>
@@ -221,18 +228,11 @@
 
         <!-- Gebeurtenissen -->
         <details class="finalAccordion">
-            <summary>Gebeurtenissen per hole</summary>
+            <summary data-i18n="games.sinkOrWin.score.holeEventsTitle">Gebeurtenissen per hole</summary>
             <section class="finalEventsSection">
                 <div id="finalEventsList"></div>
             </section>
         </details>
-
-        <button
-            type="button"
-            id="newGameButton"
-            class="newGameButton">
-            Nieuw spel →
-        </button>
 
     </section>
 
@@ -241,6 +241,7 @@
             type="button"
             id="finishHoleButton"
             class="primaryButton"
+            data-i18n="games.sinkOrWin.score.reviewScoresButton"
             disabled>
             Scores controleren →
         </button>
@@ -250,8 +251,9 @@
 
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="js/handicap.js"></script>
-<script src="js/score.js"></script>
-<script src="../../navigation.js"></script>
+<script type="module" src="js/score.js"></script>
+<script type="module"  src="../../../navigation.js"></script>
+<script type="module" src="../../../home.js"></script>
 <script src="../../js/icons.js"></script>
 
 <script>

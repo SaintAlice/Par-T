@@ -18,18 +18,18 @@
     <main class="page homePage">
 
         <header class="pageHeader">
-            <h1>Flight Builder</h1>
-            <p class="subtitle">
+            <h1 data-i18n="games.flightBuilder.title">Flight Builder</h1>
+            <p class="subtitle" data-i18n="games.flightBuilder.description">
                 Stel je flights samen. Speel eerlijk. Geniet van de ronde.
             </p>
         </header>
 
         <div class="homeActions">
-            <button type="button" id="startButton">
+            <button type="button" id="startButton" data-i18n="common.startGame">
                 Start spel
             </button>
 
-            <button type="button" id="rulesButton" class="rulesButton">
+            <button type="button" id="rulesButton" class="rulesButton" data-i18n="common.gameRules">
                 Spelregels
             </button>
         </div>
@@ -47,28 +47,31 @@
         <div class="rulesModalContent">
 
             <div class="rulesModalHeader">
-                <h2 id="rulesTitle">Spelregels</h2>
+                <h2 id="rulesTitle" data-i18n="common.gameRules">Spelregels</h2>
 
                 <button
                     type="button"
                     id="closeRulesButton"
                     class="closeRulesButton"
-                    aria-label="Spelregels sluiten">
+                    aria-label="Spelregels sluiten"
+                    data-i18n-aria-label="common.close">
                     ×
                 </button>
             </div>
 
             <div class="rulesModalBody">
 
-                <p>
+                <p data-i18n="games.flightBuilder.rules.introduction">
                     Met Flight Builder deel je spelers eenvoudig in
                     flights in. Kies hoe je de flights wilt samenstellen
                     en laat de verdeling berekenen.
                 </p>
 
                 <section class="ruleGroup">
-                    <h3>Spelers per flight</h3>
-                    <p>
+                    <h3 data-i18n="games.flightBuilder.rules.playersPerFlight.title">
+                        Spelers per flight
+                    </h3>
+                    <p data-i18n="games.flightBuilder.rules.playersPerFlight.description">
                         Een flight bestaat uit maximaal vier spelers.
                         De verdeling wordt afgestemd op het aantal
                         deelnemende spelers.
@@ -76,8 +79,10 @@
                 </section>
 
                 <section class="ruleGroup">
-                    <h3>Handicaplimiet</h3>
-                    <p>
+                    <h3 data-i18n="games.flightBuilder.rules.handicapLimit.title">
+                        Handicaplimiet
+                    </h3>
+                    <p data-i18n="games.flightBuilder.rules.handicapLimit.description">
                         Een flight met vier spelers mag samen maximaal
                         110 handicap hebben. Als dit niet mogelijk is,
                         worden de spelers over extra flights verdeeld.
@@ -85,30 +90,46 @@
                 </section>
 
                 <section class="ruleGroup">
-                    <h3>Indelingsmethodes</h3>
-                    <p>
+                    <h3 data-i18n="games.flightBuilder.rules.flightDistribution.title">
+                        Indelingsmethodes
+                    </h3>
+                    <p data-i18n="games.flightBuilder.rules.flightDistribution.description">
                         Je kunt kiezen uit drie manieren om spelers
                         in te delen:
                     </p>
                     <p>
-                        <strong>Willekeurig:</strong>
-                        spelers worden willekeurig verdeeld over de flights.
+                        <strong data-i18n="games.flightBuilder.rules.flightDistribution.random.title">
+                            Willekeurig:
+                        </strong>
+                        <span data-i18n="games.flightBuilder.rules.flightDistribution.random.description">
+                            spelers worden willekeurig verdeeld over de flights.
+                        </span>
                     </p>
                     <p>
-                        <strong>Gelijk gemiddeld handicap:</strong>
-                        de gemiddelde handicap per flight wordt zo gelijk
-                        mogelijk gehouden.
+                        <strong data-i18n="games.flightBuilder.rules.flightDistribution.even.title">
+                            Gelijk gemiddeld handicap:
+                        </strong>
+                        <span data-i18n="games.flightBuilder.rules.flightDistribution.even.description">
+                            de gemiddelde handicap per flight wordt zo gelijk
+                            mogelijk gehouden.
+                        </span>
                     </p>
                     <p>
-                        <strong>Handicap spreiding:</strong>
-                        spelers met vergelijkbare handicaps worden
-                        bij elkaar ingedeeld.
+                        <strong data-i18n="games.flightBuilder.rules.flightDistribution.handicapSpread.title">
+                            Handicap spreiding:
+                        </strong>
+                        <span data-i18n="games.flightBuilder.rules.flightDistribution.handicapSpread.description">
+                            spelers met vergelijkbare handicaps worden
+                            bij elkaar ingedeeld.
+                        </span>
                     </p>
                 </section>
 
                 <section class="ruleGroup">
-                    <h3>Flights aanpassen</h3>
-                    <p>
+                    <h3 data-i18n="games.flightBuilder.rules.adjustFlights.title">
+                        Flights aanpassen
+                    </h3>
+                    <p data-i18n="games.flightBuilder.rules.adjustFlights.description">
                         Na het automatisch indelen kun je de verdeling
                         bekijken en spelers handmatig tussen flights
                         verplaatsen.
@@ -158,7 +179,8 @@
     </script>
 
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="../../../navigation.js"></script>
+    <script type="module"  src="../../../navigation.js"></script>
+    <script type="module" src="../../../home.js"></script>
     <script src="../../js/icons.js"></script>
 
     <script>

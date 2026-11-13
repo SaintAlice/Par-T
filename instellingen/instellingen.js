@@ -1,17 +1,21 @@
 
-/* PAR-TEE — taalvoorkeur */
+import {
+    initLanguage,
+    setLanguage
+} from "../js/shared/i18n/i18n.js";
 
 const languageSelect = document.getElementById("languageSelect");
-const languageStorageKey = "parTLanguage";
+
+const currentLanguage = initLanguage();
 
 if (languageSelect) {
-    const savedLanguage = localStorage.getItem(languageStorageKey);
-
-    if (savedLanguage && ["nl", "en"].includes(savedLanguage)) {
-        languageSelect.value = savedLanguage;
-    }
+    languageSelect.value = currentLanguage;
 
     languageSelect.addEventListener("change", () => {
-        localStorage.setItem(languageStorageKey, languageSelect.value);
+        const selectedLanguage = languageSelect.value;
+
+        if (!setLanguage(selectedLanguage)) {
+            languageSelect.value = currentLanguage;
+        }
     });
 }

@@ -1,46 +1,39 @@
 
-/* PAR-TEE homepage */
-
-/* Welkomsttekst */
-
 .welcomeSection {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 6px;
     margin-top: 0;
-    padding: 8px 0 2px;
+    padding: 4px 0 0;
 }
 
 .welcomeEyebrow {
     margin: 0;
     color: #194D3A;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 800;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
 }
 
 .welcomeSection h1 {
-    max-width: 340px;
+    max-width: 100%;
     margin: 0;
     color: #194D3A;
-    font-size: 1rem;
+    font-size: clamp(1.8rem, 5.5vw, 2.25rem);
     font-weight: 800;
-    line-height: 1.35;
-    letter-spacing: -0.055em;
+    line-height: 1.08;
+    letter-spacing: -0.045em;
 }
 
 .welcomeDescription {
     max-width: 340px;
     margin: 2px 0 0;
     color: #194D3A;
-    font-size: 1.rem;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.35;
 }
-
-
-/* Pagina en achtergrond */
 
 .homePage {
     position: relative;
@@ -50,6 +43,7 @@
     min-height: 100dvh;
     margin: 0 auto;
     padding: 18px 20px calc(110px + env(safe-area-inset-bottom));
+    box-sizing: border-box;
     background: #194D3A;
 }
 
@@ -67,8 +61,6 @@
     gap: 20px;
 }
 
-/* Header en logo */
-
 .homeHeader {
     display: flex;
     align-items: center;
@@ -81,11 +73,11 @@
 }
 
 .brand {
-    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+    min-width: 0;
     text-decoration: none;
 }
 
@@ -110,11 +102,11 @@
 }
 
 .settingsButton {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
     width: 46px;
     height: 46px;
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
     border: 1px solid rgba(255, 255, 255, 0.45);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.94);
@@ -125,35 +117,6 @@
 .settingsIcon {
     font-size: 1.35rem;
 }
-
-/* Welkomsttekst */
-
-.welcomeSection {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-    margin-top: 0;
-    padding: 4px 0 0;
-}
-
-.welcomeEyebrow {
-    margin: 0;
-    color: #194D3A;
-    font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 0.18em;
-}
-
-.welcomeSection h1 {
-    margin: 0;
-    font-size: clamp(1.8rem, 5.5vw, 2.25rem);
-    line-height: 1.08;
-    letter-spacing: -0.045em;
-    max-width: 100%;
-}
-
-/* Spellenoverzicht */
 
 .gamesSection {
     display: flex;
@@ -174,28 +137,25 @@
     border: 0;
 }
 
-/* Uitgelicht spel */
-
 .featuredGameCard {
     position: relative;
     isolation: isolate;
-    min-height: 0px;
     display: flex;
     align-items: center;
+    min-height: 0;
     overflow: hidden;
     padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
     border-radius: 24px;
     background:
-    linear-gradient(
-        90deg,
-        rgba(7, 48, 32, 0.88) 0%,
-        rgba(7, 48, 32, 0.68) 55%,
-        rgba(7, 48, 32, 0.18) 100%
-    ),
-    url("../images/background-hrd10.png")
-    center / cover no-repeat;
+        linear-gradient(
+            90deg,
+            rgba(7, 48, 32, 0.88) 0%,
+            rgba(7, 48, 32, 0.68) 55%,
+            rgba(7, 48, 32, 0.18) 100%
+        ),
+        url("../images/background-hrd10.png") center / cover no-repeat;
     color: #194D3A;
-    border: 1px solid rgba(255, 255, 255, 0.55);
     text-decoration: none;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(8px);
@@ -203,9 +163,8 @@
     transition: transform 180ms ease;
 }
 
-.featuredGameCard {
-    position: relative;
-    isolation: isolate;
+.featuredGameCard:hover {
+    transform: translateY(-2px);
 }
 
 .featuredGameArtwork {
@@ -217,10 +176,6 @@
     height: auto;
     object-fit: contain;
     pointer-events: none;
-}
-
-.featuredGameCard:hover {
-    transform: translateY(-2px);
 }
 
 .featuredGameContent {
@@ -242,40 +197,34 @@
 }
 
 .gameStatusAvailable {
+    border: 1px solid rgba(200, 231, 123, 0.45);
     background: #C8E77B;
     color: #194D3A;
-    border: 1px solid rgba(200, 231, 123, 0.45);
 }
 
 .featuredGameCard h3 {
     margin: 14px 0 6px;
+    color: #FFFFFF;
     font-size: clamp(1.8rem, 5vw, 2.4rem);
     font-weight: 700;
     letter-spacing: -0.045em;
-    color: #FFFFFF;
 }
 
 .featuredGameCard p {
     max-width: 300px;
-    margin: 0 0 18px;
-    margin-bottom: 16px;
+    margin: 0 0 16px;
     color: rgba(255, 255, 255, 0.9);
     font-size: 0.9rem;
     line-height: 1.45;
 }
 
-.cardSubtitle {
-    font-size: 12px;
-    font-weight: 500;
-}
-
 .gameAction {
-    width: 100%;
-    max-width: 280px;
-    min-height: 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    max-width: 280px;
+    min-height: 48px;
     padding: 0 18px;
     border-radius: 999px;
     background: #F6F5EF;
@@ -288,8 +237,6 @@
     line-height: 1;
 }
 
-/* Spelletjes en multiplayer */
-
 .comingSoonGames {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -297,42 +244,100 @@
 }
 
 .comingSoonCard {
-    min-width: 0;
-    min-height: 90px;
+    position: relative;
+    isolation: isolate;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 14px;
-    padding: 13px;
-    border-radius: 17px;
+    gap: 12px;
+    min-width: 0;
+    min-height: 175px;
+    overflow: hidden;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 19px;
     background: rgba(245, 243, 234, 0.96);
     color: #194D3A;
-    border: 1px solid rgba(255, 255, 255, 0.55);
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
     box-shadow: 0 10px 28px rgba(13, 43, 31, 0.14);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
+    cursor: pointer;
+    transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.comingSoonCard h3 {
-    margin: 0;
+.comingSoonCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 13px 30px rgba(13, 43, 31, 0.18);
+}
+
+.cardIcon {
+    display: flex;
+    align-items: center;
+    color: #194D3A;
+}
+
+.cardIcon svg {
+    width: 26px;
+    height: 26px;
+    stroke-width: 1.8;
+}
+
+.cardBadge {
+    position: absolute;
+    top: 16px;
+    right: 14px;
+    padding: 5px 8px;
+    border-radius: 999px;
+    background: #C8E77B;
+    color: #194D3A;
+    font-size: 0.52rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    min-width: 0;
+}
+
+.cardTitle {
+    color: #194D3A;
     font-size: 1rem;
-    font-weight: 650;
+    font-weight: 750;
     letter-spacing: -0.025em;
 }
 
-.comingSoonLabel {
-    color: #71876A;
-    font-size: 0.55rem;
-    font-weight: 750;
-    letter-spacing: 0.1em;
+.cardSubtitle {
+    color: #526D60;
+    font-size: 0.76rem;
+    font-weight: 400;
+    line-height: 1.4;
 }
 
+.cardAction {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    width: 100%;
+    margin-top: 4px;
+    color: #194D3A;
+    font-size: 0.72rem;
+    font-weight: 750;
+}
 
-/* Decoratieve limegroene boogjes op de kleine kaarten */
+.cardAction svg {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+}
 
 .comingSoonCard::before,
 .comingSoonCard::after {
@@ -345,24 +350,26 @@
 }
 
 .comingSoonCard::before {
-    width: 150px;
-    height: 75px;
     right: -45px;
     bottom: -42px;
+    width: 150px;
+    height: 75px;
     transform: rotate(-25deg);
 }
 
 .comingSoonCard::after {
-    width: 115px;
-    height: 58px;
     right: -30px;
     bottom: -35px;
+    width: 115px;
+    height: 58px;
     transform: rotate(-25deg);
     background: rgba(200, 231, 123, 0.14);
 }
 
-
-/* Desktop */
+.comingSoonCard:focus-visible {
+    outline: 2px solid #C8E77B;
+    outline-offset: 3px;
+}
 
 @media (min-width: 800px) {
     .homeVisual {
@@ -375,12 +382,10 @@
     }
 
     .comingSoonCard {
-        min-height: 125px;
+        min-height: 190px;
         padding: 20px;
     }
 }
-
-/* Mobiel */
 
 @media (max-width: 600px) {
     .homeVisual {
@@ -388,9 +393,10 @@
     }
 
     .appHeader .brandLogo {
-    width: 150px;
-    max-height: 52px;
+        width: 150px;
+        max-height: 52px;
     }
+
     .welcomeSection h1 {
         font-size: 2.35rem;
     }
@@ -414,22 +420,29 @@
     }
 
     .comingSoonCard {
-        min-height: 100px;
-        padding: 13px;
+        min-height: 175px;
+        padding: 14px;
         border-radius: 17px;
     }
 
-    .comingSoonCard h3 {
+    .cardTitle {
         font-size: 0.92rem;
     }
 
-    .comingSoonLabel {
-        font-size: 0.49rem;
-        letter-spacing: 0.07em;
+    .cardSubtitle {
+        font-size: 0.72rem;
+    }
+
+    .cardBadge {
+        top: 14px;
+        right: 12px;
+        font-size: 0.48rem;
+    }
+
+    .cardAction {
+        font-size: 0.68rem;
     }
 }
-
-/* Toegankelijkheid */
 
 @media (prefers-reduced-motion: reduce) {
     *,

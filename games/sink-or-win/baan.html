@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#194D3A">
 
-    <title>Golfbaan kiezen</title>
+    <title data-i18n="games.sinkOrWin.course.pageTitle">Golfbaan - Sink or Win | PAR-TEE</title>
 
     <link rel="stylesheet" href="../spin-the-tee/css/style.css">
     <link rel="stylesheet" href="../../css/navigation.css">
@@ -18,7 +18,7 @@
     <main class="page baanPage">
 
         <header class="pageHeader">
-            <h1>Kies je golfbaan</h1>
+            <h1 data-i18n="games.sinkOrWin.course.title">Kies je golfbaan</h1>
         </header>
 
         <section class="pageContent">
@@ -32,7 +32,7 @@
 
             <section id="roundSelection" class="roundSelection" hidden>
 
-            <h2>Hoeveel holes spelen jullie?</h2>
+            <h2 data-i18n="games.sinkOrWin.course.holes">Hoeveel holes spelen jullie?</h2>
 
             <div id="roundOptions" class="roundOptions">
                 <!-- Rondekeuzes worden hier weergegeven -->
@@ -46,6 +46,7 @@
                     type="button"
                     id="createCourseButton"
                     class="secondaryButton"
+                    data-i18n="games.sinkOrWin.course.createCourse"
                     disabled
                 >
                     + Nieuwe golfbaan aanmaken
@@ -59,24 +60,25 @@
                 hidden
             >
 
-                <h2>Nieuwe golfbaan</h2>
+                <h2 data-i18n="games.sinkOrWin.course.newCourse">Nieuwe golfbaan</h2>
 
                 <div class="formGroup">
-                    <label for="courseName">Naam golfbaan</label>
+                    <label for="courseName" data-i18n="games.sinkOrWin.course.nameCourse">Naam golfbaan</label>
                     <input
                         type="text"
                         id="courseName"
                         placeholder="Bijvoorbeeld Hooge Rotterdamsche"
+                        data-i18n-placeholder="games.sinkOrWin.course.courseNamePlaceholder"
                         maxlength="60"
                     >
                 </div>
 
                 <div class="formGroup">
-                    <label for="holeCount">Aantal holes</label>
+                    <label for="holeCount" data-i18n="games.sinkOrWin.course.numberCourse">Aantal holes</label>
 
                     <select id="holeCount">
-                        <option value="9">9 holes</option>
-                        <option value="18" selected>18 holes</option>
+                        <option value="9" data-i18n="games.sinkOrWin.course.holeCount9">9 holes</option>
+                        <option value="18" data-i18n="games.sinkOrWin.course.holeCount18">18 holes</option>
                     </select>
                 </div>
 
@@ -88,6 +90,7 @@
                     type="button"
                     id="saveCourseButton"
                     class="primaryButton"
+                    data-i18n="games.sinkOrWin.course.saveCourse"
                 >
                     Golfbaan opslaan
                 </button>
@@ -108,6 +111,7 @@
                 type="button"
                 id="continueButton"
                 class="primaryButton"
+                data-i18n="games.sinkOrWin.course.chooseCourse"
                 disabled
             >
                 Kies eerst een baan →
@@ -118,22 +122,23 @@
 
     <section id="existingGamePrompt" class="existingGamePrompt" hidden>
         <div class="existingGameCard">
-            <h2>Er staat nog een spel open</h2>
-            <p>Wil je verdergaan met je vorige ronde of een nieuw spel starten?</p>
+            <h2 data-i18n="games.sinkOrWin.course.existingGametitle">Er staat nog een spel open</h2>
+            <p data-i18n="games.sinkOrWin.course.existingGame">Wil je verdergaan met je vorige ronde of een nieuw spel starten?</p>
 
-            <button type="button" id="resumeGameButton" class="primaryButton">
+            <button type="button" id="resumeGameButton" class="primaryButton" data-i18n="games.sinkOrWin.course.resumeGame">
                 Verder gaan met spel
             </button>
 
-            <button type="button" id="startNewGameButton" class="secondaryButton">
+            <button type="button" id="startNewGameButton" class="secondaryButton" data-i18n="games.sinkOrWin.course.newGame">
                 Nieuw spel starten
             </button>
         </div>
     </section>
 
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="js/baan.js"></script>
-    <script src="../../navigation.js"></script>
+    <script type="module" src="js/baan.js"></script>
+    <script type="module"  src="../../../navigation.js"></script>
+    <script type="module" src="../../../home.js"></script>
     <script src="../../js/icons.js"></script>
 
     <!-- Vercel Web Analytics -->

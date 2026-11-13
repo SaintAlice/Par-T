@@ -1,5 +1,6 @@
 
 /* PAR-TEE — Sink or Win spelerspagina */
+import { t, initLanguage } from "../../../js/shared/i18n/i18n.js";
 
 const MIN_PLAYERS = 2;
 const MAX_PLAYERS = 4;
@@ -26,6 +27,8 @@ const validationMessage = document.querySelector("#gameValidationMessage");
 let selectedMode = "scratch";
 let players = [];
 
+initLanguage();
+
 /* Spelersgegevens laden */
 
 function createPlayerId() {
@@ -37,7 +40,7 @@ function loadSetup() {
         const savedSetup = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
         if (savedSetup && Array.isArray(savedSetup.players)) {
-            selectedMode = savedSetup.mode === "handicap"
+           selectedMode = savedSetup.mode === "handicap"
                 ? "handicap"
                 : "scratch";
 
@@ -53,10 +56,7 @@ function loadSetup() {
             }));
         }
     } catch (error) {
-        console.error(
-            "Sink or Win-instellingen konden niet worden geladen.",
-            error
-        );
+        t("errors.sinkOrWinLoadSettings")
     }
 }
 
@@ -102,8 +102,8 @@ function updateMode() {
     selectedMode = selectedRadio ? selectedRadio.value : "scratch";
 
     modeDescription.textContent = selectedMode === "handicap"
-        ? "Spelen met handicap"
-        : "Spelen zonder handicap";
+        ? t("games.sinkOrWin.players.playWithHandicap")
+        : t("games.sinkOrWin.players.playWithScratch");
 
     renderPlayers();
     updateNextButton();
@@ -116,13 +116,13 @@ function addPlayer() {
     const formattedName = inputName.charAt(0).toUpperCase() + inputName.slice(1);
 
     if (!inputName) {
-        showValidation("Vul eerst een spelersnaam in.");
+        showValidation(t(errors.enterPlayerName));
         playerInput.focus();
         return;
     }
 
     if (players.length >= MAX_PLAYERS) {
-        showValidation("Je kunt maximaal vier spelers toevoegen.");
+        showValidation(t(errors.maxPlayersReached));
         return;
     }
 
@@ -131,7 +131,7 @@ function addPlayer() {
     );
 
     if (exists) {
-        showValidation("Deze speler is al toegevoegd.");
+        showValidation(t(errors.duplicatePlayer));
         playerInput.focus();
         return;
     }
@@ -169,14 +169,14 @@ function createGenderSettings(player) {
 
     const genderTitle = document.createElement("p");
     genderTitle.className = "playerSettingsTitle";
-    genderTitle.textContent = "Geslacht";
+    genderTitle.textContent = t("games.sinkOrWin.players.gender");
 
     const genderOptions = document.createElement("div");
     genderOptions.className = "genderOptions";
 
-    [
-        { value: "heren", label: "Heren" },
-        { value: "dames", label: "Dames" }
+   [
+    { value: "heren", label: t("games.sinkOrWin.players.men") },
+    { value: "dames", label: t("games.sinkOrWin.players.women") }
     ].forEach((option) => {
         const label = document.createElement("label");
         label.className = "genderOption";
@@ -207,7 +207,7 @@ function createGenderSettings(player) {
 
     const teeTitle = document.createElement("p");
     teeTitle.className = "playerSettingsTitle";
-    teeTitle.textContent = "Speelkleur";
+    teeTitle.textContent = t("games.sinkOrWin.players.playingColor");
 
     const teeOptions = document.createElement("div");
     teeOptions.className = "teeOptions";
@@ -240,7 +240,7 @@ function createGenderSettings(player) {
 
         const name = document.createElement("span");
         name.className = "teeName";
-        name.textContent = tee.name;
+        name.textContent = t(`games.sinkOrWin.tees.${tee.id}`);
 
         label.append(input, color, name);
         teeOptions.append(label);
@@ -303,7 +303,7 @@ function renderPlayers() {
             handicapInput.value = player.handicap;
             handicapInput.setAttribute(
                 "aria-label",
-                `Handicap van ${player.name}`
+                t("games.sinkOrWin.players.handicapFrom", { name: player.name })
             );
 
             handicapInput.addEventListener("input", () => {
@@ -352,7 +352,7 @@ function renderPlayers() {
         removeButton.textContent = "×";
         removeButton.setAttribute(
             "aria-label",
-            `Verwijder ${player.name}`
+            t("games.sinkOrWin.players.removeFrom", { name: player.name })
         );
 
         removeButton.addEventListener("click", () => {
@@ -378,7 +378,7 @@ function updateNextButton() {
     let message = "";
 
     if (players.length < MIN_PLAYERS) {
-        message = "Voeg minimaal twee spelers toe.";
+        message = (t(errors.minimumPlayers));
     } else if (selectedMode === "handicap") {
         const invalidHandicap = players.some((player) => {
             if (player.handicap === "") return true;
@@ -399,11 +399,11 @@ function updateNextButton() {
         );
 
         if (invalidHandicap) {
-            message = "Vul voor iedere speler een handicap tussen 0 en 54 in.";
+            message = (t(errors.requiredHandicap));
         } else if (missingGender) {
-            message = "Kies voor iedere speler een geslacht.";
+            message = (t(errors.requiredGender));
         } else if (missingTee) {
-            message = "Kies voor iedere speler een speelkleur.";
+            message = (t(errors.requiredTeeColor));
         }
     }
 
@@ -422,7 +422,7 @@ function startGame() {
         );
 
         if (!roundSetup) {
-            throw new Error("Geen baan- of rondegegevens gevonden.");
+            throw new Error(t(errors.noCourseOrRoundData));
         }
 
         if (selectedMode === "handicap") {
@@ -445,9 +445,9 @@ function startGame() {
         window.location.href = "score.html";
 
     } catch (error) {
-        console.error("Handicapberekening mislukt.", error);
+        console.error(t(errors.handicapCalculationFailed), error);
         showValidation(
-            error.message || "De handicap kon niet worden berekend."
+            error.message || (t(errors.handicapCalculationFailed))
         );
     }
 }

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#194D3A">
 
-    <title>Sink or Win | PAR-TEE</title>
+    <title data-i18n="games.sinkOrWin.pageTitle">Sink or Win | PAR-TEE</title>
 
     <link rel="stylesheet" href="../spin-the-tee/css/style.css">
     <link rel="stylesheet" href="../spin-the-tee/css/home.css">
@@ -20,18 +20,18 @@
     <main class="page homePage">
 
         <header class="pageHeader">
-            <h1>Sink or Win</h1>
-            <p class="subtitle">
-                Speel om de punten. Daag elkaar uit. Win de ronde.
+            <h1 data-i18n="games.sinkOrWin.title">Sink or Win</h1>
+            <p class="subtitle" data-i18n="games.sinkOrWin.subtitle"> 
+                Verdien punten, verzamel Birdiekaarten en daag je vrienden uit.
             </p>
         </header>
 
         <div class="homeActions">
-            <button type="button" id="startButton">
+            <button type="button" id="startButton" data-i18n="common.startGame" class="startButton">
                 Start spel
             </button>
 
-            <button type="button" id="rulesButton" class="rulesButton">
+            <button type="button" id="rulesButton" data-i18n="common.gameRules" class="rulesButton">
                 Spelregels
             </button>
         </div>
@@ -49,7 +49,7 @@
         <div class="rulesModalContent">
 
             <div class="rulesModalHeader">
-                <h2 id="rulesTitle">Spelregels</h2>
+                <h2 id="rulesTitle" data-i18n="settings.rulesPage.title">Spelregels</h2>
 
                 <button
                     type="button"
@@ -62,56 +62,51 @@
 
             <div class="rulesModalBody">
 
-                <p>
-                    Speel iedere hole om punten te verdienen.
-                    Gebruik je Birdiekaarten om andere spelers uit te dagen.
-                    Wie eindigt bovenaan?
+                <p data-i18n="settings.rulesPage.sinkOrWin.paragraph1">
+                    Het doel van Sink or Win is om tijdens je golfronde zoveel mogelijk punten te verzamelen. 
+                    Verdien punten met je scores, verzamel Birdiekaarten en daag andere spelers uit om extra punten te winnen.
                 </p>
 
                 <section class="ruleGroup">
-                    <h3>Punten verdienen</h3>
-                    <p>
-                        Heb je als enige de beste score op een hole?
-                        Dan verdien je 3 punten. Deel je de beste score
-                        met andere spelers, dan ontvangt iedere speler
-                        1 punt. De overige spelers verdienen geen punten.
+                    <h3 data-i18n="settings.rulesPage.sinkOrWin.paragraph2title">Punten verdienen</h3>
+                    <p data-i18n="settings.rulesPage.sinkOrWin.paragraph2">
+                        Iedere hole biedt de mogelijkheid om punten te verdienen. 
+                        Heb je als enige de beste score op een hole? Dan verdien je 3 punten.
+                        Delen meerdere spelers de beste score, dan ontvangt iedere speler 1 punt.
+                        De overige spelers verdienen geen punten.
                     </p>
                 </section>
 
                 <section class="ruleGroup">
-                    <h3>Birdiekaarten</h3>
-                    <p>
-                        Speel een birdie of beter en verdien een Birdiekaart.
-                        Bij Scratch telt je bruto score. Bij Handicap telt
-                        je netto score.
-                    </p>
-                    <p>
-                        Met een Birdiekaart kun je een andere speler uitdagen.
-                        Iedere uitdaging kost één Birdiekaart.
+                    <h3 data-i18n="settings.rulesPage.sinkOrWin.paragraph3title">Birdiekaarten verzamelen</h3>
+                    <p data-i18n="settings.rulesPage.sinkOrWin.paragraph3">
+                        Speel je een birdie of beter, dan verdien je een Birdiekaart. 
+                        Bij Scratch wordt gekeken naar je bruto score en bij Handicap naar je netto score. 
+                        Met een Birdiekaart kun je een andere speler uitdagen voor extra punten.
                     </p>
                 </section>
 
                 <section class="ruleGroup">
-                    <h3>Uitdagingen</h3>
-                    <p>
-                        Kies een tegenstander en bepaal zelf hoeveel punten
-                        je inzet. Beide spelers moeten voldoende punten
-                        beschikbaar hebben.
+                    <h3 data-i18n="settings.rulesPage.sinkOrWin.paragraph4title">Uitdagingen </h3>
+                    <p data-i18n="settings.rulesPage.sinkOrWin.paragraph4">
+                        Met een Birdiekaart kun je een andere speler uitdagen. 
+                        Je kiest een tegenstander en bepaalt zelf hoeveel punten je inzet. 
+                        Beide spelers moeten voldoende punten hebben om de uitdaging aan te gaan.
                     </p>
-                    <p>
-                        Win je de uitdaging, dan ontvang je de inzet van je
-                        tegenstander. Verlies je, dan betaal je deze punten.
+                    <p data-i18n="settings.rulesPage.sinkOrWin.paragraph5">
+                        Win je de uitdaging, dan ontvang je de inzet. 
+                        Verlies je, dan betaal je de afgesproken punten. 
                         Bij gelijkspel worden er geen punten uitgewisseld.
                     </p>
-                    <p>
-                        Je kunt meerdere spelers uitdagen, maar dezelfde
-                        speler niet twee keer op één hole.
+                    <p data-i18n="settings.rulesPage.sinkOrWin.paragraph6">
+                        Iedere uitdaging kost één Birdiekaart. 
+                        Je kunt meerdere spelers uitdagen, maar dezelfde speler mag je niet twee keer op één hole uitdagen.
                     </p>
                 </section>
 
                 <section class="ruleGroup">
-                    <h3>Scratch of Handicap</h3>
-                    <p>
+                    <h3 data-i18n="settings.rulesPage.sinkOrWin.paragraph7title">Scratch of Handicap</h3>
+                    <p data-i18n="settings.rulesPage.sinkOrWin.paragraph7">
                         Bij Scratch vergelijken we de bruto scores:
                         het aantal slagen dat je daadwerkelijk hebt gemaakt.
                         Bij Handicap vergelijken we de netto scores,
@@ -120,11 +115,13 @@
                 </section>
 
                 <section class="ruleGroup">
-                    <h3>Einde van het spel</h3>
-                    <p>
+                    <h3 data-i18n="settings.rulesPage.sinkOrWin.paragraph8title">Einde van het spel</h3>
+                    <p data-i18n="settings.rulesPage.sinkOrWin.paragraph8">
+                        Na de laatste hole worden de punten opgeteld. 
                         De speler met de meeste punten wint de ronde.
-                        Ongebruikte Birdiekaarten uit holes 1 t/m 8 kosten
-                        aan het einde 1 punt per kaart.
+                    </p>
+                    <p data-i18n="settings.rulesPage.sinkOrWin.paragraph9">
+                        Let op: Ongebruikte Birdiekaarten uit holes 1 t/m 8 kosten aan het einde 1 punt per kaart.
                     </p>
                 </section>
 
@@ -171,8 +168,8 @@
     </script>
 
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="../../navigation.js"></script>
-    <script src="../../js/icons.js"></script>
+    <script type="module"  src="../../../navigation.js"></script>
+    <script type="module" src="../../../home.js"></script>
 
     <script>
     window.va = window.va || function () {

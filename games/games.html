@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#F6F5EF">
 
-    <title>Spellen | PAR-TEE</title>
+    <title data-i18n="games.title">Spellen | PAR-TEE</title>
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="games.css">
@@ -20,12 +20,16 @@
 
         <header class="gamesHeader">
 
-            <h1>Spellen</h1>
+            <h1 data-i18n="games.heading">Spellen</h1>
 
-            <p>Kies je spel en ga de baan op.</p>
+            <p data-i18n="games.description">Kies je spel en ga de baan op.</p>
         </header>
 
-        <section class="gamesGrid" aria-label="Beschikbare spellen">
+        <section
+            class="gamesGrid"
+            aria-label="Beschikbare spellen"
+            data-i18n-aria-label="games.availableGames"
+        >
 
             <a class="gameCard spinCard"
                href="spin-the-tee/spin-the-tee.html">
@@ -35,9 +39,9 @@
                 </div>
 
                 <div class="gameInfo">
-                    <span class="gameStatus">BESCHIKBAAR</span>
-                    <h2>Spin the Tee</h2>
-                    <p>Laat het lot bepalen vanaf welke tee je speelt.</p>
+                    <span class="gameStatus" data-i18n="games.available">BESCHIKBAAR</span>
+                    <h2 data-i18n="games.spinTheTee.title">Spin the Tee</h2>
+                    <p data-i18n="games.spinTheTee.description">Laat het lot bepalen vanaf welke tee je speelt.</p>
                 </div>
 
                 <span class="gameArrow" aria-hidden="true">›</span>
@@ -52,9 +56,9 @@
                 </div>
 
                 <div class="gameInfo">
-                    <span class="gameStatus">BESCHIKBAAR</span>
-                    <h2>Sink or Win</h2>
-                    <p>Verdien punten, speel slimme zetten en probeer de pot te winnen.</p>
+                    <span class="gameStatus" data-i18n="games.available">BESCHIKBAAR</span>
+                    <h2 data-i18n="games.sinkOrWin.title">Sink or Win</h2>
+                    <p data-i18n="games.sinkOrWin.subtitle">Verdien punten, speel slimme zetten en probeer de pot te winnen.</p>
                 </div>
 
                 <span class="gameArrow" aria-hidden="true">›</span>
@@ -68,9 +72,9 @@
                 </div>
 
                 <div class="gameInfo">
-                    <span class="gameStatus">BESCHIKBAAR</span>
-                    <h2>Flight Builder</h2>
-                    <p>Deel spelers slim in flights in.</p>
+                    <span class="gameStatus" data-i18n="games.available">BESCHIKBAAR</span>
+                    <h2 data-i18n="games.flightBuilder.title">Flight Builder</h2>
+                    <p data-i18n="games.flightBuilder.description">Deel spelers slim in flights in.</p>
                 </div>
 
                 <span class="gameArrow" aria-hidden="true">›</span>
@@ -86,9 +90,9 @@
                 </div>
 
                 <div class="gameInfo">
-                    <span class="gameStatus">BINNENKORT</span>
-                    <h2>Binnenkort</h2>
-                    <p>Nieuwe golfuitdagingen komen eraan.</p>
+                    <span class="gameStatus" data-i18n="games.comingSoon">BINNENKORT </span>
+                    <h2 data-i18n="games.comingSoonTitle">Binnenkort</h2>
+                    <p data-i18n="games.comingSoonDescription">Nieuwe golfuitdagingen komen eraan.</p>
                 </div>
 
             </article>
@@ -98,7 +102,8 @@
     </main>
 
     <script src="../header.js" data-root="../"></script>
-    <script src="../navigation.js"></script>
+    <script type="module" src="../navigation.js"></script>
+    <script type="module" src="home.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="../js/icons.js"></script>
 

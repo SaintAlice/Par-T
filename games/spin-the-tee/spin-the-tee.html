@@ -19,19 +19,19 @@
     <main class="page homePage">
 
         <header class="pageHeader">
-            <h1>Spin the Tee</h1>
+            <h1 data-18n="games.spinTheTee.title">Spin the Tee</h1>
 
-            <p class="subtitle">
-                Bepaal vanaf welke tee iedereen speelt.
+            <p class="subtitle" data-i18n="games.spinTheTee.description">
+                Laat het lot bepalen vanaf welke tee je speelt.
             </p>
         </header>
 
         <div class="homeActions">
-            <button type="button" id="startButton">
+            <button type="button" id="startButton" data-i18n="games.spinTheTee.startButton">
                 Start spel
             </button>
 
-            <button type="button" id="rulesButton" class="rulesButton">
+            <button type="button" id="rulesButton" class="rulesButton" data-i18n="games.spinTheTee.rulesButton">
                 Spelregels
             </button>
         </div>
@@ -49,7 +49,7 @@
         <div class="rulesModalContent">
 
             <div class="rulesModalHeader">
-                <h2 id="rulesTitle">Spelregels</h2>
+                <h2 id="rulesTitle" data-i18n="games.spinTheTee.rules.title">Spelregels</h2>
 
                 <button
                     type="button"
@@ -62,39 +62,45 @@
 
             <div class="rulesModalBody">
 
-                <p>
-                    Draai aan het wiel en ontdek vanaf welke tee je speelt.
-                    De gekozen tee bepaalt vanaf welke afslagplaats je
-                    de hole speelt.
+            <p data-i18n="games.spinTheTee.rules.introduction">
+                Draai aan het wiel en ontdek vanaf welke tee je speelt.
+                De gekozen tee bepaalt vanaf welke afslagplaats je
+                de hole speelt.
+            </p>
+
+            <section class="ruleGroup">
+                <h3 data-i18n="games.spinTheTee.title">
+                    Hoe werkt het?
+                </h3>
+                <p data-i18n="games.spinTheTee.rules.howItWorks.description">
+                    Voeg alle spelers toe en selecteer de beschikbare
+                    tees. Vervolgens draait iedere speler aan het wiel
+                    om een tee toegewezen te krijgen.
                 </p>
+            </section>
 
-                <section class="ruleGroup">
-                    <h3>Hoe werkt het?</h3>
-                    <p>
-                        Voeg alle spelers toe en selecteer de beschikbare
-                        tees. Vervolgens draait iedere speler aan het wiel
-                        om een tee toegewezen te krijgen.
-                    </p>
-                </section>
+            <section class="ruleGroup">
+                <h3 data-i18n="games.spinTheTee.rules.availableTees.title">
+                    Beschikbare tees
+                </h3>
+                <p data-i18n="games.spinTheTee.rules.availableTees.description">
+                    Je kunt spelen vanaf wit, geel, blauw, rood en oranje,
+                    afhankelijk van de geselecteerde opties.
+                </p>
+            </section>
 
-                <section class="ruleGroup">
-                    <h3>Beschikbare tees</h3>
-                    <p>
-                        Je kunt spelen vanaf wit, geel, blauw, rood en oranje,
-                        afhankelijk van de geselecteerde opties.
-                    </p>
-                </section>
+            <section class="ruleGroup">
+                <h3 data-i18n="games.spinTheTee.rules.results.title">
+                    De uitslag
+                </h3>
+                <p data-i18n="games.spinTheTee.rules.results.description">
+                    Na iedere draai zie je welke tee aan de speler
+                    is toegewezen. Aan het einde kun je het resultaat
+                    van alle spelers bekijken.
+                </p>
+            </section>
 
-                <section class="ruleGroup">
-                    <h3>De uitslag</h3>
-                    <p>
-                        Na iedere draai zie je welke tee aan de speler
-                        is toegewezen. Aan het einde kun je het resultaat
-                        van alle spelers bekijken.
-                    </p>
-                </section>
-
-            </div>
+        </div>
 
         </div>
     </div>
@@ -142,7 +148,8 @@
     </script>
 
     <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="../../navigation.js"></script>
+    <script type="module"  src="../../../navigation.js"></script>
+    <script type="module" src="../../../home.js"></script>
     <script src="../../js/icons.js"></script>
 
     <script>

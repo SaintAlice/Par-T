@@ -12,12 +12,11 @@ if (headerContainer) {
 
             return response.text();
         })
-        .then(html => {
+        .then(async html => {
             headerContainer.innerHTML = html;
 
             const logo = headerContainer.querySelector(".brandLogo");
             const homeLink = headerContainer.querySelector(".brand");
-            const settingsLink = headerContainer.querySelector(".settingsButton");
 
             if (logo) {
                 logo.src = `${root}images/par-t-logo4.png`;
@@ -27,6 +26,25 @@ if (headerContainer) {
                 homeLink.href = `${root}index.html`;
             }
 
+            const { getLanguage } = await import(
+                `${root}js/shared/i18n/i18n.js`
+            );
+
+            function updateHeaderLanguage() {
+                homeLink?.setAttribute(
+                    "aria-label",
+                    getLanguage() === "nl"
+                        ? "PAR-TEE startpagina"
+                        : "PAR-TEE home"
+                );
+            }
+
+            updateHeaderLanguage();
+
+            window.addEventListener(
+                "partee:languagechange",
+                updateHeaderLanguage
+            );
         })
         .catch(error => {
             console.error("Fout bij laden van de header:", error);

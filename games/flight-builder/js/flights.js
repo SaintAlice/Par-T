@@ -1,3 +1,5 @@
+import { t, initLanguage } from "../../../js/shared/i18n/i18n.js";
+
 const PLAYERS_STORAGE_KEY = "flightBuilderPlayers";
 const SETTINGS_STORAGE_KEY = "flightBuilderSettings";
 const FLIGHTS_STORAGE_KEY = "flightBuilderFlights";
@@ -157,7 +159,7 @@ function createFlights() {
     const maxPlayers = getMaxPlayers();
 
     if (players.length < 2) {
-        showValidation("Er zijn minimaal twee spelers nodig.");
+        showValidation(t("games.flightBuilder.errors.minimumPlayers"));
         return [];
     }
 
@@ -171,7 +173,11 @@ function createFlights() {
 
     if (minimumFlightCount > maximumFlightCount) {
         showValidation(
-            `Met ${players.length} spelers en maximaal ${maxPlayers} spelers per flight is een geldige indeling niet mogelijk. Kies maximaal ${Math.min(4, players.length - 1)} spelers per flight.`
+            t("games.flightBuilder.errors.invalidDistribution", {
+                playerCount: players.length,
+                maxPlayers,
+                suggestedMax: Math.min(4, players.length - 1)
+            })
         );
 
         return [];
@@ -218,15 +224,20 @@ function createFlights() {
     }
 
     showValidation(
-        "Er kon geen geldige flightindeling worden gemaakt. Controleer de handicaps en instellingen."
+        t("games.flightBuilder.errors.noValidDistribution")
     );
 
     return [];
 }
 
 function updateSummary() {
-    flightSummary.textContent =
-        `${players.length} spelers verdeeld over ${flights.length} flights`;
+    flightSummary.textContent = t(
+        "games.flightBuilder.flights.summary",
+        {
+            playerCount: players.length,
+            flightCount: flights.length
+        }
+    );
 }
 
 function createPlayerElement(player, flightIndex) {
@@ -251,13 +262,17 @@ function createPlayerElement(player, flightIndex) {
 
     flightSelect.setAttribute(
         "aria-label",
-        `Verplaats ${player.name} naar een andere flight`
+        t("games.flightBuilder.flights.movePlayer", {
+            player: player.name
+        })
     );
 
     flights.forEach((flight, index) => {
         const option = document.createElement("option");
         option.value = String(index);
-        option.textContent = `Flight ${index + 1}`;
+        option.textContent = t("games.flightBuilder.flights.flightNumber", {
+            number: index + 1
+        });
         option.selected = index === flightIndex;
 
         flightSelect.append(option);
@@ -314,9 +329,22 @@ function renderToggleAllButton() {
 
     const allExpanded = expandedFlights.size === flights.length;
 
-    toggleButton.innerHTML = allExpanded
-        ? '<span>Alles inklappen</span><span aria-hidden="true">⌃</span>'
-        : '<span>Alles uitklappen</span><span aria-hidden="true">⌄</span>';
+    const label = allExpanded
+        ? t("games.flightBuilder.flights.collapseAll")
+        : t("games.flightBuilder.flights.expandAll");
+
+    const arrow = allExpanded ? "⌃" : "⌄";
+
+    toggleButton.replaceChildren();
+
+    const text = document.createElement("span");
+    text.textContent = label;
+
+    const icon = document.createElement("span");
+    icon.setAttribute("aria-hidden", "true");
+    icon.textContent = arrow;
+
+    toggleButton.append(text, icon);
 }
 
 function renderFlights() {
@@ -337,13 +365,17 @@ function renderFlights() {
 
         const title = document.createElement("span");
         title.className = "flightTitle";
-        title.textContent = `Flight ${index + 1}`;
+        title.textContent = t("games.flightBuilder.flights.flightNumber", {
+            number: index + 1
+        });
 
         const headerRight = document.createElement("span");
         headerRight.className = "flightHeaderRight";
 
         const playerCount = document.createElement("span");
-        playerCount.textContent = `${flight.length} spelers`;
+        playerCount.textContent = t("games.flightBuilder.flights.playerCount", {
+            count: flight.length
+        });
 
         const arrow = document.createElement("span");
         arrow.className = "flightArrow";
@@ -377,8 +409,12 @@ function renderFlights() {
                 );
 
                 const handicapInfo = document.createElement("p");
-                handicapInfo.textContent =
-                    `Totale handicap: ${totalHandicap.toFixed(1)}`;
+                handicapInfo.textContent = t(
+                    "games.flightBuilder.flights.totalHandicap",
+                    {
+                        handicap: totalHandicap.toFixed(1)
+                    }
+                );
 
                 flightCard.append(handicapInfo);
             }
@@ -416,7 +452,7 @@ function movePlayer(playerId, fromIndex, toIndex) {
 
     if (sourceFlight.length < 2) {
         showValidation(
-            "Een flight moet minimaal twee spelers bevatten."
+            t("games.flightBuilder.errors.minimumPlayersPerFlight")
         );
         renderFlights();
         return;
@@ -424,7 +460,9 @@ function movePlayer(playerId, fromIndex, toIndex) {
 
     if (targetFlight.length > getMaxPlayers()) {
         showValidation(
-            "Deze flight heeft het maximale aantal spelers bereikt."
+            t("games.flightBuilder.errors.maximumPlayersPerFlight", {
+                maxPlayers: getMaxPlayers()
+            })
         );
         renderFlights();
         return;
@@ -432,7 +470,7 @@ function movePlayer(playerId, fromIndex, toIndex) {
 
     if (!isValidFourPlayerFlight(targetFlight)) {
         showValidation(
-            "De gezamenlijke handicap van een flight met vier spelers mag maximaal 110 zijn."
+            t("games.flightBuilder.errors.maximumHandicap")
         );
         renderFlights();
         return;
@@ -462,7 +500,7 @@ function confirmFlights() {
 
     if (flights.length === 0 || invalidFlight) {
         showValidation(
-            "Controleer de flightindeling voordat je verdergaat."
+            t("games.flightBuilder.errors.checkDistribution")
         );
         return;
     }
@@ -509,4 +547,5 @@ shuffleButton.addEventListener("click", () => {
 
 confirmButton.addEventListener("click", confirmFlights);
 
+initLanguage();
 initialize();

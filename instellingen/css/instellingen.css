@@ -94,6 +94,8 @@
 /* Groene instellingenkaart */
 
 .settingsCard {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     border: 1px solid rgba(25, 77, 58, 0.1);
     border-radius: 22px;

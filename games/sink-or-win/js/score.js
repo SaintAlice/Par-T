@@ -1,3 +1,4 @@
+import { t, initLanguage } from "../../../js/shared/i18n/i18n.js";
 
 const PLAYER_STORAGE_KEY = "sinkOrWinSetup";
 const ROUND_STORAGE_KEY = "sinkOrWinRoundSetup";
@@ -40,7 +41,7 @@ const challengeResultSection = document.querySelector(".challengeResultSection")
 const standingsButton = document.querySelector("#standingsButton");
 const standingsSection = document.querySelector("#standingsSection");
 const standingsList = document.querySelector("#standingsList");
-const newGameButton = document.querySelector("#newGameButton");
+const holeResultNewGameButton = document.querySelector("#holeResultNewGameButton");
 const holeResultHeading = document.querySelector("#holeResultHeading");
 
 // Definitieve resultatenpagina
@@ -60,6 +61,8 @@ let selectedChallengerId = "";
 let selectedOpponentId = "";
 let challengeStake = 1;
 
+initLanguage();
+
 /* Gegevens laden */
 
 function loadGame() {
@@ -74,7 +77,7 @@ function loadGame() {
             !Array.isArray(roundSetup.holes) ||
             roundSetup.holes.length === 0
         ) {
-            throw new Error("Spelgegevens ontbreken.");
+            throw new Error(t("games.sinkOrWin.errors.missingGameData"));
         }
 
         const savedGame = JSON.parse(localStorage.getItem(GAME_STORAGE_KEY));
@@ -86,7 +89,7 @@ function loadGame() {
                 !Array.isArray(gameState.players) ||
                 !Array.isArray(gameState.completedHoles)
             ) {
-                throw new Error("De opgeslagen spelgegevens zijn ongeldig.");
+                throw new Error(t("games.sinkOrWin.errors.invalidSavedGame"));
             }
 
             gameState.challengesByHole ??= {};
@@ -173,7 +176,7 @@ function renderHole() {
     const hole = roundSetup.holes[currentHoleIndex];
 
     if (!hole) {
-        showValidation("Er zijn geen holes meer beschikbaar.");
+        showValidation(t("games.sinkOrWin.errors.noHolesAvailable"));
         finishHoleButton.disabled = true;
         return;
     }
@@ -222,7 +225,9 @@ function renderPlayers() {
                 const indicator = document.createElement("span");
                 indicator.className = "birdieCardIndicator";
                 indicator.textContent = "B";
-                indicator.title = `${player.birdieCards} Birdiekaarten beschikbaar`;
+                indicator.title = t("games.sinkOrWin.score.birdieCardsAvailable", {
+                    count: player.birdieCards
+                });
                 header.append(indicator);
             }
         }
@@ -232,7 +237,7 @@ function renderPlayers() {
 
         const label = document.createElement("span");
         label.className = "scoreInputLabel";
-        label.textContent = "Bruto slagen";
+        label.textContent = t("games.sinkOrWin.score.grossStrokesLabel");
 
         const controls = document.createElement("div");
         controls.className = "scoreControls";
@@ -399,7 +404,7 @@ function renderChallengerOptions() {
     });
 
     if (challengerOptions.children.length === 0) {
-        challengerOptions.textContent = "Geen spelers met een beschikbare Birdiekaart.";
+        challengerOptions.textContent = t("games.sinkOrWin.score.noAvailableBirdieCards");
     }
 }
 
@@ -409,7 +414,7 @@ function renderOpponentOptions() {
     if (!selectedChallengerId) {
         const hint = document.createElement("p");
         hint.className = "optionHint";
-        hint.textContent = "Kies eerst een uitdager.";
+        hint.textContent = t("games.sinkOrWin.score.selectChallenger");
         opponentOptions.append(hint);
         return;
     }
@@ -463,7 +468,7 @@ function renderOpponentOptions() {
     });
 
     if (opponentOptions.children.length === 0) {
-        opponentOptions.textContent = "Geen beschikbare tegenstanders.";
+        opponentOptions.textContent = t("games.sinkOrWin.score.noAvailableOpponents");
     }
 }
 
@@ -483,17 +488,17 @@ function saveChallenge() {
     );
 
     if (!challenger || !opponent) {
-        showChallengeValidation("Kies een uitdager en een tegenstander.");
+        showChallengeValidation(t("games.sinkOrWin.score.selectChallengerAndOpponent"));
         return;
     }
 
     if (!Number.isInteger(stake) || stake < 1) {
-        showChallengeValidation("Vul een geldig aantal punten in.");
+        showChallengeValidation(t("games.sinkOrWin.score.enterValidPoints"));
         return;
     }
 
     if (challenger.birdieCards <= 0) {
-        showChallengeValidation("Deze speler heeft geen Birdiekaarten meer beschikbaar.");
+        showChallengeValidation(t("games.sinkOrWin.score.noBirdieCardsLeft"));
         return;
     }
 
@@ -501,12 +506,12 @@ function saveChallenge() {
     const opponentReserved = getReservedPoints(opponentId, challenges);
 
     if (challenger.points - challengerReserved < stake) {
-        showChallengeValidation("De uitdager heeft onvoldoende punten beschikbaar.");
+        showChallengeValidation(t("games.sinkOrWin.score.challengerInsufficientPoints"));
         return;
     }
 
     if (opponent.points - opponentReserved < stake) {
-        showChallengeValidation("De tegenstander heeft onvoldoende punten beschikbaar.");
+        showChallengeValidation(t("games.sinkOrWin.score.challengerInsufficientPoints"));
         return;
     }
 
@@ -517,7 +522,7 @@ function saveChallenge() {
     );
 
     if (alreadyChallenged) {
-        showChallengeValidation("Je hebt deze speler al uitgedaagd op deze hole.");
+        showChallengeValidation(t("games.sinkOrWin.score.playerAlreadyChallenged"));
         return;
     }
 
@@ -551,7 +556,7 @@ function renderChallenges() {
     if (challenges.length === 0) {
         const message = document.createElement("p");
         message.className = "emptyChallenges";
-        message.textContent = "Er zijn nog geen uitdagingen voor deze hole.";
+        message.textContent = t("games.sinkOrWin.score.noChallenges");
         challengeList.append(message);
         return;
     }
@@ -575,11 +580,16 @@ function renderChallenges() {
 
         const names = document.createElement("span");
         names.className = "challengePlayerNames";
-        names.textContent = `${challenger.name} daagt ${opponent.name} uit`;
+        names.textContent = t("games.sinkOrWin.score.challengerChallengesOpponent", {
+            challenger: challenger.name,
+            opponent: opponent.name
+        });
 
         const stake = document.createElement("span");
         stake.className = "challengeStake";
-        stake.textContent = `${challenge.stake} punten`;
+        stake.textContent = t("games.sinkOrWin.score.challengeStakePoints", {
+            points: challenge.stake
+        });
 
         details.append(names);
 
@@ -589,7 +599,10 @@ function renderChallenges() {
         removeButton.textContent = "×";
         removeButton.setAttribute(
             "aria-label",
-            `Verwijder uitdaging van ${challenger.name} tegen ${opponent.name}`
+            t("games.sinkOrWin.score.removeChallengeLabel", {
+                challenger: challenger.name,
+                opponent: opponent.name
+            })
         );
 
         removeButton.addEventListener("click", () => {
@@ -633,7 +646,7 @@ function removeChallenge(index) {
     if (!challenger) return;
 
     const confirmed = window.confirm(
-        "Weet je zeker dat je deze uitdaging wilt verwijderen?"
+        t("games.sinkOrWin.score.confirmRemoveChallenge")
     );
 
     if (!confirmed) return;
@@ -744,7 +757,7 @@ function reviewHole() {
     });
 
     if (!allScoresEntered) {
-        showValidation("Vul eerst alle scores in.");
+        showValidation(t("games.sinkOrWin.score.enterAllScores"));
         return;
     }
 
@@ -762,7 +775,7 @@ function reviewHole() {
 
 function renderHoleResults(result) {
     holeResultSection.classList.remove("isFinalResult");
-    holeResultHeading.textContent = "Resultaat hole";
+    holeResultHeading.textContent = t("games.sinkOrWin.score.holeResultTitle");
     holeResultList.replaceChildren();
     holePointsList.replaceChildren();
     challengeResultList.replaceChildren();
@@ -792,7 +805,9 @@ function renderHoleResults(result) {
 
         const pointsValue = document.createElement("strong");
         const sign = player.totalPoints > 0 ? "+" : "";
-        pointsValue.textContent = `${sign}${player.totalPoints} punten`;
+        pointsValue.textContent = t("games.sinkOrWin.score.playerPoints", {
+            points: `${sign}${player.totalPoints}`
+        });
 
         pointsRow.append(pointsName, pointsValue);
         holePointsList.append(pointsRow);
@@ -824,16 +839,25 @@ function renderChallengeResults(result) {
         row.className = "challengeResult";
 
         const details = document.createElement("span");
-        details.textContent = `${challenger.name} tegen ${opponent.name}`;
+        details.textContent = t("games.sinkOrWin.score.challengerVsOpponent", {
+            challenger: challenger.name,
+            opponent: opponent.name
+        });
 
         const outcome = document.createElement("strong");
 
         if (challenger.comparisonScore < opponent.comparisonScore) {
-            outcome.textContent = `${challenger.name} wint ${challenge.stake} punten`;
+            outcome.textContent = t("games.sinkOrWin.score.challengerWinsPoints", {
+                challenger: challenger.name,
+                points: challenge.stake
+            });
         } else if (challenger.comparisonScore > opponent.comparisonScore) {
-            outcome.textContent = `${opponent.name} wint ${challenge.stake} punten`;
+            outcome.textContent = t("games.sinkOrWin.score.opponentWinsPoints", {
+                opponent: opponent.name,
+                points: challenge.stake
+            });
         } else {
-            outcome.textContent = "Gelijkspel · geen punten";
+            outcome.textContent = t("games.sinkOrWin.score.drawNoPoints");
         }
 
         row.append(details, outcome);
@@ -855,7 +879,9 @@ function renderBirdieResults(result) {
         message.className = "birdieResult";
 
         const name = document.createElement("span");
-        name.textContent = `${player.name} verdient een Birdiekaart`;
+        name.textContent = t("games.sinkOrWin.score.earnsBirdieCard", {
+            name: player.name
+        });
 
         const card = document.createElement("span");
         card.className = "birdieResultCards";
@@ -941,8 +967,8 @@ function renderFinalResults() {
     document.querySelector(".scoreActions").hidden = true;
     document.querySelector(".scorePage .pageFooter").hidden = true;
 
-    holeTitle.textContent = "Ronde afgerond";
-    holeDetails.textContent = "Dit is de definitieve eindstand.";
+    holeTitle.textContent = t("games.sinkOrWin.score.roundCompleted");
+    holeDetails.textContent = t("games.sinkOrWin.score.finalStandingsDescription");
 
     const sortedPlayers = gameState.players
         .map((player) => {
@@ -993,16 +1019,18 @@ function renderFinalStandings(players) {
 
         const points = document.createElement("strong");
         points.className = "finalStandingPoints";
-        points.textContent = `${player.finalPoints} punten`;
+        points.textContent = t("games.sinkOrWin.score.finalPoints", {
+            points: player.finalPoints
+        });
 
         card.append(position, info, points);
 
         if (player.penaltyCards > 0) {
             const penalty = document.createElement("p");
             penalty.className = "finalStandingPenalty";
-            penalty.textContent =
-                `${player.penaltyCards} punten aftrek voor overgebleven Birdiekaarten`;
-
+            penalty.textContent = t("games.sinkOrWin.score.birdieCardPenalty", {
+                count: player.penaltyCards
+            });
             card.append(penalty);
         }
 
@@ -1084,7 +1112,7 @@ function renderFinalPointsChart() {
     svg.setAttribute("role", "img");
     svg.setAttribute(
         "aria-label",
-        "Grafiek met het puntenverloop per speler"
+        t("games.sinkOrWin.score.pointsChartLabel")
     );
 
     // Horizontale nullijn.
@@ -1209,8 +1237,12 @@ function renderFinalEvents() {
                 const event = document.createElement("p");
 
                 event.textContent = result.points === 3
-                    ? `${result.name} wint de hole en verdient 3 punten.`
-                    : `${result.name} deelt de beste score en verdient 1 punt.`;
+                ? t("games.sinkOrWin.score.winsHole", {
+                    name: result.name
+                })
+                : t("games.sinkOrWin.score.sharesBestScore", {
+                    name: result.name
+                });
 
                 group.append(event);
             }
@@ -1242,17 +1274,25 @@ function renderFinalEvents() {
                 challengerResult.comparisonScore <
                 opponentResult.comparisonScore
             ) {
-                event.textContent =
-                    `${challenger.name} steelt ${challenge.stake} punten van ${opponent.name}.`;
+                event.textContent = t("games.sinkOrWin.score.stealsPoints", {
+                    challenger: challenger.name,
+                    points: challenge.stake,
+                    opponent: opponent.name
+                });
             } else if (
                 challengerResult.comparisonScore >
                 opponentResult.comparisonScore
             ) {
-                event.textContent =
-                    `${opponent.name} wint ${challenge.stake} punten van ${challenger.name}.`;
+                event.textContent = t("games.sinkOrWin.score.opponentWinsPointsFromChallenger", {
+                    opponent: opponent.name,
+                    points: challenge.stake,
+                    challenger: challenger.name
+                });
             } else {
-                event.textContent =
-                    `${challenger.name} en ${opponent.name} spelen gelijk. Geen punten uit de uitdaging.`;
+                event.textContent = t("games.sinkOrWin.score.challengeDraw", {
+                    challenger: challenger.name,
+                    opponent: opponent.name
+                });
             }
 
             group.append(event);
@@ -1262,8 +1302,9 @@ function renderFinalEvents() {
             .filter((result) => result.earnsBirdieCard)
             .forEach((result) => {
                 const event = document.createElement("p");
-                event.textContent =
-                    `${result.name} verdient een Birdiekaart.`;
+                event.textContent = t("games.sinkOrWin.score.earnsBirdieCardEvent", {
+                    name: result.name
+                });
 
                 group.append(event);
             });
@@ -1281,8 +1322,8 @@ function renderFinalScorecard() {
     const header = document.createElement("p");
     header.className = "finalScorecardDescription";
     header.textContent = setup.mode === "handicap"
-        ? "Bruto slagen, netto slagen en behaalde punten per hole."
-        : "Bruto slagen en behaalde punten per hole.";
+    ? t("games.sinkOrWin.score.handicapScorecardDescription")
+    : t("games.sinkOrWin.score.scratchScorecardDescription");
 
     finalScorecard.append(header);
 
@@ -1311,14 +1352,20 @@ function renderFinalScorecard() {
             const score = document.createElement("span");
 
             score.textContent = setup.mode === "handicap"
-                ? `${result.grossScore} bruto · ${result.netScore} netto`
-                : `${result.grossScore} slagen`;
+            ? t("games.sinkOrWin.score.grossAndNetScore", {
+                gross: result.grossScore,
+                net: result.netScore
+            })
+            : t("games.sinkOrWin.score.grossScore", {
+                score: result.grossScore
+            });
 
             const points = document.createElement("strong");
             const sign = result.totalPoints > 0 ? "+" : "";
 
-            points.textContent =
-                `${sign}${result.totalPoints} punten`;
+            points.textContent = t("games.sinkOrWin.score.playerPoints", {
+                points: result.totalPoints
+            });
 
             row.append(holeName, score, points);
             details.append(row);
@@ -1362,7 +1409,9 @@ function renderStandings() {
 
         const points = document.createElement("span");
         points.className = "standingPoints";
-        points.textContent = `${player.points} punten`;
+        points.textContent = t("games.sinkOrWin.score.playerPoints", {
+            points: player.points
+        });
 
         row.append(info, points);
         standingsList.append(row);
@@ -1378,8 +1427,8 @@ function toggleStandings() {
 
     standingsSection.hidden = !isOpening;
     standingsButton.textContent = isOpening
-        ? "Tussenstand sluiten"
-        : "Tussenstand bekijken";
+        ? t("games.sinkOrWin.score.closeStandings")
+        : t("games.sinkOrWin.score.viewStandings");
 }
 
 /* Gebeurtenissen */
@@ -1389,13 +1438,15 @@ confirmHoleButton.addEventListener("click", confirmHole);
 editScoresButton.addEventListener("click", editScores);
 standingsButton.addEventListener("click", toggleStandings);
 
-newGameButton.addEventListener("click", () => {
+function startNewGame() {
     localStorage.removeItem(GAME_STORAGE_KEY);
     localStorage.removeItem(PLAYER_STORAGE_KEY);
     localStorage.removeItem(ROUND_STORAGE_KEY);
 
     window.location.href = "baan.html";
-});
+}
+
+holeResultNewGameButton.addEventListener("click", startNewGame);
 
 challengeToggleButton.addEventListener("click", () => {
     const isOpen = challengeToggleButton.getAttribute("aria-expanded") !== "true";

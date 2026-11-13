@@ -19,8 +19,8 @@
 <main class="page overviewPage">
 
     <header class="pageHeader">
-        <h1>Flightindeling</h1>
-        <p class="subtitle">De definitieve verdeling is klaar!</p>
+        <h1 data-i18n="games.flightBuilder.results.title">Flightindeling </h1>
+        <p class="subtitle" data-i18n="games.flightBuilder.results.description">De definitieve verdeling is klaar!</p>
     </header>
 
     <section class="pageContent">
@@ -28,17 +28,17 @@
         <section class="overviewStats">
             <div class="overviewStat">
                 <span id="playerCount">0</span>
-                <span>Spelers</span>
+                <span data-i18n="games.flightBuilder.results.players">Spelers</span>
             </div>
 
             <div class="overviewStat">
                 <span id="flightCount">0</span>
-                <span>Flights</span>
+                <span data-i18n="games.flightBuilder.results.flights">Flights</span>
             </div>
         </section>
 
         <section class="overviewMethod">
-            <span class="overviewLabel">Verdeelmethode</span>
+            <span class="overviewLabel" data-i18n="games.flightBuilder.results.distributionMethod">Verdeelmethode</span>
             <span id="distributionMethod"></span>
         </section>
 
@@ -47,7 +47,7 @@
     </section>
 
     <footer class="pageFooter">
-        <button type="button" id="backButton" class="secondaryButton">
+        <button type="button" id="backButton" class="secondaryButton" data-i18n="games.flightBuilder.results.adjustFlights">
             ← Indeling aanpassen
         </button>
     </footer>
@@ -55,8 +55,9 @@
 </main>
 
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="../js/overzicht.js"></script>
-<script src="../../../navigation.js"></script>
+<script type="module" src="../js/overzicht.js"></script>
+<script type="module"  src="../../../navigation.js"></script>
+<script type="module" src="../../../home.js"></script>
 <script src="../../js/icons.js"></script>
 
 <script>

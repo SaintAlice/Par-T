@@ -1,3 +1,5 @@
+import { t, initLanguage } from "../../../../js/shared/i18n/i18n.js";
+
 let currentPlayerIndex = 0;
 let currentRotation = 0;
 
@@ -41,11 +43,13 @@ const teeDistribution =
 
 let playerTees = {};
 
+initLanguage();
 init();
 
 function init() {
     if (players.length === 0 || tees.length === 0) {
-        alert("Er zijn geen spelers of tee's geselecteerd.");
+        alert(t("games.spinTheTee.players.errors.minimumPlayers") + " " +
+            t("games.spinTheTee.players.errors.minimumTees"));
         location.href = "spelers.html";
         return;
     }
@@ -92,9 +96,11 @@ function createPlayerTees() {
 
     if (spelersZonderTee.length > 0) {
         alert(
-            "Geen beschikbare tee voor: " +
-            spelersZonderTee.join(", ") +
-            ". Pas de instellingen aan."
+            t("games.spinTheTee.players.errors.playersWithoutTees", {
+                names: spelersZonderTee.join(", ")
+            }) +
+            " " +
+            t("games.spinTheTee.players.errors.teeSettings")
         );
 
         location.href = "games/spin-the-tee/spelers.html";
@@ -246,12 +252,13 @@ function showCurrentPlayer() {
     currentPlayer.textContent =
         results[currentPlayerIndex].player.charAt(0).toUpperCase() +
         results[currentPlayerIndex].player.slice(1) +
-        " draait";
+        " " +
+        t("games.spinTheTee.spinning.currentPlayer");
 
     if (currentPlayerIndex === 0) {
-        statusText.innerHTML = "Tik op het rad om te draaien";
+        statusText.textContent = t("games.spinTheTee.spinning.tapWheel");
     } else {
-        statusText.innerHTML = "";
+        statusText.textContent = "";
     }
 }
 
@@ -301,8 +308,17 @@ function showResult() {
         "Oranje": "🟠"
     };
 
-    statusText.innerHTML =
-        `${kleurEmoji[tee]} <strong>${speler}</strong> speelt vanaf <strong>${tee}</strong>`;
+    statusText.textContent = t("games.spinTheTee.spinning.result", {
+        emoji: kleurEmoji[tee],
+        player: speler,
+        tee: t("common.tees." + {
+            "Wit": "white",
+            "Geel": "yellow",
+            "Blauw": "blue",
+            "Rood": "red",
+            "Oranje": "orange"
+        }[tee])
+    });
 
     setTimeout(function() {
         nextPlayer();

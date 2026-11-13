@@ -1,3 +1,5 @@
+import { t, initLanguage } from "../../../js/shared/i18n/i18n.js";
+
 const STORAGE_KEY = "sinkOrWinCourses";
 const ROUND_STORAGE_KEY = "sinkOrWinRoundSetup";
 const GAME_STORAGE_KEY = "sinkOrWinGame";
@@ -43,6 +45,8 @@ let courses = [];
 let selectedCourse = null;
 let selectedRound = null;
 
+initLanguage();
+
 /* Bestaand spel controleren */
 
 function checkExistingGame() {
@@ -56,7 +60,7 @@ function checkExistingGame() {
         );
 
         if (!existingGamePrompt) {
-            console.error("Popup-element #existingGamePrompt ontbreekt in baan.html.");
+            console.error(t("games.sinkOrWin.errors.missingExistingGamePrompt"));
             return;
         }
 
@@ -77,7 +81,7 @@ function checkExistingGame() {
         existingGamePrompt.hidden = !hasUnfinishedGame;
 
     } catch (error) {
-        console.error("Bestaand spel kon niet worden gecontroleerd.", error);
+        console.error(t("games.sinkOrWin.errors.checkExistingGame"), error);
     }
 }
 
@@ -117,7 +121,7 @@ function loadCourses() {
         renderCourses();
 
     } catch (error) {
-        console.error("Golfbanen konden niet worden geladen.", error);
+        console.error(t("games.sinkOrWin.errors.loadCourses"), error);
         courses = [...defaultCourses];
         saveCourses();
         renderCourses();
@@ -146,7 +150,9 @@ function renderCourses() {
 
         const details = document.createElement("span");
         details.className = "courseCardDetails";
-        details.textContent = `${course.holes.length} holes`;
+        details.textContent = t("games.sinkOrWin.course.holeCount", {
+            count: course.holes.length
+        });
 
         card.append(name, details);
 
@@ -178,7 +184,7 @@ function renderRoundOptions() {
     const availableRounds = [
         {
             id: "frontNine",
-            label: "Hole 1 t/m 9",
+            label: t("games.sinkOrWin.rounds.frontNine"),
             start: 1,
             end: 9
         }
@@ -188,13 +194,13 @@ function renderRoundOptions() {
         availableRounds.push(
             {
                 id: "backNine",
-                label: "Hole 10 t/m 18",
+                label: t("games.sinkOrWin.rounds.backNine"),
                 start: 10,
                 end: 18
             },
             {
                 id: "fullRound",
-                label: "Hole 1 t/m 18",
+                label: t("games.sinkOrWin.rounds.fullRound"),
                 start: 1,
                 end: 18
             }
@@ -242,10 +248,10 @@ function updateContinueButton() {
     continueButton.disabled = !isReady;
 
     continueButton.textContent = isReady
-        ? "Verder →"
-        : selectedCourse
-            ? "Kies het aantal holes →"
-            : "Kies eerst een baan →";
+    ? t("common.continue")
+    : selectedCourse
+        ? t("games.sinkOrWin.course.chooseHoles")
+        : t("games.sinkOrWin.course.chooseCourse");
 }
 
 /* Doorgaan naar spelers */

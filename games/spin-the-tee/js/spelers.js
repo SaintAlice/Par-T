@@ -1,10 +1,11 @@
+import { t, initLanguage } from "../../../../js/shared/i18n/i18n.js";
 
 const TEE_OPTIONS = [
-    { id: "wit", name: "Wit", value: "Wit", color: "#FFFFFF" },
-    { id: "geel", name: "Geel", value: "Geel", color: "#F5D547" },
-    { id: "blauw", name: "Blauw", value: "Blauw", color: "#4388D5" },
-    { id: "rood", name: "Rood", value: "Rood", color: "#E34F4F" },
-    { id: "oranje", name: "Oranje", value: "Oranje", color: "#F39A42" }
+    { id: "wit", nameKey: "common.tees.white", value: "Wit", color: "#FFFFFF" },
+    { id: "geel", nameKey: "common.tees.yellow", value: "Geel", color: "#F5D547" },
+    { id: "blauw", nameKey: "common.tees.blue", value: "Blauw", color: "#4388D5" },
+    { id: "rood", nameKey: "common.tees.red", value: "Rood", color: "#E34F4F" },
+    { id: "oranje", nameKey: "common.tees.orange", value: "Oranje", color: "#F39A42" }
 ];
 
 let allPlayers =
@@ -28,15 +29,12 @@ const teeDistributionOptions = document.querySelectorAll(
     'input[name="teeDistribution"]');
 const validationMessage = document.getElementById("gameValidationMessage");
 
+initLanguage();
 init();
-
-
-/* INITIALISATIE */
 
 function init() {
     migratePlayerSettings();
 
-    // Algemene tee-selectie instellen.
     document.querySelectorAll("[data-tee]").forEach(function(checkbox) {
         checkbox.checked = selectedTees.includes(checkbox.value);
 
@@ -45,7 +43,6 @@ function init() {
         });
     });
 
-    // Algemene tee-selectie in- en uitklappen.
     generalTeesToggle.addEventListener("click", function() {
         const isOpen =
             generalTeesToggle.getAttribute("aria-expanded") === "true";
@@ -55,7 +52,6 @@ function init() {
 
     setGeneralTeesOpen(false);
 
-    // Spelers toevoegen.
     addPlayerButton.addEventListener("click", addPlayer);
 
     playerInput.addEventListener("keydown", function(event) {
@@ -64,15 +60,11 @@ function init() {
         }
     });
 
-    // Spel starten.
     nextButton.addEventListener("click", startGame);
 
     renderGeneralTees();
     renderPlayers();
 }
-
-
-/* OPSLAG EN MIGRATIE */
 
 function savePlayers() {
     localStorage.setItem("allPlayers", JSON.stringify(allPlayers));
@@ -91,7 +83,6 @@ function migratePlayerSettings() {
             updated = true;
         }
 
-        // Verwijder eventuele ongeldige tee-ID's.
         const validTees = player.availableTees.filter(function(teeId) {
             return TEE_OPTIONS.some(tee => tee.id === teeId);
         });
@@ -106,8 +97,6 @@ function migratePlayerSettings() {
         savePlayers();
     }
 }
-
-/* ALGEMENE TEE-INSTELLINGEN*/
 
 function setGeneralTeesOpen(isOpen) {
     generalTeesContent.hidden = !isOpen;
@@ -132,7 +121,6 @@ function updateGeneralTee(teeValue, isChecked) {
             return tee !== teeValue;
         });
 
-        // Een algemeen uitgeschakelde tee wordt bij iedereen verwijderd.
         allPlayers.forEach(function(player) {
             player.availableTees =
                 player.availableTees.filter(function(tee) {
@@ -145,7 +133,6 @@ function updateGeneralTee(teeValue, isChecked) {
 
     saveTees();
 
-    // Werk ook de zichtbare algemene vinkjes bij.
     document.querySelectorAll("[data-tee]").forEach(function(checkbox) {
         checkbox.checked = selectedTees.includes(checkbox.value);
     });
@@ -157,8 +144,6 @@ function updateGeneralTee(teeValue, isChecked) {
 function renderGeneralTees() {
     updateNextButton();
 }
-
-/* SPELERS TOEVOEGEN EN VERWIJDEREN*/
 
 function addPlayer() {
     const inputName = playerInput.value.trim();
@@ -173,7 +158,7 @@ function addPlayer() {
     });
 
     if (bestaatAl) {
-        alert("Deze speler bestaat al.");
+        alert(t("games.spinTheTee.players.errors.PlayerExcists"));
         return;
     }
 
@@ -200,15 +185,11 @@ function removePlayer(id) {
     renderPlayers();
 }
 
-/* BESCHIKBARE TEE'S*/
-
 function getAvailableTees(player) {
     return selectedTees.filter(function(tee) {
         return player.availableTees.includes(tee.toLowerCase());
     });
 }
-
-/* SPELERS WEERGEVEN*/
 
 function renderPlayers() {
     playerList.innerHTML = "";
@@ -241,14 +222,13 @@ function renderPlayers() {
         const actions = document.createElement("div");
         actions.className = "playerActions";
 
-        // Instellingenknop.
         const settingsButton = document.createElement("button");
         settingsButton.className = "settingsButton";
         settingsButton.type = "button";
         settingsButton.setAttribute("aria-expanded", "false");
         settingsButton.setAttribute(
-            "aria-label",
-            "Tee-instellingen voor " + player.name
+            "aria-label", 
+            t("games.spinTheTee.players.settingsLabel") + " " + player.name
         );
 
         const arrow = document.createElement("span");
@@ -257,14 +237,13 @@ function renderPlayers() {
 
         settingsButton.append(arrow);
 
-        // Verwijderknop.
         const removeButton = document.createElement("button");
         removeButton.className = "removeButton";
         removeButton.type = "button";
         removeButton.textContent = "🗑️";
         removeButton.setAttribute(
             "aria-label",
-            "Verwijder " + player.name
+            t("games.spinTheTee.players.removePlayer") + " " + player.name
         );
 
         removeButton.addEventListener("click", function() {
@@ -276,10 +255,8 @@ function renderPlayers() {
         info.append(avatar, details);
         top.append(info, actions);
 
-        // Persoonlijke tee-instellingen.
         const settings = createPlayerTeeSettings(player);
 
-        // Persoonlijke instellingen openen en sluiten.
         settingsButton.addEventListener("click", function() {
             const isOpen = settings.hidden;
 
@@ -311,7 +288,7 @@ function createPlayerTeeSettings(player) {
     const settingsTitle = document.createElement("p");
     settingsTitle.className = "teeSettingsTitle";
     settingsTitle.textContent =
-        "Welke tee's mag deze speler gebruiken?";
+        t("games.spinTheTee.players.selectTeesFor", { player: player.name });
 
     const teeOptions = document.createElement("div");
     teeOptions.className = "teeOptions";
@@ -326,7 +303,7 @@ function createPlayerTeeSettings(player) {
         checkbox.type = "checkbox";
         checkbox.setAttribute(
             "aria-label",
-            tee.name + " voor " + player.name
+            t(tee.nameKey) + " voor " + player.name
         );
 
         checkbox.checked =
@@ -345,7 +322,7 @@ function createPlayerTeeSettings(player) {
 
         const teeName = document.createElement("span");
         teeName.className = "teeName";
-        teeName.textContent = tee.name;
+        teeName.textContent = t(tee.nameKey);
 
         label.append(checkbox, color, check, teeName);
         teeOptions.append(label);
@@ -362,7 +339,6 @@ function createPlayerTeeSettings(player) {
 
 function updatePlayerTee(player, tee, isChecked) {
     if (isChecked) {
-        // Een algemeen uitgeschakelde tee mag niet persoonlijk worden ingeschakeld.
         if (!selectedTees.includes(tee.value)) {
             return;
         }
@@ -379,7 +355,6 @@ function updatePlayerTee(player, tee, isChecked) {
 
     savePlayers();
 
-    // Werk alleen de teller en validatie bij.
     const card = document.querySelector(
         `.player[data-player-id="${player.id}"]`
     );
@@ -395,17 +370,16 @@ function updatePlayerTee(player, tee, isChecked) {
 function updatePlayerCount(player, count, card) {
     const available = getAvailableTees(player);
 
-    count.textContent =
-        available.length + " van " + selectedTees.length + 
-        " tee's beschikbaar";
+    count.textContent = t("games.spinTheTee.players.availableTeesCount", {
+        available: available.length,
+        total: selectedTees.length
+    });
 
     card.classList.toggle(
         "playerHasNoTees",
         available.length === 0
     );
 }
-
-/* VALIDATIE EN STARTEN */
 
 function updateNextButton() {
     const spelersGenoeg = allPlayers.length >= 2;
@@ -418,11 +392,11 @@ function updateNextButton() {
     let message = "";
 
     if (!spelersGenoeg) {
-        message = "Voeg minimaal twee spelers toe.";
+        message = t("games.spinTheTee.errors.notEnoughPlayers");
     } else if (!teesGenoeg) {
-        message = "Selecteer minimaal twee algemene tee's.";
+        message = t("games.spinTheTee.errors.notEnoughTees");
     } else if (spelersZonderTee.length > 0) {
-        message = "Selecteer minimaal één tee voor: " +
+        message = t("games.spinTheTee.errors.playersWithoutTee") + " " +
              spelersZonderTee.map(player => player.name).join(", ") + ".";
     }
 
@@ -458,7 +432,7 @@ function startGame() {
     localStorage.setItem(
         "teeDistribution",
         selectedDistribution ? selectedDistribution.value : "random"
-    );  
+    );
 
     location.href = "draaien.html";
 }

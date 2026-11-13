@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#194D3A">
 
-    <title>Spelers - Sink or Win | PAR-TEE</title>
+    <title data-i18n="games.sinkOrWin.playersPage.pageTitle">Spelers - Sink or Win | PAR-TEE</title>
 
     <link rel="stylesheet" href="../spin-the-tee/css/style.css">
     <link rel="stylesheet" href="../spin-the-tee/css/spelers.css">
@@ -21,8 +21,8 @@
 <main class="page playersPage">
 
     <header class="pageHeader">
-        <h1>Spelers</h1>
-        <p class="subtitle">Wie doen er vandaag mee?</p>
+        <h1 data-i18n="games.sinkOrWin.playersPage.title">Spelers</h1>
+        <p class="subtitle" data-i18n="games.sinkOrWin.playersPage.subtitle">Wie doen er vandaag mee?</p>
     </header>
 
     <section class="pageContent">
@@ -32,14 +32,17 @@
             <input
                 type="text"
                 id="playerInput"
+                data-i18n-placeholder="games.sinkOrWin.playersPage.playerName"
+                data-i18n-aria-label="games.sinkOrWin.playersPage.playerName"
                 placeholder="Naam speler"
                 aria-label="Naam speler"
                 maxlength="30"
                 autocomplete="off">
 
-            <button
+             <button
                 type="button"
                 id="addPlayerButton"
+                data-i18n-aria-label="games.sinkOrWin.playersPage.addPlayer"
                 aria-label="Speler toevoegen">
                 +
             </button>
@@ -58,8 +61,8 @@
                     <span class="settingsIcon" aria-hidden="true">⚙</span>
 
                     <span class="generalTeesHeading">
-                        <strong>Spelinstellingen</strong>
-                        <span id="selectedModeDescription">
+                        <strong data-i18n="games.sinkOrWin.playersPage.settingsTitle">Spelinstellingen</strong>
+                        <span id="selectedModeDescription" data-i18n="games.sinkOrWin.playersPage.selectedModeDescription">
                             Spelen zonder handicap
                         </span>
                     </span>
@@ -73,8 +76,8 @@
                     hidden>
 
                     <section class="settingsSection">
-                        <h2>Spelvariant</h2>
-                        <p class="settingsDescription">
+                        <h2 data-i18n="games.sinkOrWin.playersPage.gameMode">Spelvariant</h2>
+                        <p class="settingsDescription" data-i18n="games.sinkOrWin.playersPage.settingSubtitle">
                             Kies hoe de scores worden vergeleken.
                         </p>
 
@@ -85,7 +88,7 @@
                                     name="gameMode"
                                     value="scratch"
                                     checked>
-                                <span>Scratch</span>
+                                <span data-i18n="games.sinkOrWin.playersPage.variantScratch">Scratch</span>
                             </label>
 
                             <label class="variantOption">
@@ -93,7 +96,7 @@
                                     type="radio"
                                     name="gameMode"
                                     value="handicap">
-                                <span>Handicap</span>
+                                <span data-i18n="games.sinkOrWin.playersPage.variantHandicap">Handicap</span>
                             </label>
                         </div>
                     </section>
@@ -119,7 +122,8 @@
             type="button"
             id="nextButton"
             class="primaryButton"
-            disabled>
+            disabled
+            data-i18n="games.sinkOrWin.playersPage.nextButton">
             Start de ronde →
         </button>
     </footer>
@@ -128,8 +132,9 @@
 
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="js/handicap.js"></script>
-<script src="js/spelers.js"></script>
-<script src="../../navigation.js"></script>
+<script type="module"  src="js/spelers.js"></script>
+<script type="module"  src="../../../navigation.js"></script>
+<script type="module" src="../../../home.js"></script>
 <script src="../../js/icons.js"></script>
 
 </body>

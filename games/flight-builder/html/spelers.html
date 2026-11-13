@@ -6,13 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#194D3A">
 
-    <title>Spelers - Flight Builder | PAR-TEE</title>
+    <title data-i18n="games.flightBuilder.playersPage.pageTitle">Spelers - Flight Builder | PAR-TEE</title>
 
     <link rel="stylesheet" href="../../spin-the-tee/css/style.css">
     <link rel="stylesheet" href="../../spin-the-tee/css/spelers.css">
     <link rel="stylesheet" href="../../../css/navigation.css">
     <link rel="stylesheet" href="../css/spelers.css">
-
 </head>
 
 <body>
@@ -20,8 +19,8 @@
 <main class="page playersPage">
 
     <header class="pageHeader">
-        <h1>Spelers</h1>
-        <p class="subtitle">Wie doen er vandaag mee?</p>
+        <h1 data-i18n="games.flightBuilder.playersPage.title">Spelers</h1>
+        <p class="subtitle" data-i18n="games.flightBuilder.playersPage.subtitle">Wie doen er vandaag mee?</p>
     </header>
 
     <section class="pageContent">
@@ -30,6 +29,8 @@
             <input
                 type="text"
                 id="playerInput"
+                data-i18n-placeholder="games.flightBuilder.playersPage.playerName"
+                data-i18n-aria-label="games.flightBuilder.playersPage.playerName"
                 placeholder="Naam speler"
                 aria-label="Naam speler"
                 maxlength="30"
@@ -38,6 +39,7 @@
             <button
                 type="button"
                 id="addPlayerButton"
+                data-i18n-aria-label="games.flightBuilder.playersPage.addPlayer"
                 aria-label="Speler toevoegen">
                 +
             </button>
@@ -55,7 +57,7 @@
                     <span class="settingsIcon" aria-hidden="true">⚙</span>
 
                     <span class="generalTeesHeading">
-                        <strong>Flight-instellingen</strong>
+                        <strong data-i18n="games.flightBuilder.playersPage.settingsTitle">Flight-instellingen</strong>
                         <span id="selectedSettingsDescription">
                             Willekeurige verdeling · 4 spelers per flight
                         </span>
@@ -70,8 +72,8 @@
                     hidden>
 
                     <section class="settingsSection">
-                        <h2>Verdeelwijze</h2>
-                        <p class="settingsDescription">
+                        <h2 data-i18n="games.flightBuilder.playersPage.distributionTitle">Verdeelwijze</h2>
+                        <p class="settingsDescription" data-i18n="games.flightBuilder.playersPage.distributionDescription">
                             Kies hoe de spelers over de flights worden verdeeld.
                         </p>
 
@@ -82,7 +84,7 @@
                                     name="distributionMethod"
                                     value="random"
                                     checked>
-                                <span>Willekeurig</span>
+                                <span data-i18n="games.flightBuilder.playersPage.methods.random">Willekeurig</span>
                             </label>
 
                             <label class="variantOption">
@@ -90,7 +92,7 @@
                                     type="radio"
                                     name="distributionMethod"
                                     value="equalHandicap">
-                                <span>Gelijk gemiddeld handicap</span>
+                                <span data-i18n="games.flightBuilder.playersPage.methods.equalHandicap">Gelijk gemiddeld handicap</span>
                             </label>
 
                             <label class="variantOption">
@@ -98,14 +100,14 @@
                                     type="radio"
                                     name="distributionMethod"
                                     value="similarHandicap">
-                                <span>Handicap spreiden</span>
+                                <span data-i18n="games.flightBuilder.playersPage.methods.similarHandicap">Handicap spreiden</span>
                             </label>
                         </div>
                     </section>
 
                     <section class="settingsSection">
-                        <h2>Flightgrootte</h2>
-                        <p class="settingsDescription">
+                        <h2 data-i18n="games.flightBuilder.playersPage.flightSizeTitle">Flightgrootte</h2>
+                        <p class="settingsDescription" data-i18n="games.flightBuilder.playersPage.flightSizeDescription">
                             Kies het gewenste maximale aantal spelers per flight.
                         </p>
 
@@ -115,7 +117,7 @@
                                     type="radio"
                                     name="playersPerFlight"
                                     value="2">
-                                <span>2 spelers</span>
+                                <span data-i18n="games.flightBuilder.playersPage.playerOption2">2 spelers</span>
                             </label>
 
                             <label class="variantOption">
@@ -123,7 +125,7 @@
                                     type="radio"
                                     name="playersPerFlight"
                                     value="3">
-                                <span>3 spelers</span>
+                                <span data-i18n="games.flightBuilder.playersPage.playerOption3">3 spelers</span>
                             </label>
 
                             <label class="variantOption">
@@ -132,7 +134,7 @@
                                     name="playersPerFlight"
                                     value="4"
                                     checked>
-                                <span>4 spelers</span>
+                                <span data-i18n="games.flightBuilder.playersPage.playerOption4">4 spelers</span>
                             </label>
                         </div>
                     </section>
@@ -157,7 +159,8 @@
             type="button"
             id="nextButton"
             class="primaryButton"
-            disabled>
+            disabled
+            data-i18n="games.flightBuilder.playersPage.nextButton">
             Flights samenstellen →
         </button>
     </footer>
@@ -165,15 +168,17 @@
 </main>
 
 <script src="https://unpkg.com/lucide@latest"></script>
-<script src="../js/spelers.js"></script>
-<script src="../../../navigation.js"></script>
-<script src="../../js/icons.js"></script>
+<script type="module" src="../js/spelers.js"></script>
+<script type="module" src="../../../navigation.js"></script>
+<script type="module" src="../../../home.js"></script>
+<<script src="../../../js/icons.js"></script>
 
-    <script>
-        window.va = window.va || function () {
-            (window.vaq = window.vaq || []).push(arguments);
-        };
-    </script>
-    <script defer src="/_vercel/insights/script.js"></script>
+<script>
+    window.va = window.va || function () {
+        (window.vaq = window.vaq || []).push(arguments);
+    };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
 </body>
 </html>
