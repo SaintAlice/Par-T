@@ -13,18 +13,16 @@ module.exports = async function handler(req, res) {
     const apiKey = process.env.GOLF_COURSES_API_KEY;
 
     if (!apiKey) {
-        console.error("Golf Courses API key is not configured.");
-
         return res.status(500).json({
             error: "Golf course service is not configured."
         });
     }
 
-    const { q, id } = req.query;
+    const { q, id, country } = req.query;
 
-    if (q && id) {
+    if (id !== undefined && (q !== undefined || country !== undefined)) {
         return res.status(400).json({
-            error: "Provide either a search query or a course ID."
+            error: "Course ID cannot be combined with search filters."
         });
     }
 
@@ -40,20 +38,36 @@ module.exports = async function handler(req, res) {
         }
 
         endpoint = `/courses/${courseId}`;
-    } else if (q !== undefined) {
-        const searchQuery = String(q).trim();
+    } else {
+        const params = new URLSearchParams();
 
-        if (searchQuery.length < 2 || searchQuery.length > 100) {
-            return res.status(400).json({
-                error: "Search query must contain between 2 and 100 characters."
-            });
+        if (q !== undefined) {
+            const searchQuery = String(q).trim();
+
+            if (searchQuery.length < 2 || searchQuery.length > 100) {
+                return res.status(400).json({
+                    error: "Search query must contain between 2 and 100 characters."
+                });
+            }
+
+            params.set("q", searchQuery);
         }
 
-        endpoint = `/courses?q=${encodeURIComponent(searchQuery)}`;
-    } else {
-        return res.status(400).json({
-            error: "Provide a search query or a course ID."
-        });
+        if (country !== undefined) {
+            const countryCode = String(country).trim().toUpperCase();
+
+            if (!/^[A-Z]{2}$/.test(countryCode)) {
+                return res.status(400).json({
+                    error: "Country must be a valid ISO2 country code."
+                });
+            }
+
+            params.set("country", countryCode);
+        }
+
+        params.set("per_page", "100");
+
+        endpoint = `/courses?${params.toString()}`;
     }
 
     try {
