@@ -56,7 +56,7 @@ const nl = {
         },
         rulesPage: {
             title: "Spelregels",
-            description: "Lees de spelregels van de PAR-TEE-spellen.",
+            subtitle: "Lees de spelregels van de PAR-TEE-spellen.",
             spinTheTee: {
                 title: "Spin the Tee",
                 description: "Laat het lot bepalen vanaf welke tee je speelt.",
