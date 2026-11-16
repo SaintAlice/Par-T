@@ -593,3 +593,36 @@
     outline: 2px solid #C8E77B;
     outline-offset: 3px;
 }
+
+#showMoreCoursesButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 42px;
+    margin: 10px auto 0;
+    padding: 9px 20px;
+    border: 1px solid #C8E77B;
+    border-radius: 999px;
+    background: #194D3A;
+    color: #F5F3EA;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 650;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#showMoreCoursesButton:hover {
+    background: #286448;
+}
+
+#showMoreCoursesButton:focus-visible {
+    outline: 2px solid #C8E77B;
+    outline-offset: 3px;
+}
+
+#showMoreCoursesButton[hidden] {
+    display: none !important;
+}
