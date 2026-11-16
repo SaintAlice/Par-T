@@ -2,6 +2,7 @@
 const nl = {
     common: {
     language: "Taal",
+    search: "Zoeken",
     settings: "Instellingen",
     startGame: "Start spel",
     gameRules: "Spelregels",
@@ -32,10 +33,10 @@ const nl = {
         multiplayer: "Multiplayer",
         gameRules: "Spelregels",
         gameRulesDescription: "Bekijk de spelregels",
-        languageCard: "Taal",
-        languageCardLabel: "NIEUW · ENGLISH",
-        languageCardDescription: "PAR-TEE is nu ook beschikbaar in het Engels.",
-        languageCardAction: "Wissel naar Engels",
+        languageCard: "Language",
+        languageCardLabel: "NEW · ENGLISH",
+        languageCardDescription: "PAR-TEE is now also available in ENGLISH.",
+        languageCardAction: "Switch to English",
         gameRulesAction: "Bekijk spelregels"
     },
 
@@ -208,7 +209,15 @@ const nl = {
         subtitle: "Verdien punten, verzamel Birdiekaarten en daag je vrienden uit.",
         description: "Speel iedere hole om punten te verdienen. Gebruik je Birdiekaarten om uitdagingen aan te gaan en probeer bovenaan het klassement te eindigen.",
         course: {
+            chooseTee: "Kies je tee",
             chooseCourse: "Kies eerst een golfbaan →",
+            searchLabel: "Zoek een golfbaan",
+            searchPlaceholder: "Zoek op naam of plaats",
+            searchError: "Golfbanen konden niet worden opgehaald. Probeer het opnieuw.",
+            searchNoResults: "Geen golfbanen gevonden.",
+            countryLabel: "Land",
+            allCountries: "Alle landen",
+            searchResults: "{{count}} golfbanen gevonden.",
             chooseHoles: "Kies het aantal holes →",
             courseNamePlaceholder: "Bijvoorbeeld Hooge Rotterdamsche",
             createCourse: "+ Nieuwe golfbaan aanmaken",
@@ -226,7 +235,14 @@ const nl = {
             resumeGame: "Verdergaan met spel",
             saveCourse: "Golfbaan opslaan",
             title: "Kies je golfbaan",
-        },
+            fetchError: "Golfbaangegevens konden niet worden opgehaald.",
+            searching: "Golfbanen zoeken...",
+            previousPage: "Vorige",
+            nextPage: "Volgende",
+            pageInfo: "Pagina {{current}} van {{total}}",
+            noResults: "Geen golfbanen gevonden.",
+            scorecardUnavailable: "Deze golfbaan heeft geen beschikbare scorekaart.",
+                    },
         playersPage: {
             addPlayer: "Speler toevoegen",
             gameMode: "Spelvariant",
@@ -316,9 +332,9 @@ const nl = {
             winsHole: "{{name}} wint de hole en verdient 3 punten."
         },
         rounds: {
-            frontNine: "Holes 1 to 9",
-            backNine: "Holes 10 to 18",
-            fullRound: "Holes 1 to 18"
+            frontNine: "Holes 1 t/m 9",
+            backNine: "Holes 10 t/m 18",
+            fullRound: "Holes 1 t/m 18"
         },
         errors: {
             checkExistingGame: "Golfbanen konden niet worden geladen.",

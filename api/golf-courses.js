@@ -1,5 +1,6 @@
 
 const API_BASE_URL = "https://api.golfcore.org/v1";
+const { APP_VERSION } = require("../js/shared/config/config.js");
 
 module.exports = async function handler(req, res) {
     if (req.method !== "GET") {
@@ -79,7 +80,7 @@ module.exports = async function handler(req, res) {
             headers: {
                 Authorization: `Bearer ${apiKey}`,
                 Accept: "application/json",
-                "User-Agent": "PAR-TEE/1.0"
+                "User-Agent": `PAR-TEE/${APP_VERSION}`
             },
             signal: AbortSignal.timeout(10000)
         });

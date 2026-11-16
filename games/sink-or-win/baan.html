@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -25,75 +26,113 @@
 
             <section class="courseSection">
 
-                <div id="courseList" class="courseList">
-                    <!-- Golfbanen worden hier weergegeven -->
+                <div class="courseSearch">
+
+                <div class="courseSearchInputGroup">
+                        <label for="courseSearchInput" data-i18n="games.sinkOrWin.course.searchLabel">
+                            Zoek een golfbaan
+                        </label>
+
+                        <input
+                            type="search"
+                            id="courseSearchInput"
+                            placeholder="Zoek op naam of plaats"
+                            data-i18n-placeholder="games.sinkOrWin.course.searchPlaceholder"
+                            autocomplete="off"
+                        >
+
+                        <button
+                            type="button"
+                            id="courseSearchButton"
+                            class="primaryButton"
+                            data-i18n="common.search"
+                        >
+                            Zoeken
+                        </button>
+                    </div>
+
+                    <div class="courseSearchActions">
+                        <select id="courseCountry">
+                            <option value="" data-i18n="games.sinkOrWin.course.allCountries">
+                                Alle landen
+                            </option>
+                        </select>
+                    </div>
+
+                    <p
+                        id="courseSearchStatus"
+                        class="courseSearchStatus"
+                        role="status"
+                        aria-live="polite"
+                        hidden
+                    ></p>
+
                 </div>
-            </section>
 
-            <section id="roundSelection" class="roundSelection" hidden>
+                <div
+                    id="courseSearchResults"
+                    class="courseSearchResults"
+                    aria-label="Zoekresultaten"
+                ></div>
 
-            <h2 data-i18n="games.sinkOrWin.course.holes">Hoeveel holes spelen jullie?</h2>
-
-            <div id="roundOptions" class="roundOptions">
-                <!-- Rondekeuzes worden hier weergegeven -->
-            </div>
-
-        </section>
-
-            <section class="createCourseSection">
-
-                <button
-                    type="button"
-                    id="createCourseButton"
-                    class="secondaryButton"
-                    data-i18n="games.sinkOrWin.course.createCourse"
-                    disabled
+                <nav
+                    id="coursePagination"
+                    class="coursePagination"
+                    aria-label="Paginering zoekresultaten"
+                    hidden
                 >
-                    + Nieuwe golfbaan aanmaken
-                </button>
+                    <button
+                        type="button"
+                        id="previousCoursePage"
+                        class="secondaryButton"
+                        disabled
+                    >
+                        Vorige
+                    </button>
+
+                    <span id="coursePageInfo" aria-live="polite"></span>
+
+                    <button
+                        type="button"
+                        id="nextCoursePage"
+                        class="secondaryButton"
+                        disabled
+                    >
+                        Volgende
+                    </button>
+                </nav>
+
+                <section class="recentCoursesSection">
+                    <div id="courseList" class="courseList"></div>
+                </section>
 
             </section>
 
             <section
-                id="courseForm"
-                class="courseForm"
+                id="selectedCourseSection"
+                class="selectedCourseSection"
                 hidden
             >
 
-                <h2 data-i18n="games.sinkOrWin.course.newCourse">Nieuwe golfbaan</h2>
-
-                <div class="formGroup">
-                    <label for="courseName" data-i18n="games.sinkOrWin.course.nameCourse">Naam golfbaan</label>
-                    <input
-                        type="text"
-                        id="courseName"
-                        placeholder="Bijvoorbeeld Hooge Rotterdamsche"
-                        data-i18n-placeholder="games.sinkOrWin.course.courseNamePlaceholder"
-                        maxlength="60"
-                    >
+                <div class="selectedCourseOverview">
+                    <div id="selectedCourseDetails"></div>
                 </div>
 
-                <div class="formGroup">
-                    <label for="holeCount" data-i18n="games.sinkOrWin.course.numberCourse">Aantal holes</label>
+            </section>
 
-                    <select id="holeCount">
-                        <option value="9" data-i18n="games.sinkOrWin.course.holeCount9">9 holes</option>
-                        <option value="18" data-i18n="games.sinkOrWin.course.holeCount18">18 holes</option>
-                    </select>
+            <section
+                id="roundSelection"
+                class="roundSelection"
+                hidden
+            >
+
+                <div class="sectionHeader">
+                    <h2 data-i18n="games.sinkOrWin.course.holes">
+                        Hoeveel holes spelen jullie?
+                    </h2>
                 </div>
 
-                <div id="holeInputs">
-                    <!-- Holegegevens worden hier weergegeven -->
-                </div>
-
-                <button
-                    type="button"
-                    id="saveCourseButton"
-                    class="primaryButton"
-                    data-i18n="games.sinkOrWin.course.saveCourse"
-                >
-                    Golfbaan opslaan
-                </button>
+                <div id="roundOptions" class="roundOptions"></div>
 
             </section>
 
@@ -122,31 +161,48 @@
 
     <section id="existingGamePrompt" class="existingGamePrompt" hidden>
         <div class="existingGameCard">
-            <h2 data-i18n="games.sinkOrWin.course.existingGametitle">Er staat nog een spel open</h2>
-            <p data-i18n="games.sinkOrWin.course.existingGame">Wil je verdergaan met je vorige ronde of een nieuw spel starten?</p>
 
-            <button type="button" id="resumeGameButton" class="primaryButton" data-i18n="games.sinkOrWin.course.resumeGame">
+            <h2 data-i18n="games.sinkOrWin.course.existingGametitle">
+                Er staat nog een spel open
+            </h2>
+
+            <p data-i18n="games.sinkOrWin.course.existingGame">
+                Wil je verdergaan met je vorige ronde of een nieuw spel starten?
+            </p>
+
+            <button
+                type="button"
+                id="resumeGameButton"
+                class="primaryButton"
+                data-i18n="games.sinkOrWin.course.resumeGame"
+            >
                 Verder gaan met spel
             </button>
 
-            <button type="button" id="startNewGameButton" class="secondaryButton" data-i18n="games.sinkOrWin.course.newGame">
+            <button
+                type="button"
+                id="startNewGameButton"
+                class="secondaryButton"
+                data-i18n="games.sinkOrWin.course.newGame"
+            >
                 Nieuw spel starten
             </button>
+
         </div>
     </section>
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <script type="module" src="js/baan.js"></script>
-    <script type="module"  src="../../../navigation.js"></script>
+    <script type="module" src="../../../navigation.js"></script>
     <script type="module" src="../../../home.js"></script>
     <script src="../../js/icons.js"></script>
 
-    <!-- Vercel Web Analytics -->
     <script>
         window.va = window.va || function () {
             (window.vaq = window.vaq || []).push(arguments);
         };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
+
 </body>
 </html>

@@ -38,7 +38,7 @@
                 iets bijzonders.
             </p>
 
-            <p class="aboutVersion">PAR-TEE · St.Alice · Versie 0.2.0 </p>
+            <p class="aboutVersion" id="appVersion"></p>
         </section>
     </main>
 
@@ -58,6 +58,12 @@
 
         initLanguage();
     </script>
+
+<script src="../js/shared/config/config.js"></script>
+<script>
+    document.querySelector("#appVersion").textContent =
+        `PAR-TEE · St.Alice · Versie ${window.PAR_TEE_CONFIG.APP_VERSION}`;
+</script>
 
 </body>
 </html>

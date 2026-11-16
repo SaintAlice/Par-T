@@ -7,11 +7,11 @@ const MAX_PLAYERS = 4;
 const STORAGE_KEY = "sinkOrWinSetup";
 
 const TEE_OPTIONS = [
-    { id: "wit", name: "Wit", color: "#FFFFFF" },
-    { id: "geel", name: "Geel", color: "#F5D547" },
-    { id: "blauw", name: "Blauw", color: "#4388D5" },
-    { id: "rood", name: "Rood", color: "#E34F4F" },
-    { id: "oranje", name: "Oranje", color: "#F39A42" }
+    { id: "white", name: "Wit", color: "#FFFFFF" },
+    { id: "yellow", name: "Geel", color: "#F5D547" },
+    { id: "blue", name: "Blauw", color: "#4388D5" },
+    { id: "red", name: "Rood", color: "#E34F4F" },
+    { id: "orange", name: "Oranje", color: "#F39A42" }
 ];
 
 const playerInput = document.querySelector("#playerInput");
@@ -116,13 +116,13 @@ function addPlayer() {
     const formattedName = inputName.charAt(0).toUpperCase() + inputName.slice(1);
 
     if (!inputName) {
-        showValidation(t(errors.enterPlayerName));
+        showValidation(t("errors.enterPlayerName"));
         playerInput.focus();
         return;
     }
 
     if (players.length >= MAX_PLAYERS) {
-        showValidation(t(errors.maxPlayersReached));
+        showValidation(t("errors.maxPlayersReached"));
         return;
     }
 
@@ -131,7 +131,7 @@ function addPlayer() {
     );
 
     if (exists) {
-        showValidation(t(errors.duplicatePlayer));
+        showValidation(t("errors.duplicatePlayer"));
         playerInput.focus();
         return;
     }
@@ -190,7 +190,7 @@ function createGenderSettings(player) {
         input.addEventListener("change", () => {
         player.gender = input.value;
 
-        if (player.gender === "dames" && player.tee === "wit") {
+        if (player.gender === "dames" && player.tee === "white") {
             player.tee = "";
         }
 
@@ -213,7 +213,7 @@ function createGenderSettings(player) {
     teeOptions.className = "teeOptions";
 
     TEE_OPTIONS
-    .filter((tee) => player.gender !== "dames" || tee.id !== "wit")
+    .filter((tee) => player.gender !== "dames" || tee.id !== "white")
     .forEach((tee) => {
         const label = document.createElement("label");
         label.className = "teeOption";
@@ -240,7 +240,7 @@ function createGenderSettings(player) {
 
         const name = document.createElement("span");
         name.className = "teeName";
-        name.textContent = t(`games.sinkOrWin.tees.${tee.id}`);
+        name.textContent = t(`common.tees.${tee.id}`);
 
         label.append(input, color, name);
         teeOptions.append(label);
@@ -262,7 +262,7 @@ function renderPlayers() {
     playerList.replaceChildren();
 
     players.forEach((player) => {
-        if (player.gender === "dames" && player.tee === "wit") {
+        if (player.gender === "dames" && player.tee === "white") {
             player.tee = "";
         }
         const card = document.createElement("article");
@@ -378,7 +378,8 @@ function updateNextButton() {
     let message = "";
 
     if (players.length < MIN_PLAYERS) {
-        message = (t(errors.minimumPlayers));
+        message = (t("errors.minimumPlayers"
+        ));
     } else if (selectedMode === "handicap") {
         const invalidHandicap = players.some((player) => {
             if (player.handicap === "") return true;
@@ -399,11 +400,11 @@ function updateNextButton() {
         );
 
         if (invalidHandicap) {
-            message = (t(errors.requiredHandicap));
+            message = (t("errors.requiredHandicap"));
         } else if (missingGender) {
-            message = (t(errors.requiredGender));
+            message = (t("errors.requiredGender"));
         } else if (missingTee) {
-            message = (t(errors.requiredTeeColor));
+            message = (t("errors.requiredTeeColor"));
         }
     }
 
@@ -422,7 +423,7 @@ function startGame() {
         );
 
         if (!roundSetup) {
-            throw new Error(t(errors.noCourseOrRoundData));
+            throw new Error(t("errors.noCourseOrRoundData"));
         }
 
         if (selectedMode === "handicap") {
@@ -445,9 +446,9 @@ function startGame() {
         window.location.href = "score.html";
 
     } catch (error) {
-        console.error(t(errors.handicapCalculationFailed), error);
+        console.error(t("errors.handicapCalculationFailed"), error);
         showValidation(
-            error.message || (t(errors.handicapCalculationFailed))
+            error.message || (t("errors.handicapCalculationFailed"))
         );
     }
 }

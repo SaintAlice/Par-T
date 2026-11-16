@@ -1,3 +1,4 @@
+
 .baanPage {
     display: flex;
     flex: 1;
@@ -17,23 +18,104 @@
     flex: 1;
     flex-direction: column;
     min-height: 0;
+    padding-bottom: 120px;
 }
 
-/* Golfbanen */
+.baanPage [hidden] {
+    display: none !important;
+}
+
+/* Golfbaan zoeken */
 
 .courseSection {
     display: flex;
     flex-direction: column;
+    gap: 18px;
+}
+
+.courseSearch {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: end;
     gap: 12px;
 }
 
-.courseSection h2,
-.roundSelection h2 {
-    margin: 0;
-    color: #FFFFFF;
-    font-size: 18px;
+.courseSearchInputGroup {
+    display: contents;
 }
 
+.courseSearch label {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.courseSearchInputGroup input {
+    grid-column: 1 / -1;
+    grid-row: 2;
+}
+
+#courseSearchButton {
+    grid-column: 1;
+    grid-row: 3;
+    width: 220px;
+    min-height: 60px;
+    flex-shrink: 0;
+}
+
+.courseSearchActions {
+    grid-column: 2;
+    grid-row: 3;
+    display: flex;
+    align-items: flex-end;
+    min-width: 0;
+}
+
+.courseSearch input,
+.courseSearch select {
+    min-height: 52px;
+    padding: 12px 16px;
+    border: 2px solid transparent;
+    border-radius: 14px;
+    background: #F5F3EA;
+    color: #194D3A;
+    font: inherit;
+    box-sizing: border-box;
+}
+
+.courseSearch input {
+    width: 100%;
+}
+
+.courseSearch select {
+    width: 100%;
+    min-height: 42px;
+    padding: 8px 12px;
+}
+
+.courseSearch input:focus,
+.courseSearch select:focus {
+    border-color: #C8E77B;
+    outline: none;
+}
+
+.courseSearchStatus {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.courseSearchStatus.isError {
+    color: #FFD0C7;
+}
+
+/* Zoekresultaten en recente golfbanen */
+
+.courseSearchResults,
 .courseList {
     display: flex;
     flex-direction: column;
@@ -48,31 +130,184 @@
     gap: 5px;
     padding: 16px 18px;
     border: 2px solid transparent;
-    border-radius: 18px;
+    border-radius: 16px;
     background: #194D3A;
     color: #F5F3EA;
     text-align: left;
     cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .courseCardName {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
+    line-height: 1.35;
 }
 
 .courseCardDetails {
     color: #DDE7D8;
     font-size: 14px;
+    line-height: 1.4;
 }
 
 .courseCard.isSelected {
+    border-color: #C8E77B;
+}
+
+.courseCard:focus-visible {
+    outline: 2px solid #C8E77B;
+    outline-offset: 3px;
+}
+
+/* Paginering */
+
+.coursePagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+/* Geselecteerde golfbaan */
+
+.selectedCourseSection {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.selectedCourseOverview {
+    padding: 20px;
+    border: 1px solid rgba(200, 231, 123, 0.6);
+    border-radius: 18px;
+    background: rgba(25, 77, 58, 0.96);
+    color: #F5F3EA;
+}
+
+#selectedCourseDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#selectedCourseDetails h2 {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 21px;
+    font-weight: 750;
+    line-height: 1.25;
+}
+
+#selectedCourseDetails p {
+    margin: 0;
+    color: #DDE7D8;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#selectedCourseDetails .selectedCourseMeta {
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+/* Tee-selectie */
+
+.teeSelection {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.sectionHeader h2,
+.teeSelection h2 {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 19px;
+    font-weight: 750;
+}
+
+.teeOptions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.teeOption {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    min-width: 0;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 16px;
+    background: rgba(245, 243, 234, 0.96);
+    color: #194D3A;
+}
+
+.teeOption strong {
+    font-size: 16px;
+    font-weight: 750;
+    line-height: 1.3;
+}
+
+.teeOption span {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.teeOption span:last-child {
+    color: #526B5B;
+    font-weight: 600;
+}
+
+/* Holekeuze */
+
+.roundSelection {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.roundOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.roundOption {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 56px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.96);
+    color: #21422C;
+    font-size: 15px;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.roundOption input {
+    width: 19px;
+    height: 19px;
+    margin: 0;
+    accent-color: #194D3A;
+}
+
+.roundOption.isSelected {
     border: 2px solid #C8E77B;
+    background: #EFF5F0;
 }
 
 /* Nieuwe golfbaan */
 
 .createCourseSection {
-    margin-top: 16px;
+    margin-top: 18px;
 }
 
 #createCourseButton {
@@ -80,30 +315,22 @@
     min-height: 56px;
     padding: 14px 18px;
     border: none;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.96);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.94);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.09);
     color: #21422C;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 650;
     text-align: left;
     cursor: pointer;
 }
 
-/* Ronde selecteren */
-
-.roundSelection {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
+#createCourseButton:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
 }
 
-.roundSelection[hidden] {
-    display: none;
-}
-
-/* Nieuwe baan aanmaken */
+/* Handmatig een golfbaan aanmaken */
 
 .courseForm {
     display: flex;
@@ -112,11 +339,13 @@
     margin-top: 20px;
     padding: 20px;
     border-radius: 18px;
-    background: rgba(245, 243, 234, 0.12);
+    background: rgba(245, 243, 234, 0.94);
+    color: #194D3A;
 }
 
-.courseForm[hidden] {
-    display: none;
+.courseForm h2 {
+    margin: 0;
+    font-size: 20px;
 }
 
 .formGroup {
@@ -127,7 +356,7 @@
 
 .formGroup label {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 650;
 }
 
 .formGroup input,
@@ -135,11 +364,12 @@
     width: 100%;
     min-height: 46px;
     padding: 10px 12px;
-    border: none;
+    border: 1px solid rgba(25, 77, 58, 0.2);
     border-radius: 12px;
-    background: #F5F3EA;
+    background: #FFFFFF;
     color: #194D3A;
     font: inherit;
+    box-sizing: border-box;
 }
 
 #holeInputs {
@@ -154,6 +384,7 @@
     margin-top: 12px;
     color: #FFFFFF;
     font-size: 14px;
+    line-height: 1.5;
 }
 
 /* Volgende knop */
@@ -163,6 +394,7 @@
     flex-shrink: 0;
     justify-content: center;
     padding-top: 16px;
+    padding-bottom: 120px;
 }
 
 #continueButton {
@@ -172,46 +404,6 @@
 #continueButton:disabled {
     background: rgba(255, 255, 255, 0.75);
     color: #8A958C;
-    cursor: not-allowed;
-}
-
-/* Rondekeuze */
-
-.roundOptions {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.roundOption {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-height: 52px;
-    padding: 12px 16px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.95);
-    color: #21422C;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.roundOption input {
-    width: 18px;
-    height: 18px;
-    margin: 0;
-    accent-color: #194D3A;
-}
-
-.roundOption.isSelected {
-    border: 2px solid #C8E77B;
-    background: #EFF5F0;
-}
-
-#createCourseButton:disabled {
-    opacity: 0.45;
     cursor: not-allowed;
 }
 
@@ -280,17 +472,64 @@
 }
 
 .existingGameCard #resumeGameButton {
-    width: 100% !important;
-    max-width: 100% !important;
+    width: 100%;
+    max-width: 100%;
     align-self: stretch;
     background: #194D3A;
     color: #F5F3EA;
 }
 
 .existingGameCard #startNewGameButton {
-    width: 100% !important;
-    max-width: 100% !important;
+    width: 100%;
+    max-width: 100%;
     align-self: stretch;
     background: #DDE7D8;
     color: #194D3A;
+}
+
+/* Kleine schermen */
+
+@media (max-width: 480px) {
+    .courseSearch {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .courseSearch label {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .courseSearchInputGroup input {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    #courseSearchButton {
+        grid-column: 1;
+        grid-row: 3;
+        width: 220px;
+    }
+
+    .courseSearchActions {
+        grid-column: 1;
+        grid-row: 4;
+        width: 100%;
+    }
+
+    .courseSearchStatus {
+        grid-row: 5;
+    }
+
+    .teeOptions {
+        grid-template-columns: 1fr;
+    }
+
+    .selectedCourseOverview {
+        padding: 17px;
+    }
+
+    #selectedCourseDetails h2 {
+        font-size: 19px;
+    }
 }
