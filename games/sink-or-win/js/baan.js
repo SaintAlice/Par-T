@@ -47,9 +47,6 @@ const previousPageButton = document.querySelector("#previousCoursePage");
 const nextPageButton = document.querySelector("#nextCoursePage");
 const pageInfo = document.querySelector("#coursePageInfo");
 
-const selectedCourseSection = document.querySelector("#selectedCourseSection");
-const selectedCourseDetails = document.querySelector("#selectedCourseDetails");
-
 const roundSelection = document.querySelector("#roundSelection");
 const roundOptions = document.querySelector("#roundOptions");
 const continueButton = document.querySelector("#continueButton");
@@ -424,6 +421,10 @@ function renderSearchResults() {
         card.type = "button";
         card.className = "courseCard";
 
+        if (selectedCourse?.id === (course.slug ?? course.id)) {
+            card.classList.add("isSelected");
+        }
+
         const name = document.createElement("span");
         name.className = "courseCardName";
         name.textContent = course.name;
@@ -545,10 +546,8 @@ async function loadCourseDetails(slug) {
 
         selectedRound = null;
 
-        renderSelectedCourse();
         renderRoundOptions();
 
-        selectedCourseSection.hidden = false;
         roundSelection.hidden = false;
 
         updateContinueButton();
@@ -576,45 +575,12 @@ function selectCourse(course) {
 
     rememberCourse(selectedCourse);
 
-    renderSelectedCourse();
+    renderSearchResults();
     renderRoundOptions();
 
-    selectedCourseSection.hidden = false;
     roundSelection.hidden = false;
 
     updateContinueButton();
-}
-
-function renderSelectedCourse() {
-    selectedCourseDetails.replaceChildren();
-
-    const title = document.createElement("h2");
-    title.textContent = selectedCourse.name;
-
-    const location = document.createElement("p");
-    location.className = "selectedCourseLocation";
-    location.textContent = [
-        selectedCourse.city,
-        selectedCourse.region,
-        selectedCourse.country?.toUpperCase()
-    ].filter(Boolean).join(", ");
-
-    const details = document.createElement("p");
-    details.className = "selectedCourseMeta";
-    details.textContent = [
-        `${selectedCourse.hole_count} holes`,
-        selectedCourse.par_total
-            ? `Par ${selectedCourse.par_total}`
-            : null
-    ].filter(Boolean).join(" · ");
-
-    selectedCourseDetails.append(title);
-
-    if (location.textContent) {
-        selectedCourseDetails.append(location);
-    }
-
-    selectedCourseDetails.append(details);
 }
 
 function renderRoundOptions() {

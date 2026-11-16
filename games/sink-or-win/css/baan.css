@@ -15,10 +15,10 @@
 
 .baanPage .pageContent {
     display: flex;
-    flex: 1;
+    flex: 0 1 auto;
     flex-direction: column;
     min-height: 0;
-    padding-bottom: 120px;
+    padding-bottom: 0;
 }
 
 .baanPage [hidden] {
@@ -34,42 +34,40 @@
 }
 
 .courseSearch {
-    display: grid;
-    grid-template-columns: 220px minmax(0, 1fr);
-    align-items: end;
+    display: flex;
+    flex-direction: column;
     gap: 12px;
 }
 
 .courseSearchInputGroup {
-    display: contents;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: 10px;
 }
 
 .courseSearch label {
     grid-column: 1 / -1;
-    grid-row: 1;
     color: #FFFFFF;
     font-size: 15px;
     font-weight: 600;
 }
 
 .courseSearchInputGroup input {
-    grid-column: 1 / -1;
-    grid-row: 2;
+    width: 100%;
+    min-width: 0;
 }
 
 #courseSearchButton {
-    grid-column: 1;
-    grid-row: 3;
-    width: 220px;
-    min-height: 60px;
+    width: auto;
+    min-width: 110px;
+    min-height: 52px;
     flex-shrink: 0;
 }
 
 .courseSearchActions {
-    grid-column: 2;
-    grid-row: 3;
     display: flex;
-    align-items: flex-end;
+    width: 100%;
     min-width: 0;
 }
 
@@ -85,14 +83,8 @@
     box-sizing: border-box;
 }
 
-.courseSearch input {
-    width: 100%;
-}
-
 .courseSearch select {
     width: 100%;
-    min-height: 42px;
-    padding: 8px 12px;
 }
 
 .courseSearch input:focus,
@@ -102,7 +94,6 @@
 }
 
 .courseSearchStatus {
-    grid-column: 1 / -1;
     margin: 0;
     color: #FFFFFF;
     font-size: 14px;
@@ -119,7 +110,7 @@
 .courseList {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .courseCard {
@@ -127,8 +118,8 @@
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    gap: 5px;
-    padding: 16px 18px;
+    gap: 4px;
+    padding: 12px 16px;
     border: 2px solid transparent;
     border-radius: 16px;
     background: #194D3A;
@@ -165,7 +156,51 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 14px;
+    margin-top: 4px;
+}
+
+.coursePagination button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 88px;
+    min-height: 38px;
+    padding: 8px 14px;
+    border: 1px solid rgba(200, 231, 123, 0.65);
+    border-radius: 20px;
+    background: #194D3A;
+    color: #F5F3EA;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.coursePagination button:hover:not(:disabled) {
+    border-color: #C8E77B;
+    background: #286448;
+}
+
+.coursePagination button:focus-visible {
+    outline: 2px solid #C8E77B;
+    outline-offset: 3px;
+}
+
+.coursePagination button:disabled {
+    border-color: rgba(245, 243, 234, 0.2);
+    background: rgba(25, 77, 58, 0.45);
+    color: rgba(245, 243, 234, 0.5);
+    cursor: not-allowed;
+}
+
+#coursePageInfo {
+    min-width: 90px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
 }
 
 /* Geselecteerde golfbaan */
@@ -267,14 +302,14 @@
 .roundSelection {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin-top: 24px;
+    gap: 10px;
+    margin-top: 16px;
 }
 
 .roundOptions {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .roundOption {
@@ -393,8 +428,13 @@
     display: flex;
     flex-shrink: 0;
     justify-content: center;
-    padding-top: 16px;
-    padding-bottom: 120px;
+    padding-top: 24px;
+    padding-bottom: 150px;
+}
+
+.baanPage .pageFooter button {
+    position: relative;
+    z-index: 2;
 }
 
 #continueButton {
@@ -490,37 +530,6 @@
 /* Kleine schermen */
 
 @media (max-width: 480px) {
-    .courseSearch {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
-    .courseSearch label {
-        grid-column: 1;
-        grid-row: 1;
-    }
-
-    .courseSearchInputGroup input {
-        grid-column: 1;
-        grid-row: 2;
-    }
-
-    #courseSearchButton {
-        grid-column: 1;
-        grid-row: 3;
-        width: 220px;
-    }
-
-    .courseSearchActions {
-        grid-column: 1;
-        grid-row: 4;
-        width: 100%;
-    }
-
-    .courseSearchStatus {
-        grid-row: 5;
-    }
-
     .teeOptions {
         grid-template-columns: 1fr;
     }
@@ -531,5 +540,19 @@
 
     #selectedCourseDetails h2 {
         font-size: 19px;
+    }
+
+    .coursePagination {
+        gap: 8px;
+    }
+
+    .coursePagination button {
+        min-width: 76px;
+        padding: 8px 10px;
+    }
+
+    #coursePageInfo {
+        min-width: 82px;
+        font-size: 13px;
     }
 }
