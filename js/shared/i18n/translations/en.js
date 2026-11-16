@@ -210,7 +210,7 @@ const en = {
         description: "Play every hole to earn points. Use your Birdie Cards to challenge other players and fight your way to the top of the leaderboard.",
         course: {
             chooseTee: "Choose your tee",
-            chooseCourse: "Choose a course first →",
+            chooseCourse: "Choose a course first",
             searchLabel: "Search for a golf course",
             searchPlaceholder: "Search by name or location",
             searchError: "Could not retrieve golf courses. Please try again.",
@@ -218,7 +218,7 @@ const en = {
             countryLabel: "Country",
             allCountries: "All countries",
             searchResults: "{{count}} golf courses found.",
-            chooseHoles: "Choose the number of holes →",
+            chooseHoles: "Choose the number of holes",
             courseNamePlaceholder: "For example, Hooge Rotterdamsche",
             createCourse: "+ Create a new golf course",
             existingGame: "Would you like to continue your previous round or start a new game?",

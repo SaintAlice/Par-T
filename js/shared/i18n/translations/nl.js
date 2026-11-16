@@ -210,7 +210,7 @@ const nl = {
         description: "Speel iedere hole om punten te verdienen. Gebruik je Birdiekaarten om uitdagingen aan te gaan en probeer bovenaan het klassement te eindigen.",
         course: {
             chooseTee: "Kies je tee",
-            chooseCourse: "Kies eerst een golfbaan →",
+            chooseCourse: "Kies eerst een golfbaan",
             searchLabel: "Zoek een golfbaan",
             searchPlaceholder: "Zoek op naam of plaats",
             searchError: "Golfbanen konden niet worden opgehaald. Probeer het opnieuw.",
@@ -218,7 +218,7 @@ const nl = {
             countryLabel: "Land",
             allCountries: "Alle landen",
             searchResults: "{{count}} golfbanen gevonden.",
-            chooseHoles: "Kies het aantal holes →",
+            chooseHoles: "Kies het aantal holes",
             courseNamePlaceholder: "Bijvoorbeeld Hooge Rotterdamsche",
             createCourse: "+ Nieuwe golfbaan aanmaken",
             existingGame: "Wil je verdergaan met je vorige ronde of een nieuw spel starten?",

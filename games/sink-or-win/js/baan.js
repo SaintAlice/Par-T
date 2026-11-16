@@ -1,3 +1,4 @@
+
 import { t, initLanguage } from "../../../js/shared/i18n/i18n.js";
 
 const STORAGE_KEY = "sinkOrWinCourses";
@@ -42,10 +43,17 @@ const countrySelect = document.querySelector("#courseCountry");
 const searchResults = document.querySelector("#courseSearchResults");
 const searchStatus = document.querySelector("#courseSearchStatus");
 
+const courseDiscovery = document.querySelector("#courseDiscovery");
+const showMoreCoursesButton = document.querySelector("#showMoreCoursesButton");
+const changeCourseButton = document.querySelector("#changeCourseButton");
+
 const pagination = document.querySelector("#coursePagination");
 const previousPageButton = document.querySelector("#previousCoursePage");
 const nextPageButton = document.querySelector("#nextCoursePage");
 const pageInfo = document.querySelector("#coursePageInfo");
+
+const selectedCourseSection = document.querySelector("#selectedCourseSection");
+const selectedCourseDetails = document.querySelector("#selectedCourseDetails");
 
 const roundSelection = document.querySelector("#roundSelection");
 const roundOptions = document.querySelector("#roundOptions");
@@ -56,6 +64,8 @@ const resumeGameButton = document.querySelector("#resumeGameButton");
 const startNewGameButton = document.querySelector("#startNewGameButton");
 
 const RESULTS_PER_PAGE = 5;
+const MOBILE_RESULTS_LIMIT = 3;
+const MOBILE_BREAKPOINT = 600;
 
 let searchResultsData = [];
 let currentPage = 1;
@@ -64,6 +74,8 @@ let courses = [];
 let selectedCourse = null;
 let selectedRound = null;
 let isLoading = false;
+let showAllSearchResults = false;
+let isEditingCourse = false;
 
 initLanguage();
 
@@ -79,6 +91,12 @@ function getCurrentLanguage() {
     return document.documentElement.lang.startsWith("en")
         ? "en"
         : "nl";
+}
+
+function isMobileView() {
+    return window.matchMedia(
+        `(max-width: ${MOBILE_BREAKPOINT}px)`
+    ).matches;
 }
 
 function populateCountrySelect() {
@@ -335,8 +353,12 @@ async function searchCourses() {
     searchButton.disabled = true;
     searchResults.replaceChildren();
     pagination.hidden = true;
+    showMoreCoursesButton.hidden = true;
+
     searchResultsData = [];
     currentPage = 1;
+    showAllSearchResults = false;
+    courseDiscovery.hidden = false;
 
     setSearchStatus(
         getText(
@@ -346,9 +368,7 @@ async function searchCourses() {
     );
 
     try {
-        const params = new URLSearchParams({
-            q: query
-        });
+        const params = new URLSearchParams({ q: query });
 
         if (country) {
             params.set("country", country);
@@ -409,12 +429,22 @@ async function searchCourses() {
 function renderSearchResults() {
     searchResults.replaceChildren();
 
-    const startIndex = (currentPage - 1) * RESULTS_PER_PAGE;
+    const isMobile = isMobileView();
 
-    const currentResults = searchResultsData.slice(
-        startIndex,
-        startIndex + RESULTS_PER_PAGE
-    );
+    let currentResults;
+
+    if (isMobile) {
+        currentResults = showAllSearchResults
+            ? searchResultsData
+            : searchResultsData.slice(0, MOBILE_RESULTS_LIMIT);
+    } else {
+        const startIndex = (currentPage - 1) * RESULTS_PER_PAGE;
+
+        currentResults = searchResultsData.slice(
+            startIndex,
+            startIndex + RESULTS_PER_PAGE
+        );
+    }
 
     currentResults.forEach((course) => {
         const card = document.createElement("button");
@@ -454,15 +484,27 @@ function renderSearchResults() {
         searchResults.append(card);
     });
 
+    showMoreCoursesButton.hidden =
+        !isMobile ||
+        showAllSearchResults ||
+        searchResultsData.length <= MOBILE_RESULTS_LIMIT;
+
+    showMoreCoursesButton.textContent =
+        getCurrentLanguage() === "nl"
+            ? "Meer golfbanen"
+            : "Show more courses";
+
     updatePagination();
 }
 
 function updatePagination() {
+    const isMobile = isMobileView();
+
     const totalPages = Math.ceil(
         searchResultsData.length / RESULTS_PER_PAGE
     );
 
-    pagination.hidden = totalPages <= 1;
+    pagination.hidden = isMobile || totalPages <= 1;
 
     previousPageButton.disabled = currentPage <= 1;
     nextPageButton.disabled = currentPage >= totalPages;
@@ -495,6 +537,52 @@ function changePage(direction) {
 
     currentPage = nextPage;
     renderSearchResults();
+}
+
+function renderSelectedCourse() {
+    selectedCourseDetails.replaceChildren();
+
+    const title = document.createElement("h2");
+    title.textContent = selectedCourse.name;
+
+    const location = document.createElement("p");
+    location.className = "selectedCourseLocation";
+    location.textContent = [
+        selectedCourse.city,
+        selectedCourse.region,
+        selectedCourse.country?.toUpperCase()
+    ].filter(Boolean).join(", ");
+
+    const details = document.createElement("p");
+    details.className = "selectedCourseMeta";
+    details.textContent = [
+        `${selectedCourse.hole_count} holes`,
+        selectedCourse.par_total
+            ? `Par ${selectedCourse.par_total}`
+            : null
+    ].filter(Boolean).join(" · ");
+
+    selectedCourseDetails.append(title);
+
+    if (location.textContent) {
+        selectedCourseDetails.append(location);
+    }
+
+    selectedCourseDetails.append(details);
+}
+
+function showSelectedCourse() {
+    isEditingCourse = false;
+
+    renderSelectedCourse();
+    renderRoundOptions();
+
+    selectedCourseSection.hidden = false;
+    roundSelection.hidden = false;
+
+    courseDiscovery.hidden = true;
+
+    updateContinueButton();
 }
 
 async function loadCourseDetails(slug) {
@@ -530,6 +618,9 @@ async function loadCourseDetails(slug) {
         }
 
         selectedCourse = course;
+        selectedRound = null;
+
+        rememberCourse(selectedCourse);
 
         const totalPages = Math.ceil(
             searchResultsData.length / RESULTS_PER_PAGE
@@ -541,16 +632,7 @@ async function loadCourseDetails(slug) {
         );
 
         renderSearchResults();
-
-        rememberCourse(selectedCourse);
-
-        selectedRound = null;
-
-        renderRoundOptions();
-
-        roundSelection.hidden = false;
-
-        updateContinueButton();
+        showSelectedCourse();
 
     } catch (error) {
         console.error("GolfCore detailfout:", error);
@@ -575,10 +657,27 @@ function selectCourse(course) {
 
     rememberCourse(selectedCourse);
 
-    renderSearchResults();
-    renderRoundOptions();
+    showSelectedCourse();
+}
 
-    roundSelection.hidden = false;
+function showCourseDiscovery() {
+    isEditingCourse = true;
+    selectedRound = null;
+
+    courseDiscovery.hidden = false;
+    selectedCourseSection.hidden = true;
+    roundSelection.hidden = true;
+
+    const hasSearchResults = searchResultsData.length > 0;
+
+    document.querySelector(".recentCoursesSection").hidden =
+        hasSearchResults;
+
+    if (hasSearchResults) {
+        renderSearchResults();
+    } else {
+        renderLocalCourses();
+    }
 
     updateContinueButton();
 }
@@ -703,6 +802,14 @@ function continueToPlayers() {
     window.location.href = "spelers.html";
 }
 
+function handleViewportChange() {
+    renderSearchResults();
+
+    if (selectedCourse && !isEditingCourse) {
+        showSelectedCourse();
+    }
+}
+
 searchButton.addEventListener("click", searchCourses);
 
 searchInput.addEventListener("keydown", (event) => {
@@ -711,6 +818,13 @@ searchInput.addEventListener("keydown", (event) => {
         searchCourses();
     }
 });
+
+showMoreCoursesButton.addEventListener("click", () => {
+    showAllSearchResults = true;
+    renderSearchResults();
+});
+
+changeCourseButton.addEventListener("click", showCourseDiscovery);
 
 continueButton.addEventListener("click", continueToPlayers);
 resumeGameButton.addEventListener("click", resumeGame);
@@ -723,6 +837,10 @@ previousPageButton.addEventListener("click", () => {
 nextPageButton.addEventListener("click", () => {
     changePage(1);
 });
+
+window.matchMedia(
+    `(max-width: ${MOBILE_BREAKPOINT}px)`
+).addEventListener("change", handleViewportChange);
 
 populateCountrySelect();
 loadCourses();

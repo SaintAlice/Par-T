@@ -26,85 +26,104 @@
 
             <section class="courseSection">
 
-                <div class="courseSearch">
+                <div id="courseDiscovery" class="courseDiscovery">
 
-                <div class="courseSearchInputGroup">
-                        <label for="courseSearchInput" data-i18n="games.sinkOrWin.course.searchLabel">
-                            Zoek een golfbaan
-                        </label>
+                    <div class="courseSearch">
 
-                        <input
-                            type="search"
-                            id="courseSearchInput"
-                            placeholder="Zoek op naam of plaats"
-                            data-i18n-placeholder="games.sinkOrWin.course.searchPlaceholder"
-                            autocomplete="off"
+                        <div class="courseSearchInputGroup">
+                            <label
+                                for="courseSearchInput"
+                                data-i18n="games.sinkOrWin.course.searchLabel"
+                            >
+                                Zoek een golfbaan
+                            </label>
+
+                            <input
+                                type="search"
+                                id="courseSearchInput"
+                                placeholder="Zoek op naam of plaats"
+                                data-i18n-placeholder="games.sinkOrWin.course.searchPlaceholder"
+                                autocomplete="off"
+                            >
+
+                            <button
+                                type="button"
+                                id="courseSearchButton"
+                                class="primaryButton"
+                                data-i18n="common.search"
+                            >
+                                Zoeken
+                            </button>
+                        </div>
+
+                        <div class="courseSearchActions">
+                            <select id="courseCountry">
+                                <option
+                                    value=""
+                                    data-i18n="games.sinkOrWin.course.allCountries"
+                                >
+                                    Alle landen
+                                </option>
+                            </select>
+                        </div>
+
+                        <p
+                            id="courseSearchStatus"
+                            class="courseSearchStatus"
+                            role="status"
+                            aria-live="polite"
+                            hidden
+                        ></p>
+
+                    </div>
+
+                    <div
+                        id="courseSearchResults"
+                        class="courseSearchResults"
+                        aria-label="Zoekresultaten"
+                    ></div>
+
+                    <button
+                        type="button"
+                        id="showMoreCoursesButton"
+                        class="secondaryButton"
+                        hidden
+                    >
+                        Meer golfbanen
+                    </button>
+
+                    <nav
+                        id="coursePagination"
+                        class="coursePagination"
+                        aria-label="Paginering zoekresultaten"
+                        hidden
+                    >
+                        <button
+                            type="button"
+                            id="previousCoursePage"
+                            class="secondaryButton"
+                            disabled
                         >
+                            Vorige
+                        </button>
+
+                        <span id="coursePageInfo" aria-live="polite"></span>
 
                         <button
                             type="button"
-                            id="courseSearchButton"
-                            class="primaryButton"
-                            data-i18n="common.search"
+                            id="nextCoursePage"
+                            class="secondaryButton"
+                            disabled
                         >
-                            Zoeken
+                            Volgende
                         </button>
-                    </div>
+                    </nav>
 
-                    <div class="courseSearchActions">
-                        <select id="courseCountry">
-                            <option value="" data-i18n="games.sinkOrWin.course.allCountries">
-                                Alle landen
-                            </option>
-                        </select>
-                    </div>
-
-                    <p
-                        id="courseSearchStatus"
-                        class="courseSearchStatus"
-                        role="status"
-                        aria-live="polite"
-                        hidden
-                    ></p>
+                    <section class="recentCoursesSection">
+                        <div id="courseList" class="courseList"></div>
+                    </section>
 
                 </div>
-
-                <div
-                    id="courseSearchResults"
-                    class="courseSearchResults"
-                    aria-label="Zoekresultaten"
-                ></div>
-
-                <nav
-                    id="coursePagination"
-                    class="coursePagination"
-                    aria-label="Paginering zoekresultaten"
-                    hidden
-                >
-                    <button
-                        type="button"
-                        id="previousCoursePage"
-                        class="secondaryButton"
-                        disabled
-                    >
-                        Vorige
-                    </button>
-
-                    <span id="coursePageInfo" aria-live="polite"></span>
-
-                    <button
-                        type="button"
-                        id="nextCoursePage"
-                        class="secondaryButton"
-                        disabled
-                    >
-                        Volgende
-                    </button>
-                </nav>
-
-                <section class="recentCoursesSection">
-                    <div id="courseList" class="courseList"></div>
-                </section>
 
             </section>
 
@@ -115,7 +134,17 @@
             >
 
                 <div class="selectedCourseOverview">
+
                     <div id="selectedCourseDetails"></div>
+
+                    <button
+                        type="button"
+                        id="changeCourseButton"
+                        class="secondaryButton"
+                    >
+                        Wijzig golfbaan
+                    </button>
+
                 </div>
 
             </section>

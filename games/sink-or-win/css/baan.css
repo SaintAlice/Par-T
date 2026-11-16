@@ -113,6 +113,10 @@
     gap: 8px;
 }
 
+.courseSearchResults {
+    margin-top: 8px;
+}
+
 .courseCard {
     display: flex;
     flex-direction: column;
@@ -555,4 +559,37 @@
         min-width: 82px;
         font-size: 13px;
     }
+}
+
+.selectedCourseOverview #changeCourseButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    min-height: 38px;
+    margin-top: 8px;
+    padding: 8px 14px;
+    border: 1px solid #C8E77B;
+    border-radius: 999px;
+    background: transparent;
+    color: #F5F3EA;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.selectedCourseOverview #changeCourseButton::before {
+    content: "✎";
+    font-size: 16px;
+}
+
+.selectedCourseOverview #changeCourseButton:hover {
+    background: rgba(200, 231, 123, 0.14);
+}
+
+.selectedCourseOverview #changeCourseButton:focus-visible {
+    outline: 2px solid #C8E77B;
+    outline-offset: 3px;
 }
