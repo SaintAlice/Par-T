@@ -1,111 +1,121 @@
 
 const nl = {
     common: {
-    language: "Taal",
-    search: "Zoeken",
-    settings: "Instellingen",
-    startGame: "Start spel",
-    gameRules: "Spelregels",
-    close: "Sluiten",
-    new: "Nieuw",
-    newGameButton: "Nieuw spel →",
-    comingSoon: "Binnenkort",
-    continue: "Verder",
-    cancel: "Annuleren",
-    home: "Home",
-    games: "Spellen",
-    tees: {
-        white: "Wit",
-        yellow: "Geel",
-        blue: "Blauw",
-        red: "Rood",
-        orange: "Oranje"
-    }
+        cancel: "Annuleren",
+        close: "Sluiten",
+        comingSoon: "Binnenkort",
+        continue: "Verder",
+        games: "Spellen",
+        gameRules: "Spelregels",
+        home: "Home",
+        language: "Taal",
+        new: "Nieuw",
+        newGameButton: "Nieuw spel →",
+        search: "Zoeken",
+        settings: "Instellingen",
+        startGame: "Start spel",
+        tees: {
+            blue: "Blauw",
+            orange: "Oranje",
+            red: "Rood",
+            white: "Wit",
+            yellow: "Geel"
+        }
     },
 
     home: {
-        welcome: "WELKOM",
-        title: "Maak je ronde leuker",
         description: "Minigames voor iedere golfronde.",
-        games: "Onze spellen",
         flightBuilder: "Flight Builder",
-        flightBuilderDescription: "Verdeel je flight en daag vrienden uit!",
-        multiplayer: "Multiplayer",
+        flightBuilderDescription: "Mix je spelers en maak nieuwe flights!",
         gameRules: "Spelregels",
+        gameRulesAction: "Bekijk spelregels",
         gameRulesDescription: "Bekijk de spelregels",
+        games: "Onze spellen",
         languageCard: "Language",
-        languageCardLabel: "NEW · ENGLISH",
-        languageCardDescription: "PAR-TEE is now also available in ENGLISH.",
         languageCardAction: "Switch to English",
-        gameRulesAction: "Bekijk spelregels"
+        languageCardDescription: "PAR-TEE is now also available in ENGLISH.",
+        languageCardLabel: "NEW · ENGLISH",
+        multiplayer: "Multiplayer",
+        title: "Maak je ronde leuker",
+        welcome: "WELKOM"
     },
 
     settings: {
-        title: "Instellingen",
-        general: "Algemeen",
-        language: "Taal",
-        languageDescription: "Kies de taal van de app.",
         about: "Over PAR-TEE",
         aboutDescription: "Meer informatie over de app.",
-        gameRules: "Spelregels",
-        gameRulesDescription: "Lees de spelregels van de PAR-TEE-spellen.",
+        aboutPage: {
+            description: "PAR-TEE maakt golf leuker met interactieve minigames en nieuwe uitdagingen tijdens je ronde. Daag elkaar uit, voeg een spelelement toe en maak van iedere ronde iets bijzonders.",
+            title: "Over PAR-TEE"
+        },
         dutch: "Nederlands",
         english: "Engels",
-        aboutPage: {
-            title: "Over PAR-TEE",
-            description: "PAR-TEE maakt golf leuker met interactieve minigames en nieuwe uitdagingen tijdens je ronde. Daag elkaar uit, voeg een spelelement toe en maak van iedere ronde iets bijzonders."
-        },
+        gameRules: "Spelregels",
+        gameRulesDescription: "Lees de spelregels van de PAR-TEE-spellen.",
+        general: "Algemeen",
+        language: "Taal",
+        languageDescription: "PAR-TEE is beschikbaar in Nederlands en Engels.",
+        title: "Instellingen",
         rulesPage: {
-            title: "Spelregels",
-            subtitle: "Lees de spelregels van de PAR-TEE-spellen.",
             spinTheTee: {
-                title: "Spin the Tee",
                 description: "Laat het lot bepalen vanaf welke tee je speelt.",
                 paragraph1: "Draai aan het wiel en ontdek vanaf welke tee je speelt. De gekozen tee bepaalt vanaf welke afslagplaats je de hole of het spel speelt.",
-                paragraph2: "De beschikbare tees zijn wit, geel, blauw, rood en oranje, afhankelijk van de opties in het spel."
+                paragraph2: "De beschikbare tees zijn wit, geel, blauw, rood en oranje. Welke tees beschikbaar zijn, hangt af van de gemaakte keuzes.",
+                title: "Spin the Tee"
             },
+            subtitle: "Lees de spelregels van de PAR-TEE-spellen.",
+            title: "Spelregels",
             sinkOrWin: {
                 title: "Sink or Win",
                 description: "Verdien punten, verzamel Birdiekaarten en daag je vrienden uit.",
                 paragraph1: "Het doel van Sink or Win is om tijdens je golfronde zoveel mogelijk punten te verzamelen. Verdien punten met je scores, verzamel Birdiekaarten en daag andere spelers uit om extra punten te winnen.",
+
                 paragraph2title: "Punten verdienen",
-                paragraph2: "Iedere hole biedt de mogelijkheid om punten te verdienen. Heb je als enige de beste score op een hole? Dan verdien je 3 punten. Delen meerdere spelers de beste score, dan ontvangt iedere speler 1 punt. De overige spelers verdienen geen punten.",
+                paragraph2: "Op iedere hole kun je punten verdienen. Heb je als enige de beste score? Dan verdien je 3 punten. Is het gelijkspel? Dan ontvangt iedere speler met de beste score 1 punt. De overige spelers verdienen geen punten.",
+
                 paragraph3title: "Birdiekaarten verzamelen",
-                paragraph3: "Speel je een birdie of beter, dan verdien je een Birdiekaart. Bij Scratch wordt gekeken naar je bruto score en bij Handicap naar je netto score. Met een Birdiekaart kun je een andere speler uitdagen voor extra punten.",
+                paragraph3: "Scoor je een birdie of beter, dan verdien je een Birdiekaart. In Scratch-modus telt je bruto score en in Handicap-modus je netto score. Met een Birdiekaart kun je een andere speler uitdagen voor extra punten.",
+
                 paragraph4title: "Uitdagingen",
-                paragraph4: "Met een Birdiekaart kun je een andere speler uitdagen. Je kiest een tegenstander en bepaalt zelf hoeveel punten je inzet. Beide spelers moeten voldoende punten hebben om de uitdaging aan te gaan.",
-                paragraph5: "Win je de uitdaging, dan ontvang je de inzet. Verlies je, dan betaal je de afgesproken punten. Bij gelijkspel worden er geen punten uitgewisseld.",
-                paragraph6: "Iedere uitdaging kost één Birdiekaart. Je kunt meerdere spelers uitdagen, maar dezelfde speler mag je niet twee keer op één hole uitdagen.",
+                paragraph4: "Gebruik een Birdiekaart om een andere speler uit te dagen. Kies je tegenstander en bepaal hoeveel punten je wilt inzetten. Beide spelers moeten voldoende punten hebben om de uitdaging aan te gaan.",
+                paragraph5: "Win je de uitdaging? Dan ontvang je de inzet van je tegenstander. Verlies je? Dan betaal je het afgesproken aantal punten. Bij gelijkspel worden er geen punten uitgewisseld.",
+                paragraph6: "Iedere uitdaging kost één Birdiekaart. Je kunt meerdere spelers uitdagen, maar je mag dezelfde speler niet twee keer op dezelfde hole uitdagen.",
+
                 paragraph7title: "Scratch of Handicap",
-                paragraph7: "Sink or Win kan op twee manieren worden gespeeld. Bij Scratch vergelijken spelers hun bruto scores: het daadwerkelijke aantal slagen dat ze hebben gemaakt. Bij Handicap vergelijken spelers hun netto scores, waarbij de handicap wordt verrekend.",
+                paragraph7: "Je kunt Sink or Win op twee manieren spelen. In Scratch-modus wordt uitgegaan van je bruto score: het daadwerkelijke aantal slagen. In Handicap-modus wordt je playing handicap verrekend met je bruto score om je netto score te bepalen.",
+
                 paragraph8title: "Einde van het spel",
-                paragraph8: "Na de laatste hole worden de punten opgeteld. De speler met de meeste punten wint de ronde.",
-                paragraph9: "Let op: Ongebruikte Birdiekaarten uit holes 1 t/m 8 kosten aan het einde 1 punt per kaart."
+                paragraph8: "Na de laatste hole worden alle punten opgeteld. De speler met de meeste punten wint het spel.",
+                paragraph9: "Let op: Ongebruikte Birdiekaarten uit alle holes, behalve de laatste hole, kosten aan het einde van het spel 1 punt per kaart.",
 
             },
             flightBuilder: {
                 title: "Flight Builder",
-                subtitle: "Bouw je flight en speel samen.",
-                description: " Stel eenvoudig flights samen en verdeel de spelers.",
-                paragraph1: "Met Flight Builder stel je eenvoudig flights samen voor je golfdag. Voeg spelers toe, kies een verdeelmethode en bekijk de voorgestelde flightindeling.",
+                subtitle: "Stel je flights samen en speel samen.",
+                description: "Verdeel spelers eenvoudig over verschillende flights.",
+                paragraph1: "Met Flight Builder stel je eenvoudig flights samen voor je golfdag. Voeg spelers toe, kies een verdeelmethode en bekijk de voorgestelde indeling.",
+
                 paragraph2Title: "Verdeelmethode",
-                paragraph2: "Je kunt kiezen uit drie manieren om spelers over de flights te verdelen. De verdeling wordt berekend op basis van de geselecteerde methode.",
-                paragraph3Title: "Aantal spelers per flight",
+                paragraph2: "Kies uit drie manieren om spelers over de flights te verdelen. De indeling wordt automatisch berekend op basis van de gekozen methode.",
+
+                paragraph3Title: "Flightindeling", 
                 paragraph3: {
                     wildcard: "Willekeurig:",
                     wildcardDescription: "Spelers worden willekeurig over de flights verdeeld.",
-                    even: "Gelijk gemiddeld handicap:",
-                    evenDescription: "De gemiddelde handicap per flight wordt zo gelijk mogelijk verdeeld.",
+                    even: "Gelijk gemiddelde handicap:",
+                    evenDescription: "De gemiddelde handicap wordt zo gelijk mogelijk over de flights verdeeld.",
                     spread: "Handicap spreiden:",
                     spreadDescription: "Spelers met vergelijkbare handicaps worden bij elkaar ingedeeld."
                 },
-                paragraph4Title: "Flightindeling",
-                paragraph4: "Je kiest maximaal 2, 3 of 4 spelers per flight. De spelers worden zo gelijkmatig mogelijk verdeeld. Een flight bestaat altijd uit minimaal twee spelers.",
-                paragraph5: "Bij een flight met vier spelers mag de gezamenlijke handicap maximaal 110 zijn.",
+
+                paragraph4Title: "Aantal spelers per flight",
+                paragraph4: "Kies voor maximaal 2, 3 of 4 spelers per flight. De spelers worden zo gelijkmatig mogelijk verdeeld. Iedere flight bestaat uit minimaal twee spelers.",
+                paragraph5: "Een flight met vier spelers mag een gezamenlijke handicap van maximaal 110 hebben.",
+
                 paragraph6Title: "Indeling aanpassen",
-                paragraph6: "Ben je niet tevreden met de voorgestelde indeling? Dan kun je de spelers opnieuw verdelen of handmatig naar een andere flight verplaatsen.",
+                paragraph6: "Niet tevreden met de voorgestelde indeling? Verdeel de spelers opnieuw of verplaats ze handmatig naar een andere flight.",
+
                 paragraph7Title: "Indeling bevestigen",
-                paragraph7: "Eens je tevreden bent, bevestig de indeling. Je ontvangt dan een overzicht van alle flights en de bijbehorende spelers."
+                paragraph7: "Tevreden met de indeling? Bevestig deze om een overzicht van alle flights en de bijbehorende spelers te bekijken."
             }
         }
     },
@@ -337,49 +347,49 @@ const nl = {
             fullRound: "Holes 1 t/m 18"
         },
         errors: {
-            checkExistingGame: "Golfbanen konden niet worden geladen.",
-            invalidSavedGame: "De opgeslagen spelgegevens zijn ongeldig.",
-            loadCourses: "Golfbanen konden niet worden geladen.",
-            missingExistingGamePrompt: "Popup-element #existingGamePrompt ontbreekt in baan.html.",
-            noHolesAvailable: "Er zijn geen holes beschikbaar."
+            checkExistingGame: "De gegevens van het bestaande spel konden niet worden gecontroleerd.",
+            invalidSavedGame: "De opgeslagen spelgegevens zijn ongeldig of beschadigd.",
+            loadCourses: "Het laden van de golfbanen is mislukt.",
+            missingExistingGamePrompt: "Het popup-element voor het bestaande spel ontbreekt in baan.html.",
+            noHolesAvailable: "Er zijn geen holes gevonden voor deze golfbaan."
         },
-
     },
     flightBuilder: {
-        title: "Flight Builder",
-        description: "Maak je flight en speel samen.",
-        rules: {
-            title: "Spelregels - Flight Builder",
-            description: "Maak je flight en speel samen.",
-            newGameButton: "Start een nieuw spel",
-            introduction: "Met Flight Builder deel je spelers eenvoudig in flights in. Kies hoe je de flights wilt samenstellen en laat de verdeling berekenen.",
-            playersPerFlight: {
-                title: "Players per flight",
-                description: "Het aantal spelers per flight bepaalt hoe de verdeling wordt berekend. Kies een maximum van 2 tot 4 spelers per flight."
-            },
-            handicapLimit: {
-                title: "Handicap limit",
-                description: "A flight with four players may have a combined handicap of no more than 110. If the total exceeds this limit, the distribution will be adjusted."
-            },
-            flightDistribution: {
-                title: "Flight verdeling",
-                description: "Je kunt kiezen uit drie manieren om spelers over de flights te verdelen. De verdeling wordt berekend op basis van de geselecteerde methode.",
-                random: {
-                    title: "Willekeurig",
-                    description: "Spelers worden willekeurig over de flights verdeeld."
+            title: "Flight Builder",
+            description: "Stel je flights samen en speel samen.",
+            rules: {
+                title: "Spelregels - Flight Builder",
+                description: "Ontdek hoe je met Flight Builder flights samenstelt.",
+                newGameButton: "Start een nieuw spel",
+                introduction: "Met Flight Builder verdeel je eenvoudig spelers over verschillende flights. Kies hoe je de flights wilt samenstellen en laat de verdeling automatisch berekenen.",
+                playersPerFlight: {
+                    title: "Aantal spelers per flight",
+                    description: "Bepaal hoeveel spelers er maximaal in een flight mogen zitten. Je kunt kiezen uit 2, 3 of 4 spelers per flight."
                 },
-                even: {
-                    title: "Gelijkmatige gemiddelde handicap",
-                    description: "de gemiddelde handicap per flight wordt zo gelijk mogelijk gehouden."
+                handicapLimit: {
+                    title: "Handicaplimiet",
+                    description: "Een flight met vier spelers mag een gezamenlijke handicap van maximaal 110 hebben. Als de totale handicap hoger is, wordt de verdeling hierop aangepast."
                 },
-                handicapSpread: {
-                    title: "Op handicap",
-                    description: "Spelers worden verdeeld op basis van hun individuele handicaps. De speler met het laagste handicap wordt in de eerste flight geplaatst, de tweede laagste in de tweede flight, enz."
+                flightDistribution: {
+                    title: "Flightverdeling",
+                    description: "Kies uit drie manieren om spelers over de flights te verdelen. De verdeling wordt automatisch berekend op basis van de gekozen methode.",
+                    random: {
+                        title: "Willekeurig",
+                        description: "Spelers worden willekeurig over de flights verdeeld."
+                    },
+                    even: {
+                        title: "Gelijkmatige gemiddelde handicap",
+                        description: "De gemiddelde handicap wordt per flight zo gelijk mogelijk verdeeld."
+                    },
+                    handicapSpread: {
+                        title: "Op handicap",
+                        description: "Spelers worden op basis van hun individuele handicap verdeeld. De speler met de laagste handicap komt in de eerste flight, de op één na laagste in de tweede flight, enzovoort."
+                    }
+                },
+                adjustFlights: {
+                    title: "Flights aanpassen",
+                    description: "Na de automatische verdeling kun je de flightindeling bekijken en spelers handmatig naar een andere flight verplaatsen."
                 }
-            },
-            adjustFlights: {
-                title: "Flights aanpassen",
-                description: "Na de automatische verdeling kun je de verdeling bekijken en handmatig spelers tussen flights verplaatsen als je dat wenst."
             }
         },
         flights: {
@@ -450,20 +460,20 @@ const nl = {
             players: "Spelers"
         },
     },
-    },
 
-    errors: {        
+    errors: {
         duplicatePlayer: "Deze speler is al toegevoegd.",
-        enterPlayerName: "Vul eerst een spelersnaam in.",
-        handicapCalculationFailed: "Handicapberekening mislukt.",
+        enterPlayerName: "Vul eerst een naam in voor de speler.",
+        handicapCalculationFailed: "De handicap kon niet worden berekend.",
         maxPlayersReached: "Je kunt maximaal vier spelers toevoegen.",
         minimumPlayers: "Er moeten minimaal twee spelers deelnemen.",
-        noCourseOrRoundData: "Geen baan- of rondegegevens gevonden.",
-        requiredGender: "Kies voor iedere speler een geslacht.",
+        noCourseOrRoundData: "Er zijn geen baan- of rondegegevens gevonden.",
+        requiredGender: "Selecteer voor iedere speler een geslacht.",
         requiredHandicap: "Vul voor iedere speler een geldige handicap in.",
-        requiredTeeColor: "Kies voor iedere speler een speelkleur.",
-        sinkOrWinLoadSettings: "Sink or Win-instellingen konden niet worden geladen."
+        requiredTeeColor: "Selecteer voor iedere speler een speelkleur.",
+        sinkOrWinLoadSettings: "De instellingen van Sink or Win konden niet worden geladen."
     }
+ 
 };
 
 export default nl;

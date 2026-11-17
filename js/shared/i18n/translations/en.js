@@ -1,110 +1,119 @@
 
 const en = {
     common: {
-    language: "Language",
-    settings: "Settings",
-    startGame: "Start game",
-    gameRules: "Game rules",
-    close: "Close",
-    new: "New",
-    newGameButton: "New game →",
-    comingSoon: "Coming soon",
-    continue: "Continue",
-    cancel: "Cancel",
-    home: "Home",
-    games: "Games",
-    tees: {
-        white: "White",
-        yellow: "Yellow",
-        blue: "Blue",
-        red: "Red",
-        orange: "Orange"
-    }
-    },
-
-    home: {
-        welcome: "WELCOME",
-        title: "Make your round more fun",
-        description: "Mini-games for every golf round.",
-        games: "Our games",
-        flightBuilder: "Flight Builder",
-        flightBuilderDescription: "Organize your flight and challenge your friends!",
-        multiplayer: "Multiplayer",
+        cancel: "Cancel",
+        close: "Close",
+        comingSoon: "Coming soon",
+        continue: "Continue",
+        games: "Games",
         gameRules: "Game rules",
+        home: "Home",
+        language: "Language",
+        new: "New",
+        newGameButton: "New game →",
+        search: "Search",
+        settings: "Settings",
+        startGame: "Start game",
+        tees: {
+            blue: "Blue",
+            orange: "Orange",
+            red: "Red",
+            white: "White",
+            yellow: "Yellow"
+        }
+    },
+    home: {
+        description: "Mini-games for every golf round.",
+        flightBuilder: "Flight Builder",
+        flightBuilderDescription: "Mix your players and create new flights!",
+        gameRules: "Game rules",
+        gameRulesAction: "View game rules",
         gameRulesDescription: "View the game rules",
-        languageCard: "Taal",
-        languageCardLabel: "NIEUW · NEDERLANDS",
-        languageCardDescription: "PAR-TEE is nu ook beschikbaar in het Nederlands.",
-        languageCardAction: "Wissel naar Nederlands",
-        gameRulesAction: "Explore rules"
+        games: "Our games",
+        languageCard: "Language",
+        languageCardAction: "Switch to Dutch",
+        languageCardDescription: "PAR-TEE is now also available in DUTCH.",
+        languageCardLabel: "NEW · DUTCH",
+        multiplayer: "Multiplayer",
+        title: "More fun, every round.",
+        welcome: "WELCOME"
     },
 
     settings: {
-        title: "Settings",
-        general: "General",
-        language: "Language",
-        languageDescription: "Choose your app language.",
         about: "About PAR-TEE",
         aboutDescription: "More information about the app.",
-        gameRules: "Game rules",
-        gameRulesDescription: "Read the rules of PAR-TEE games.",
+        aboutPage: {
+            description: "PAR-TEE makes golf more fun with interactive mini-games and new challenges during your round. Challenge each other, add a playful twist and make every round special.",
+            title: "About PAR-TEE"
+        },
         dutch: "Dutch",
         english: "English",
-        aboutPage: {
-            title: "About PAR-TEE",
-            description: "PAR-TEE makes golf more fun with interactive mini-games and new challenges throughout your round. Challenge each other, add an element of play and make every round something special."
-        },
+        gameRules: "Game rules",
+        gameRulesDescription: "Read the rules of PAR-TEE games.",
+        general: "General",
+        language: "Language",
+        languageDescription: "PAR-TEE is available in Dutch and English.",
+        title: "Settings",
         rulesPage: {
-            title: "Game rules",
-            subtitle: "Read the rules of PAR-TEE games.",
-            spinTheTee: {
-                title: "Spin the Tee",
-                description: "Let fate decide which tee you play from.",
-                paragraph1: "Spin the wheel and discover which tee you will play from. The chosen tee determines from which tee box you will play the hole or the game.",
-                paragraph2: "The available tees are white, yellow, blue, red and orange, depending on the options in the game."
-            },
+        spinTheTee: {
+            description: "Let fate decide which tee you play from.",
+            paragraph1: "Spin the wheel to find out which tee you'll play from. The selected tee determines which tee you play from.",
+            paragraph2: "The available tees are white, yellow, blue, red and orange. Which tees are available depends on the selections made.",
+            title: "Spin the Tee"
+        },
+        subtitle: "Read the rules of PAR-TEE games.",
+        title: "Game rules",
             sinkOrWin: {
                 title: "Sink or Win",
                 description: "Earn points",
                 paragraph1: "The goal of Sink or Win is to collect as many points as possible throughout your round of golf. Earn points with your scores, collect Birdie Cards and challenge other players to win extra points.",
+
                 paragraph2title: "Earning Points",
-                paragraph2: "Each hole gives you the opportunity to earn points. If you are the only player with the best score on a hole, you earn 3 points. If multiple players tie for the best score, each player earns 1 point. All other players earn no points.",
+                paragraph2: "You can earn points on every hole. If you are the only player with the best score, you earn 3 points. If there is a tie, each player with the best score earns 1 point. All other players earn no points.",
+
                 paragraph3title: "Collecting Birdie Cards",
-                paragraph3: "If you make a birdie or better, you earn a Birdie Card. In Scratch mode, your gross score is used, while in Handicap mode, your net score is used. You can use a Birdie Card to challenge another player for extra points.",
+                paragraph3: "Score a birdie or better to earn a Birdie Card. In Scratch mode, your gross score counts, while in Handicap mode, your net score counts. Use a Birdie Card to challenge another player for extra points.",
+
                 paragraph4title: "Challenges",
-                paragraph4: "With a Birdie Card, you can challenge another player. Choose an opponent and decide how many points you want to wager. Both players must have enough points to take part in the challenge.",
-                paragraph5: "If you win the challenge, you receive the stake. If you lose, you pay the agreed number of points. In case of a tie, no points are exchanged.",
-                paragraph6: "Each challenge costs one Birdie Card. You can challenge multiple players, but you can only challenge the same player once per hole.",
+                paragraph4: "Use a Birdie Card to challenge another player. Choose your opponent and decide how many points to bet. Both players must have enough points to take part in the challenge.",
+                paragraph5: "Win the challenge? You receive the bet. Lose? You pay the agreed number of points. If the challenge ends in a tie, no points are exchanged.",
+                paragraph6: "Each challenge costs one Birdie Card. You can challenge multiple players, but you cannot challenge the same player twice on the same hole.",
+
                 paragraph7title: "Scratch or Handicap",
-                paragraph7: "Sink or Win can be played in two modes. In Scratch mode, players compare their gross scores, which represent the actual number of strokes they have taken. In Handicap mode, players compare their net scores, adjusted for their handicaps.",
-                paragraph8title: "End of the Game",
-                paragraph8: "After the final hole, all points are added up. The player with the most points wins the round.",
-                paragraph9: "Note: Unused Birdie Cards from holes 1 to 8 cost 1 point per card at the end of the game.",
+                paragraph7: "Sink or Win can be played in two modes. In Scratch mode, your gross score is used: the actual number of strokes taken. In Handicap mode, your playing handicap is deducted from your gross score to calculate your net score.",
+
+                paragraph8title: "End of the game",
+                paragraph8: "After the final hole, all points are added up. The player with the most points wins the game.",
+                paragraph9: "Note: Each unused Birdie Card from any hole except the final hole costs 1 point at the end of the game.",
             },
             flightBuilder: {
                 title: "Flight Builder",
-                subtitle: "Create your flight and play together.",
-                description: "Easily create flights and organize the players.",
-                paragraph1: "With Flight Builder, you can easily organize players into flights. Choose how you want to group the players and let PAR-TEE create the flight lineup for you.",
-                paragraph2title: "Players per flight",
-                paragraph2: "A flight consists of a maximum of four players. The distribution is adjusted based on the number of participating players.",
+                subtitle: "Create your flights and play together.",
+                description: "Easily distribute players across different flights.",
+                paragraph1: "Use Flight Builder to create flights for your golf day. Add players, choose a distribution method and view the suggested arrangement.",
+
+                paragraph2Title: "Distribution method",
+                paragraph2: "Choose from three ways to distribute players across flights. The arrangement is automatically calculated based on your selected method.",
+
+                paragraph3Title: "Flight arrangement",
                 paragraph3: {
                     wildcard: "Random:",
                     wildcardDescription: "Players are randomly distributed across the flights.",
-                    even: "Even average handicap:",
-                    evenDescription: "The average handicap per flight is kept as equal as possible.",
-                    spread: "By handicap:",
-                    spreadDescription: "Players are distributed based on their individual handicaps. The player with the lowest handicap is placed in the first flight, the second lowest in the second flight, and so on."
+                    even: "Balanced average handicap:",
+                    evenDescription: "The average handicap is distributed as evenly as possible across the flights.",
+                    spread: "Group by handicap:",
+                    spreadDescription: "Players with similar handicaps are grouped together."
                 },
-                paragraph4title: "Handicap limit",
-                paragraph4: "A flight with four players may have a combined handicap of no more than 110. If the total exceeds this limit, the distribution will be adjusted.",
-                paragraph5title: "Flight distribution",
-                paragraph5: "You can choose from three ways to distribute players into flights. The distribution is calculated based on the selected method.",
-                paragraph6title: "Adjust flights",
-                paragraph6: "After the automatic distribution, you can view the distribution and manually move players between flights if desired.",
-                paragraph7title: "Confirm distribution",
-                paragraph7: "Once you are satisfied, confirm the distribution. You will then receive an overview of all flights and the corresponding players."
 
+                paragraph4Title: "Players per flight",
+                paragraph4: "Choose a maximum of 2, 3 or 4 players per flight. Players are distributed as evenly as possible. Each flight must have at least two players.",
+                paragraph5: "A flight with four players can have a combined handicap of up to 110.",
+
+                paragraph6Title: "Adjusting the arrangement",
+                paragraph6: "Not happy with the suggested arrangement? Redistribute the players or manually move them to another flight.",
+
+                paragraph7Title: "Confirming the arrangement",
+                paragraph7: "Happy with the arrangement? Confirm it to view an overview of all flights and their assigned players."
             }
         },
     },
@@ -335,51 +344,50 @@ const en = {
             fullRound: "Holes 1 to 18"
         },
         errors: {
-            checkExistingGame: "Could not load golf courses.",
-            invalidSavedGame: "The saved game data is invalid.",
-            loadCourses: "Could not load golf courses.",
-            missingExistingGamePrompt: "Popup element #existingGamePrompt is missing from baan.html.",
-            noHolesAvailable: "There are no holes available."
-
+            checkExistingGame: "The existing game data could not be verified.",
+            invalidSavedGame: "The saved game data is invalid or corrupted.",
+            loadCourses: "Failed to load golf courses.",
+            missingExistingGamePrompt: "The popup element for the existing game is missing from baan.html.",
+            noHolesAvailable: "No holes were found for this golf course."
         },
     },
     flightBuilder: {
-        title: "Flight Builder",
-        description: "Create your flight and play together.",
-        rules: {
-            title: "Game rules - Flight Builder",
-            description: "Create your flight and play together.",
-            newGameButton: "Start a new game",
-            introduction: "With Flight Builder you can easily organize players into flights. Choose how you want to create the flights and let the distribution be calculated.",
-            playersPerFlight: {
-                title: "Players per flight",
-                description: "A flight consists of a maximum of four players. The distribution is adjusted based on the number of participating players."
+    title: "Flight Builder",
+    description: "Create your flights and play together.",
+    rules: {
+        title: "Flight Builder Rules",
+        description: "Learn how to create flights with Flight Builder.",
+        newGameButton: "Start a new game",
+        introduction: "Flight Builder makes it easy to divide players into flights. Choose how you want to arrange the flights and let the app calculate the distribution automatically.",
+        playersPerFlight: {
+            title: "Players per flight",
+            description: "Choose the maximum number of players in each flight. You can select 2, 3 or 4 players per flight."
+        },
+        handicapLimit: {
+            title: "Handicap limit",
+            description: "A flight with four players may have a combined handicap of up to 110. If the total handicap exceeds this limit, the distribution will be adjusted accordingly."
+        },
+        flightDistribution: {
+            title: "Flight distribution",
+            description: "Choose from three ways to distribute players across flights. The distribution is calculated automatically based on your selected method.",
+            random: {
+                title: "Random",
+                description: "Players are randomly distributed across the flights."
             },
-            handicapLimit: {
-                title: "Handicap limit",
-                description: "A flight with four players may have a combined handicap of no more than 110. If the total exceeds this limit, the distribution will be adjusted."
+            even: {
+                title: "Balanced average handicap",
+                description: "The average handicap is distributed as evenly as possible across the flights."
             },
-            flightDistribution: {
-                title: "Flight distribution",
-                description: "You can choose from three ways to distribute players into flights. The distribution is calculated based on the selected method.",
-                random: {
-                    title: "Random",
-                    description: "Players are randomly distributed across the flights."
-                },
-                even: {
-                    title: "Even average handicap",
-                    description: "The average handicap per flight is kept as equal as possible."
-                },
-                handicapSpread: {
-                    title: "By handicap",
-                    description: "Players are distributed based on their individual handicaps. The player with the lowest handicap is placed in the first flight, the second lowest in the second flight, and so on."
-                }
-            },
-            adjustFlights: {
-                title: "Adjust flights",
-                description: "After the automatic distribution, you can view the distribution and manually move players between flights if desired."
+            handicapSpread: {
+                title: "By handicap",
+                description: "Players are distributed based on their individual handicaps. The player with the lowest handicap is placed in the first flight, the second-lowest in the second flight, and so on."
             }
         },
+        adjustFlights: {
+            title: "Adjust flights",
+            description: "After the automatic distribution, you can review the flight arrangement and manually move players to a different flight."
+        }
+    },
         flights: {
             summary: "{{playerCount}} players distributed over {{flightCount}} flights",
             movePlayer: "Move {{player}} to another flight",
@@ -452,16 +460,16 @@ const en = {
 
     errors: {
         duplicatePlayer: "This player has already been added.",
-        enterPlayerName: "Enter a player name first.",
-        handicapCalculationFailed: "Handicap calculation failed.",
+        enterPlayerName: "Enter a name for the player first.",
+        handicapCalculationFailed: "The handicap could not be calculated.",
         maxPlayersReached: "You can add a maximum of four players.",
-        minimumPlayers: "There must be at least two players.",
-        noCourseOrRoundData: "No course or round data found.",
+        minimumPlayers: "At least two players are required.",
+        noCourseOrRoundData: "No course or round data could be found.",
         requiredGender: "Select a gender for each player.",
-        requiredHandicap: "Enter a valid handicap for every player.",
-        requiredTeeColor: "Select a playing color for each player.",
+        requiredHandicap: "Enter a valid handicap for each player.",
+        requiredTeeColor: "Select a tee color for each player.",
         sinkOrWinLoadSettings: "Sink or Win settings could not be loaded."
     }
-};
+    };
 
 export default en;
