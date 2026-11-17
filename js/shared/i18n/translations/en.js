@@ -46,6 +46,7 @@ const en = {
             description: "PAR-TEE makes golf more fun with interactive mini-games and new challenges during your round. Challenge each other, add a playful twist and make every round special.",
             title: "About PAR-TEE"
         },
+        contactDescription: "Have a question, suggestion or problem? Get in touch with us.",
         dutch: "Dutch",
         english: "English",
         gameRules: "Game rules",
@@ -116,6 +117,23 @@ const en = {
                 paragraph7: "Happy with the arrangement? Confirm it to view an overview of all flights and their assigned players."
             }
         },
+    },
+
+    contact: {
+        title: "Contact | PAR-TEE",
+        heading: "Get in touch",
+        description: "Have a question, suggestion or problem? Let us know using the form below.",
+        name: "Name",
+        namePlaceholder: "Your name (optional)",
+        email: "Email address *",
+        emailPlaceholder: "your@email.com",
+        subject: "Subject *",
+        subjectPlaceholder: "What is your message about?",
+        message: "Message *",
+        messagePlaceholder: "Type your message here...",
+        submit: "Send",
+        success: "Your message has been sent successfully.",
+        error: "Your message could not be sent. Please try again later."
     },
 
     announcement: {

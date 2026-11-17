@@ -1,4 +1,3 @@
-
 const nl = {
     common: {
         cancel: "Annuleren",
@@ -47,6 +46,8 @@ const nl = {
             description: "PAR-TEE maakt golf leuker met interactieve minigames en nieuwe uitdagingen tijdens je ronde. Daag elkaar uit, voeg een spelelement toe en maak van iedere ronde iets bijzonders.",
             title: "Over PAR-TEE"
         },
+        contact: "Contact",
+        contactDescription: "Heb je een vraag, suggestie of probleem? Neem contact met ons op.",
         dutch: "Nederlands",
         english: "Engels",
         gameRules: "Spelregels",
@@ -118,6 +119,23 @@ const nl = {
                 paragraph7: "Tevreden met de indeling? Bevestig deze om een overzicht van alle flights en de bijbehorende spelers te bekijken."
             }
         }
+    },
+
+    contact: {
+        title: "Contact | PAR-TEE",
+        heading: "Neem contact op",
+        description: "Heb je een vraag, suggestie of probleem? Laat het ons weten via onderstaand formulier.",
+        name: "Naam",
+        namePlaceholder: "Je naam (optioneel)",
+        email: "E-mailadres *",
+        emailPlaceholder: "jouw@email.nl",
+        subject: "Onderwerp *",
+        subjectPlaceholder: "Waar gaat je bericht over?",
+        message: "Bericht *",
+        messagePlaceholder: "Typ hier je bericht...",
+        submit: "Versturen",
+        success: "Je bericht is succesvol verzonden.",
+        error: "Je bericht kon niet worden verzonden. Probeer het later opnieuw."
     },
 
     announcement: {

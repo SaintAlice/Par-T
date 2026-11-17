@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#194D3A">
+
+    <title data-i18n="contact.title">Contact | PAR-TEE</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navigation.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="../css/header.css">
+</head>
+<body>
+
+    <main class="contactPage">
+        <div id="appHeader"></div>
+        <section class="contactContent">
+            <header class="contactHeader">
+                <h1 data-i18n="contact.heading">Neem contact op</h1>
+
+                <p data-i18n="contact.description">
+                    Heb je een vraag, suggestie of probleem? Laat het ons weten via onderstaand formulier.
+                </p>
+            </header>
+
+            <form id="contactForm" class="contactForm" novalidate>
+
+                <div class="contactField">
+                    <label for="contactName" data-i18n="contact.name">
+                        Naam
+                    </label>
+                    <input
+                        type="text"
+                        id="contactName"
+                        name="name"
+                        autocomplete="name"
+                        data-i18n-placeholder="contact.namePlaceholder"
+                    >
+                </div>
+
+                <div class="contactField">
+                    <label for="contactEmail" data-i18n="contact.email">
+                        E-mailadres *
+                    </label>
+                    <input
+                        type="email"
+                        id="contactEmail"
+                        name="email"
+                        autocomplete="email"
+                        required
+                        data-i18n-placeholder="contact.emailPlaceholder"
+                    >
+                </div>
+
+                <div class="contactField">
+                    <label for="contactSubject" data-i18n="contact.subject">
+                        Onderwerp *
+                    </label>
+                    <input
+                        type="text"
+                        id="contactSubject"
+                        name="subject"
+                        required
+                        data-i18n-placeholder="contact.subjectPlaceholder"
+                    >
+                </div>
+
+                <div class="contactField">
+                    <label for="contactMessage" data-i18n="contact.message">
+                        Bericht *
+                    </label>
+                    <textarea
+                        id="contactMessage"
+                        name="message"
+                        rows="6"
+                        required
+                        data-i18n-placeholder="contact.messagePlaceholder"
+                    ></textarea>
+                </div>
+
+                <button type="submit" id="contactSubmit">
+                    <span data-i18n="contact.submit">Versturen</span>
+                </button>
+
+                <p
+                    id="contactStatus"
+                    class="contactStatus"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+
+            </form>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" src="../navigation.js"></script>
+    <script type="module" src="instellingen.js"></script>
+    <script src="../header.js" data-root="../"></script>
+    <script type="module" src="contact.js"></script>
+
+</body>
+</html>

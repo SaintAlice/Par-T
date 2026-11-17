@@ -26,9 +26,12 @@ if (headerContainer) {
                 homeLink.href = `${root}index.html`;
             }
 
-            const { getLanguage } = await import(
-                `${root}js/shared/i18n/i18n.js`
+            const i18nUrl = new URL(
+                `${root}js/shared/i18n/i18n.js`,
+                document.baseURI
             );
+
+            const { getLanguage } = await import(i18nUrl.href);
 
             function updateHeaderLanguage() {
                 homeLink?.setAttribute(

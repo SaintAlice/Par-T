@@ -1,0 +1,143 @@
+
+.contactPage {
+    width: 100%;
+    max-width: 1000px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 16px 24px 110px;
+}
+
+.contactContent {
+    padding: 12px 0 20px;
+}
+
+.contactHeader {
+    margin-bottom: 20px;
+}
+
+.contactHeader h1 {
+    margin-bottom: 8px;
+    color: var(--color-primary);
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    line-height: 1.15;
+}
+
+.contactHeader p {
+    max-width: 650px;
+    margin-bottom: 0;
+    color: var(--color-muted);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 24px 32px;
+    background: var(--color-white);
+    border-radius: var(--radius-card);
+}
+
+.contactField {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.contactField label {
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.contactField input,
+.contactField textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid #DCE2DA;
+    border-radius: 12px;
+    background: #FAFAF7;
+    color: var(--color-primary);
+    font: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contactField input {
+    min-height: 44px;
+}
+
+.contactField textarea {
+    min-height: 90px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.contactField input::placeholder,
+.contactField textarea::placeholder {
+    color: #929C93;
+}
+
+.contactField input:focus,
+.contactField textarea:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(25, 77, 58, 0.1);
+}
+
+.contactForm button {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 14px;
+    background: var(--color-primary);
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.contactForm button:hover {
+    transform: translateY(-1px);
+}
+
+.contactForm button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.contactStatus {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.contactStatus:empty {
+    display: none;
+}
+
+@media (max-width: 599px) {
+    .contactPage {
+        padding: 12px 16px 110px;
+    }
+
+    .contactContent {
+        padding-top: 24px;
+    }
+
+    .contactHeader {
+        margin-bottom: 20px;
+    }
+
+    .contactForm {
+        gap: 16px;
+        padding: 22px 18px;
+    }
+
+    .contactField textarea {
+        min-height: 120px;
+    }
+}
