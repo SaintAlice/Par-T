@@ -172,7 +172,7 @@ function updateNextButton() {
     let message = "";
 
     if (players.length < MIN_PLAYERS) {
-        message = t("games.flightBuilder.errors.minimumPlayers");
+        message = t("errors.minimumPlayers");
     } else {
         message = getFlightSizeValidation();
     }
@@ -191,7 +191,7 @@ function updateNextButton() {
         });
 
         if (invalidHandicap) {
-            message = t("games.flightBuilder.errors.invalidHandicap");
+            message = t("errors.requiredHandicap");
         }
     }
 
@@ -216,7 +216,7 @@ function addPlayer() {
     );
 
     if (exists) {
-        showValidation(t("games.flightBuilder.errors.duplicatePlayer"));
+        showValidation(t("errors.duplicatePlayer"));
         playerInput.focus();
         return;
     }

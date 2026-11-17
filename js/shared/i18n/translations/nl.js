@@ -46,7 +46,7 @@ const nl = {
             description: "PAR-TEE maakt golf leuker met interactieve minigames en nieuwe uitdagingen tijdens je ronde. Daag elkaar uit, voeg een spelelement toe en maak van iedere ronde iets bijzonders.",
             title: "Over PAR-TEE"
         },
-        contact: "Contact",
+
         contactDescription: "Heb je een vraag, suggestie of probleem? Neem contact met ons op.",
         dutch: "Nederlands",
         english: "Engels",
@@ -212,12 +212,9 @@ const nl = {
             errors: {
                 minimumPlayers: "Voeg minimaal twee spelers toe.",
                 minimumTees: "Selecteer minimaal twee algemene tees.",
-                playerWithoutTee: "De volgende speler heeft geen tee toegewezen:",
+                playersWithoutTees: "De volgende speler heeft geen tee toegewezen: {{names}}.",
                 PlayerExcists: "Een speler met deze naam bestaat al. Kies een andere naam.",
-                playersWithoutTees: "De volgende spelers hebben geen tees toegewezen: ",
                 teeSettings: "Pas de tee-instellingen voor deze spelers aan.",
-                playersWithoutTees: "De volgende spelers hebben geen tee geselecteerd: {{names}}.",
-                teeSettings: "Pas de tee-instellingen voor deze spelers aan."
             },
         },
         spinning: {
@@ -296,7 +293,6 @@ const nl = {
             women: "Dames"
         },
         score: {
-
             birdieCardPenalty: "{{count}} punten aftrek voor overgebleven Birdiekaarten",
             birdieCardsAvailable: "{{count}} Birdiekaarten beschikbaar",
             challengeButton: "+ Iemand uitdagen",
@@ -450,7 +446,6 @@ const nl = {
             playerOption4: "4 spelers",
         },
         errors: {
-            minimumPlayers: "Er moet minimaal twee spelers zijn.",
             invalidDistribution: "Met {{playerCount}} spelers en een maximum van {{maxPlayers}} spelers per flight is een geldige verdeling niet mogelijk. Kies een maximum van {{suggestedMax}} spelers per flight.",
             noValidDistribution: "Er kon geen geldige flight verdeling worden gecreëerd. Controleer de handicaps en instellingen.",
             minimumPlayersPerFlight: "Elke flight moet minimaal twee spelers bevatten.",
@@ -458,9 +453,7 @@ const nl = {
             maximumHandicap: "De gecombineerde handicap van een flight met vier spelers mag niet hoger zijn dan 110.",
             checkDistribution: "Please check the flight distribution before proceeding.",
             impossibleDistribution: "Met dit aantal spelers is geen geldige flightindeling mogelijk.",
-            invalidHandicap: "Vul voor iedere speler een geldige handicap in.",
             enterPlayerName: "Vul eerst een spelersnaam in.",
-            duplicatePlayer: "Deze speler is al toegevoegd."
         },
         overview: {
             unknownMethod: "Onbekende methode",
@@ -491,7 +484,6 @@ const nl = {
         requiredTeeColor: "Selecteer voor iedere speler een speelkleur.",
         sinkOrWinLoadSettings: "De instellingen van Sink or Win konden niet worden geladen."
     }
- 
 };
 
 export default nl;

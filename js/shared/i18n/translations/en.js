@@ -152,9 +152,7 @@ const en = {
     startButton: "Start game",
     rulesButton: "Game rules",
     rulesTitle: "Game rules",
-    errors: {
-        minimumPlayers: "Add at least two players.",
-    },
+
     spinTheTee: {
         title: "Spin the Tee",
         description: "Let fate decide which tee you play from.",
@@ -213,9 +211,8 @@ const en = {
             errors: {
                 minimumPlayers: "Add at least two players.",
                 minimumTees: "Select at least two general tees.",
-                playerWithoutTee: "The following player does not have a tee assigned:  ",
+                playersWithoutTees: "The following players do not have any tees assigned: {{names}}.",
                 PlayerExcists: "A player with this name already exists. Please choose a different name.",
-                playersWithoutTees: "The following players do not have any tees assigned: ",
                 teeSettings: "Please adjust the tee settings for these players."
             },
         },
@@ -262,9 +259,10 @@ const en = {
             resumeGame: "Continue game",
             saveCourse: "Save golf course",
             title: "Choose your golf course",
+            fetchError: "Golf course details could not be retrieved.",
+            searching: "Searching for golf courses...",
             previousPage: "Previous",
             nextPage: "Next",
-            fetchError: "Golf course details could not be retrieved.",
             pageInfo: "Page {{current}} of {{total}}",
             noResults: "No golf courses found.",
             scorecardUnavailable: "This golf course has no available scorecard.",
@@ -370,40 +368,41 @@ const en = {
         },
     },
     flightBuilder: {
-    title: "Flight Builder",
-    description: "Create your flights and play together.",
-    rules: {
-        title: "Flight Builder Rules",
-        description: "Learn how to create flights with Flight Builder.",
-        newGameButton: "Start a new game",
-        introduction: "Flight Builder makes it easy to divide players into flights. Choose how you want to arrange the flights and let the app calculate the distribution automatically.",
-        playersPerFlight: {
-            title: "Players per flight",
-            description: "Choose the maximum number of players in each flight. You can select 2, 3 or 4 players per flight."
-        },
-        handicapLimit: {
-            title: "Handicap limit",
-            description: "A flight with four players may have a combined handicap of up to 110. If the total handicap exceeds this limit, the distribution will be adjusted accordingly."
-        },
-        flightDistribution: {
-            title: "Flight distribution",
-            description: "Choose from three ways to distribute players across flights. The distribution is calculated automatically based on your selected method.",
-            random: {
-                title: "Random",
-                description: "Players are randomly distributed across the flights."
+        title: "Flight Builder",
+        description: "Create your flights and play together.",
+        rules: {
+            title: "Flight Builder Rules",
+            description: "Learn how to create flights with Flight Builder.",
+            newGameButton: "Start a new game",
+            introduction: "Flight Builder makes it easy to divide players into flights. Choose how you want to arrange the flights and let the app calculate the distribution automatically.",
+            playersPerFlight: {
+                title: "Players per flight",
+                description: "Choose the maximum number of players in each flight. You can select 2, 3 or 4 players per flight."
             },
-            even: {
-                title: "Balanced average handicap",
-                description: "The average handicap is distributed as evenly as possible across the flights."
+            handicapLimit: {
+                title: "Handicap limit",
+                description: "A flight with four players may have a combined handicap of up to 110. If the total handicap exceeds this limit, the distribution will be adjusted accordingly."
             },
-            handicapSpread: {
-                title: "By handicap",
-                description: "Players are distributed based on their individual handicaps. The player with the lowest handicap is placed in the first flight, the second-lowest in the second flight, and so on."
+            flightDistribution: {
+                title: "Flight distribution",
+                description: "Choose from three ways to distribute players across flights. The distribution is calculated automatically based on your selected method.",
+                random: {
+                    title: "Random",
+                    description: "Players are randomly distributed across the flights."
+                },
+                even: {
+                    title: "Balanced average handicap",
+                    description: "The average handicap is distributed as evenly as possible across the flights."
+                },
+                handicapSpread: {
+                    title: "By handicap",
+                    description: "Players are distributed based on their individual handicaps. The player with the lowest handicap is placed in the first flight, the second-lowest in the second flight, and so on."
+                }
+            },
+            adjustFlights: {
+                title: "Adjust flights",
+                description: "After the automatic distribution, you can review the flight arrangement and manually move players to a different flight."
             }
-        },
-        adjustFlights: {
-            title: "Adjust flights",
-            description: "After the automatic distribution, you can review the flight arrangement and manually move players to a different flight."
         }
     },
         flights: {
@@ -446,7 +445,6 @@ const en = {
             playerOption4: "4 players",
         },
         errors: {
-            minimumPlayers: "There must be at least two players.",
             invalidDistribution: "With {{playerCount}} players and a maximum of {{maxPlayers}} players per flight, a valid distribution is not possible. Choose a maximum of {{suggestedMax}} players per flight.",
             noValidDistribution: "No valid flight distribution could be created. Please check the handicaps and settings.",
             minimumPlayersPerFlight: "Each flight must contain at least two players.",
@@ -454,9 +452,7 @@ const en = {
             maximumHandicap: "The combined handicap of a flight with four players may not exceed 110.",
             checkDistribution: "Please check the flight distribution before proceeding.",
             impossibleDistribution: "A valid flight distribution is not possible with this number of players.",
-            invalidHandicap: "Enter a valid handicap for every player.",
             enterPlayerName: "Enter a player name first.",
-            duplicatePlayer: "This player has already been added."
         },
         overview: {
             unknownMethod: "Unknown method",
@@ -474,7 +470,6 @@ const en = {
             players: "Players"
         },
     },
-    },
 
     errors: {
         duplicatePlayer: "This player has already been added.",
@@ -488,6 +483,6 @@ const en = {
         requiredTeeColor: "Select a tee color for each player.",
         sinkOrWinLoadSettings: "Sink or Win settings could not be loaded."
     }
-    };
+};
 
 export default en;

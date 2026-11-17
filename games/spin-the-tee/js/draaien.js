@@ -48,7 +48,7 @@ init();
 
 function init() {
     if (players.length === 0 || tees.length === 0) {
-        alert(t("games.spinTheTee.players.errors.minimumPlayers") + " " +
+        alert(t("errors.minimumPlayers") + " " +
             t("games.spinTheTee.players.errors.minimumTees"));
         location.href = "spelers.html";
         return;

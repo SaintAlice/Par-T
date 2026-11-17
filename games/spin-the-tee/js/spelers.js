@@ -158,7 +158,7 @@ function addPlayer() {
     });
 
     if (bestaatAl) {
-        alert(t("games.spinTheTee.players.errors.PlayerExcists"));
+        alert(t("errors.duplicatePlayer"));
         return;
     }
 

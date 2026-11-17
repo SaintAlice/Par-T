@@ -159,7 +159,7 @@ function createFlights() {
     const maxPlayers = getMaxPlayers();
 
     if (players.length < 2) {
-        showValidation(t("games.flightBuilder.errors.minimumPlayers"));
+        showValidation(t("errors.minimumPlayers"));
         return [];
     }
 
