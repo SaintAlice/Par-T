@@ -70,21 +70,21 @@ const nl = {
                 description: "Verdien punten, verzamel Birdiekaarten en daag je vrienden uit.",
                 paragraph1: "Het doel van Sink or Win is om tijdens je golfronde zoveel mogelijk punten te verzamelen. Verdien punten met je scores, verzamel Birdiekaarten en daag andere spelers uit om extra punten te winnen.",
 
-                paragraph2title: "Punten verdienen",
+                paragraph2Title: "Punten verdienen",
                 paragraph2: "Op iedere hole kun je punten verdienen. Heb je als enige de beste score? Dan verdien je 3 punten. Is het gelijkspel? Dan ontvangt iedere speler met de beste score 1 punt. De overige spelers verdienen geen punten.",
 
-                paragraph3title: "Birdiekaarten verzamelen",
+                paragraph3Title: "Birdiekaarten verzamelen",
                 paragraph3: "Scoor je een birdie of beter, dan verdien je een Birdiekaart. In Scratch-modus telt je bruto score en in Handicap-modus je netto score. Met een Birdiekaart kun je een andere speler uitdagen voor extra punten.",
 
-                paragraph4title: "Uitdagingen",
+                paragraph4Title: "Uitdagingen",
                 paragraph4: "Gebruik een Birdiekaart om een andere speler uit te dagen. Kies je tegenstander en bepaal hoeveel punten je wilt inzetten. Beide spelers moeten voldoende punten hebben om de uitdaging aan te gaan.",
                 paragraph5: "Win je de uitdaging? Dan ontvang je de inzet van je tegenstander. Verlies je? Dan betaal je het afgesproken aantal punten. Bij gelijkspel worden er geen punten uitgewisseld.",
                 paragraph6: "Iedere uitdaging kost één Birdiekaart. Je kunt meerdere spelers uitdagen, maar je mag dezelfde speler niet twee keer op dezelfde hole uitdagen.",
 
-                paragraph7title: "Scratch of Handicap",
+                paragraph7Title: "Scratch of Handicap",
                 paragraph7: "Je kunt Sink or Win op twee manieren spelen. In Scratch-modus wordt uitgegaan van je bruto score: het daadwerkelijke aantal slagen. In Handicap-modus wordt je playing handicap verrekend met je bruto score om je netto score te bepalen.",
 
-                paragraph8title: "Einde van het spel",
+                paragraph8Title: "Einde van het spel",
                 paragraph8: "Na de laatste hole worden alle punten opgeteld. De speler met de meeste punten wint het spel.",
                 paragraph9: "Let op: Ongebruikte Birdiekaarten uit alle holes, behalve de laatste hole, kosten aan het einde van het spel 1 punt per kaart.",
 

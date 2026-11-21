@@ -69,21 +69,21 @@ const en = {
                 description: "Earn points",
                 paragraph1: "The goal of Sink or Win is to collect as many points as possible throughout your round of golf. Earn points with your scores, collect Birdie Cards and challenge other players to win extra points.",
 
-                paragraph2title: "Earning Points",
+                paragraph2Title: "Earning Points",
                 paragraph2: "You can earn points on every hole. If you are the only player with the best score, you earn 3 points. If there is a tie, each player with the best score earns 1 point. All other players earn no points.",
 
-                paragraph3title: "Collecting Birdie Cards",
+                paragraph3Title: "Collecting Birdie Cards",
                 paragraph3: "Score a birdie or better to earn a Birdie Card. In Scratch mode, your gross score counts, while in Handicap mode, your net score counts. Use a Birdie Card to challenge another player for extra points.",
 
-                paragraph4title: "Challenges",
+                paragraph4Title: "Challenges",
                 paragraph4: "Use a Birdie Card to challenge another player. Choose your opponent and decide how many points to bet. Both players must have enough points to take part in the challenge.",
                 paragraph5: "Win the challenge? You receive the bet. Lose? You pay the agreed number of points. If the challenge ends in a tie, no points are exchanged.",
                 paragraph6: "Each challenge costs one Birdie Card. You can challenge multiple players, but you cannot challenge the same player twice on the same hole.",
 
-                paragraph7title: "Scratch or Handicap",
+                paragraph7Title: "Scratch or Handicap",
                 paragraph7: "Sink or Win can be played in two modes. In Scratch mode, your gross score is used: the actual number of strokes taken. In Handicap mode, your playing handicap is deducted from your gross score to calculate your net score.",
 
-                paragraph8title: "End of the game",
+                paragraph8Title: "End of the game",
                 paragraph8: "After the final hole, all points are added up. The player with the most points wins the game.",
                 paragraph9: "Note: Each unused Birdie Card from any hole except the final hole costs 1 point at the end of the game.",
             },
