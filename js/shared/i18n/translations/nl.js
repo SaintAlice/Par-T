@@ -408,8 +408,7 @@ const nl = {
                     title: "Flights aanpassen",
                     description: "Na de automatische verdeling kun je de flightindeling bekijken en spelers handmatig naar een andere flight verplaatsen."
                 }
-            }
-        },
+            },
         flights: {
             summary: "{{playerCount}} spelers verdeeld over {{flightCount}} flights",
             movePlayer: "Verplaats {{player}} naar een andere flight",
@@ -491,7 +490,8 @@ const nl = {
         requiredTeeColor: "Selecteer voor iedere speler een speelkleur.",
         sinkOrWinLoadSettings: "De instellingen van Sink or Win konden niet worden geladen."
     }
- 
+}
 };
 
 export default nl;
+

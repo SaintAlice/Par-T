@@ -355,3 +355,10 @@ initLanguage();
 loadPlayers();
 loadSettings();
 renderPlayers();
+
+console.log("i18n test:", {
+    language: getLanguage(),
+    title: t("games.flightBuilder.playersPage.title"),
+    subtitle: t("games.flightBuilder.playersPage.subtitle"),
+    minimumPlayers: t("games.flightBuilder.errors.minimumPlayers")
+});

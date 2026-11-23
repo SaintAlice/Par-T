@@ -34,6 +34,15 @@ function getTranslationValue(dictionary, key) {
     }, dictionary);
 }
 
+console.log("NL translation structure:", {
+    topLevelKeys: Object.keys(nl),
+    games: nl.games,
+    test: getTranslationValue(
+        nl,
+        "games.flightBuilder.playersPage.title"
+    )
+});
+
 export function getLanguage() {
     return currentLanguage;
 }

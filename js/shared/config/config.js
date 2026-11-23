@@ -1,4 +1,4 @@
-const APP_VERSION = "0.4.0";
+const APP_VERSION = "0.4.1";
 
 if (typeof module !== "undefined" && module.exports) {
     module.exports = { APP_VERSION };
